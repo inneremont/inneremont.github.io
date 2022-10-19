@@ -24,7 +24,7 @@ function renderPlaces(places) {
 
         let model = document.createElement('a-entity');
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        model.setAttribute('gltf-model', './assets/aModel.gltf');
+        model.setAttribute('a-image', './assets/poster01.jpg');
         model.setAttribute('rotation', '0 180 0');
         model.setAttribute('animation-mixer', '');
         model.setAttribute('scale', '0.5 0.5 0.5');
@@ -38,7 +38,6 @@ function renderPlaces(places) {
 
     });
 
-            const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
-console.log(distanceMsg);
+
 }
 
