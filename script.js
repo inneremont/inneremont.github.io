@@ -8,8 +8,8 @@ function staticLoadPlaces() {
         {
             name: 'aModel',
             location: {
-                lat: 59.833372,
-                lng: 22.964131,
+                lat: 59.821247,
+                lng: 22.922618,
             }
         },
     ];
