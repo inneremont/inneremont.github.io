@@ -20,8 +20,10 @@
         }
 
     });
-    </script>
-    <a-scene embed arjs="source:webcam;">
+    </script>       
+    <a-scene vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
           <a-assets>
     <img id="poster01" src="assets/poster01.jpg">
   </a-assets>
