@@ -23,7 +23,7 @@ text-decoration: none;
 
 /* visited link */
 a:visited {
-  color: gray;
+  color: DarkGray;
 text-decoration: none;
 }
 
