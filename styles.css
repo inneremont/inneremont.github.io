@@ -1,13 +1,22 @@
 
+@font-face {
+  font-family: "Folio Std Medium";
+  src: url("fonts/FolioStd-Medium.otf") format("otf"), url("fonts/FolioStd-Medium.otf")
+      format("woff");
+}
+
 
 html {
   margin: 0;
   padding: 10;
  /* scroll-behavior: smooth; */
-  font-family: arial;
+  font-family: Folio Std Medium;
   font-style; bold;
+
   font-size:  72px;
   /*font-size: calc(16px + 0.90625vw); */
+  font-kerning: normal;
+  /*letter-spacing: .01rem; */
  line-height: 2.2em;
  position: relative;
   color: black;
@@ -20,20 +29,20 @@ html {
 /* Define breakpoints and font sizes */
 @media only screen and (max-width:480px) {
  html {
-  font-size: 4.125rem;
+  font-size: 4.172rem;
  }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
  html {
-  font-size: 3.125rem;
+  font-size: 3.172rem;
  }
 }
 
 /* Define max font size and viewport */
 @media (min-width:1024px) {
  html {
-  font-size: 2.125rem;
+  font-size: 2.172rem;
  }
 }
 
@@ -63,13 +72,13 @@ text-decoration: none;
 
 /* visited link */
 a:visited {
-  color: DarkGray;
+  color: darkgray;
 text-decoration: none;
 }
 
 /* mouse over link */
 a:hover {
-  color: black;
+  color: gray;
 text-decoration: none;
 }
 
