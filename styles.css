@@ -6,9 +6,21 @@ h1,h2 {
 }
 
 
+/* unvisited link */
 a:link {
-	font-family: arial;
-	font-style; bold;
-	font-size: 24px;
-	color: black;
+  color: red;
 }
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
