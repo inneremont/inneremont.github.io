@@ -1,26 +1,31 @@
-h1,h2 {
-	font-family: arial;
+body {
+   	font-family: arial;
 	font-style; bold;
 	font-size: 24px;
 	color: black;
 }
 
 
+h1,h2 {
+
+}
+
+
 /* unvisited link */
 a:link {
-  color: red;
+  color: black;
 }
 
 /* visited link */
 a:visited {
-  color: green;
+  color: gray;
 }
 
 /* mouse over link */
 a:hover {
-  color: hotpink;
+  color: black;
 }
 
 /* selected link */
 a:active {
-  color: blue;
+  color: red;
