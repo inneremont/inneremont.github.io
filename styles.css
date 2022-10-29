@@ -1,6 +1,8 @@
-h1,h2{
+h1,h2,p{
+	font-family: arial;
+	font-style; bold
 	font-size: 24px;
-	color: red;
+	color: black;
 }
 
 /* Extra small devices (phones, 600px and down) */
