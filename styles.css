@@ -6,7 +6,7 @@ h1,h2 {
 }
 
 
-a {
+a:link {
 	font-family: arial;
 	font-style; bold;
 	font-size: 24px;
