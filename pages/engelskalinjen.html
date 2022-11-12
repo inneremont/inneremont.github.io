@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Butkan Ny</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+    <script>
+      
+      AFRAME.registerComponent("videohandler", {
+        init: function () {
+
+          this.vid = document.querySelector("#vid");
+
+        
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <a-scene
+      vr-mode-ui="enabled: false"
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+    >
+
+          <a-assets>
+        <video
+         src="http://localhost:7777/Arjs/location_EngelskaLinjen/assets/video/dolcevita.webm" 
+          preload="auto"
+          id="vid"
+          response-type="arraybuffer"
+          loop
+          crossorigin
+          webkit-playsinline
+          autoplay
+          muted
+          playsinline
+        ></video>
+      </a-assets>
+
+         <a-plane 
+   
+         material="src: #vid" 
+         height="720" 
+         width="1280" 
+         position="0 0 0"
+         rotation="0 0 0"
+         gps-entity-place="latitude:59.82055; longitude:22.92363;"
+         ></a-plane>
+
+
+      
+
+      
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+  </body>
+</html>
