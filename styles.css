@@ -1,8 +1,7 @@
 
 @font-face {
   font-family: "ClassicSans";
-  src: url("fonts/classicsansroman.otf") format("otf"), url("fonts/classicsansroman.otf")
-      format("woff");
+  src: url("fonts/classicsansroman.otf") format("otf");
 }
 
 
