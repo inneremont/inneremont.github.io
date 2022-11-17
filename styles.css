@@ -9,8 +9,8 @@ html {
   margin: 0;
   padding: 10;
  /* scroll-behavior: smooth; */
-  font-family: Helvetica;
-  /* font-style; Regular; */
+  font-family: ClassicSans;
+   font-style; Regular; 
 
   font-size:  72px;
   /*font-size: calc(16px + 0.90625vw); */
