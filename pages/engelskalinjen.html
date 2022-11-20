@@ -1,62 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Europe Calling</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-    <script>
-      
-      AFRAME.registerComponent("videohandler", {
-        init: function () {
 
-          this.vid = document.querySelector("#vid");
+<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 
-        
-        }
-      });
-    </script>
-  </head>
+<script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
 
-  <body>
-    <a-scene
-      vr-mode-ui="enabled: false"
-      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+
+<!-- Creates -->
+<a-scene background="color: #FDDA0D">
+    <!-- Create an empty video tag to hold our webcam stream -->
+<a-assets>
+        <video id="webcam" playsinline crossorigin="anonymous"></video>
+
+</a-assets>
+
+
+
+
+
+      <!-- video screen -->
+      <a-box src= "#webcam"  position="11 0 0" rotation="0 90 0"  width ="15" height = "10" 
+      event-set__mouseenter="scale: 2 2 2"
+       
     >
-
-          <a-assets>
-        <video
-         src="assets/video/dolcevita.webm" 
-          preload="auto"
-          id="vid"
-          response-type="arraybuffer"
-          loop
-          crossorigin
-          webkit-playsinline
-          autoplay
-          muted
-          playsinline
-        ></video>
-      </a-assets>
-
-         <a-plane 
-   
-         material="src: #vid" 
-         height="720" 
-         width="1280" 
-         position="0 0 0"
-         rotation="0 0 0"
-         gps-entity-place="latitude:59.82055; longitude:22.92363;"
-         ></a-plane>
-
-
       
+      </a-box>
 
-      
-      <a-camera gps-camera rotation-reader> </a-camera>
-    </a-scene>
-  </body>
+        <a-box src= "#webcam"  position="0 0 11" rotation="0 0 0"  width ="15" height = "10"></a-box>
+
+              <a-box src= "#webcam"  position="0 0 -11" rotation="0 0 0"  width ="15" height = "10"></a-box>
+
+
+      <!-- floor -->
+      <a-plane src="#webcam" position="0 0 0" rotation="-90 0 0" width="25" height="25" ></a-plane>
+
+        <a-camera>
+    <a-cursor></a-cursor>
+    <!-- Or <a-entity cursor></a-entity> -->
+  </a-camera>
+
+</a-scene>
+
+<!-- Start the webcam stream and attach it to the video element -->
+<script>
+  // You can also set which camera to use (front/back/etc)
+  // @SEE https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+  navigator.mediaDevices.getUserMedia({audio: false, video: true})
+  .then(stream => {
+    let $video = document.querySelector('video')
+    $video.srcObject = stream
+    $video.onloadedmetadata = () => {
+      $video.play()
+    }
+  })
+</script>
 </html>
+
+
+
+
+
