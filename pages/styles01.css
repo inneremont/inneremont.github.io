@@ -16,13 +16,13 @@ html {
 /* Define breakpoints and font sizes */
 @media only screen and (max-width:480px) {
  html {
-  font-size: 2.172rem;
+  font-size: 1.172rem;
  }
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
  html {
-  font-size: 2.172rem;
+  font-size: 1.172rem;
  }
 }
 
