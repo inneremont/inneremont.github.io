@@ -6,10 +6,19 @@ var mode = 0; // 0 = camera / 1 = recognizing / 2 = displaying
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	
+	 var constraints = {
+   	 audio: false,
+   	 video: {
+      	facingMode: {
+        exact: "environment"
+     	 		}
+    		}  
+	};
+	
 	//print(parent.parent);
 
 	// Webcam
-	videoInput = createCapture(VIDEO);
+	videoInput = createCapture(constraints);
 	//videoInput.size(200, 200);
 	//videoInput.position(0, 0);
 	//videoInput.hide();
