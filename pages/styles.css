@@ -1,0 +1,75 @@
+html {
+ 
+ /* scroll-behavior: smooth; */
+  font-family: Helvetica;
+  /* font-style; Regular; */
+
+  font-size:  48px;
+  /*font-size: calc(16px + 0.90625vw); */
+
+  !important;
+
+}
+
+
+
+/* Define breakpoints and font sizes */
+@media only screen and (max-width:480px) {
+ html {
+  font-size: 4.172rem;
+ }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+ html {
+  font-size: 2.172rem;
+ }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+ html {
+  font-size: 1.172rem;
+ }
+}
+
+/* Define max font size and viewport */
+@media (min-width:1024px) {
+ html {
+  font-size: 1.172rem;
+ }
+}
+
+ #textbox {
+   visibility: hidden;
+      position:  fixed;
+      left: 0;
+      bottom: 0;
+      width:  100%;
+      background-color:  yellow;
+      
+     
+
+ }
+
+ p {
+  font-size: 1.5em; /* 14px/16=0.875em */
+}
+
+.alignleft {
+   
+  float: left;
+  width: 33.33333%;
+  text-align: center;
+}
+.aligncenter {
+  float: left;
+  width: 33.33333%;
+  text-align: center;
+}
+.alignright {
+ float: left;
+
+
+ width: 33.33333%;
+ text-align: center;
+}
