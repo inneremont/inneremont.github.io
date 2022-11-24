@@ -7,10 +7,7 @@ html {
   font-size:  24px;
   /*font-size: calc(16px + 0.90625vw); */
  
- a {
-  
-  text-decoration: none; /* no underline */
-}
+ 
 
   !important;
 
@@ -58,6 +55,11 @@ html {
 
  p {
   font-size: 1.5em; /* 14px/16=0.875em */
+}
+
+a {
+  
+  text-decoration: none; /* no underline */
 }
 
 .alignleft {
