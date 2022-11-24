@@ -6,6 +6,11 @@ html {
 
   font-size:  24px;
   /*font-size: calc(16px + 0.90625vw); */
+ 
+ a {
+  
+  text-decoration: none; /* no underline */
+}
 
   !important;
 
