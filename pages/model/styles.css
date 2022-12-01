@@ -55,13 +55,13 @@ model-viewer {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  bottom: 16px;
+  bottom: 20px;
   padding: 0px 16px 0px 40px;
   font-family: Roboto Regular, Helvetica Neue, sans-serif;
   font-size: 14px;
   color:#4285f4;
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
   line-height: 36px;
   border-radius: 50%;
   border: 2px solid #DADCE0;
