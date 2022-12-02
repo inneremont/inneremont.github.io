@@ -47,7 +47,7 @@ function draw() {
 		
 		
 		fill(255,0,0)
-		ellipse(windowWidth/2,windowHeight*.7,width/3);
+		ellipse(windowWidth/2,windowHeight*.7,width/2);
 		fill(255)
 		textSize(20);
 		textWrap(WORD);
@@ -61,7 +61,7 @@ function draw() {
 		
 		//rect(0, 0, width, height);
 		fill(0)
-		ellipse(windowWidth/2,windowHeight*.7,width/3);
+		ellipse(windowWidth/2,windowHeight*.7,width/2);
 		fill(255);
 		textFont('Helvetica');
 		textSize(20);
