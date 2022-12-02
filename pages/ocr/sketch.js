@@ -82,7 +82,7 @@ function mousePressed() {
 	if (mode == 0) {
 		mode = 1;
 		Tesseract.recognize(videoInput.elt, {
-				lang: "eng"
+				lang: "fin"
 			})
 			.then(function(result) {
 				mode = 2;
@@ -90,12 +90,12 @@ function mousePressed() {
 			
 				// resulting text -> lower case -> search string?
 			// change search words for your poster and URLs for your videos
-				if (ocr_result.indexOf("moi") >= 0) {
-					parent.location.assign("https://youtu.be/RXgvmpONur0");
-				} else if (ocr_result.indexOf("pause") >= 0) {
-					window.open("https://youtu.be/JAKdvJEFysI");
-				} else if (ocr_result.indexOf("adieu") >= 0) {
-					window.open("https://youtu.be/Bn7E3kN9JZs");
+				if (ocr_result.indexOf("2021") >= 0) {
+					parent.location.assign("https://songwhip.com/wham/last-christmas");
+				} else if (ocr_result.indexOf("scrooge") >= 0) {
+					window.open("https://www.gutenberg.org/files/46/46-h/46-h.htm");
+				} else if (ocr_result.indexOf("täti") >= 0) {
+					window.open("https://www.youtube.com/watch?v=TqpXxWxNJgM");
 				}
 			});
 	} else if (mode == 2) {
