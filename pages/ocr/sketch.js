@@ -50,8 +50,8 @@ function draw() {
 		ellipse(windowWidth/2,windowHeight*.7,width/2);
 		fill(255)
 		textSize(20);
-		textWrap(WORD);
-		text("Find the words scan with button for surprise!", windowWidth/2,windowHeight*.7)
+		
+		text("Find the words scan with button for surprise!", windowWidth/2,windowHeight*.7,100,100);
 
 	}
 	else if (mode == 1) // recognizing
@@ -74,7 +74,7 @@ function draw() {
 
 		textFont('Helvetica');
 		textSize(50);
-		text(ocr_result, windowWidth/2,windowHeight*.7);
+		text(ocr_result + "try again!", windowWidth/2,windowHeight*.7);
 	}
 }
 
