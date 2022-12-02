@@ -1,0 +1,61 @@
+  @font-face {
+  font-family: butkanFont;
+  src: url(font/Lausanne-Regular.otf);
+}
+
+.example1 {
+ height: 80px;	
+ overflow: hidden;
+ position: relative;
+ white-space: nowrap;
+}
+.example1 h3 {
+    font-family: butkanFont;
+ font-size: 3em;
+ color: black;
+ position: absolute;
+ width: auto%;
+ height: 100%;
+ margin-left: 0;
+ margin-right: 0;
+ margin-top: 10px;
+ margin-bottom: 10px;
+
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -moz-animation: example1 7s linear infinite;
+ -webkit-animation: example1 7s linear infinite;
+ animation: example1 7s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes example1 {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes example1 {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes example1 {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
+}
+
+hr.solid {
+    color: black;
+  border-top: 3px solid black;
+}
+
