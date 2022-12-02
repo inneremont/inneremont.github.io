@@ -50,6 +50,7 @@ function draw() {
 		ellipse(windowWidth/2,windowHeight*.7,width/3);
 		fill(255)
 		textSize(20);
+		textWrap(WORD);
 		text("Find the words scan with button for surprise!", windowWidth/2,windowHeight*.7)
 
 	}
