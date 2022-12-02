@@ -49,9 +49,9 @@ function draw() {
 		fill(255,0,0)
 		ellipse(windowWidth/2,windowHeight*.7,width/2);
 		fill(255)
-		textSize(20);
+		textSize(50);
 		
-		text("Find the words scan with button for surprise!", windowWidth/2,windowHeight*.7,100,100);
+		text("Find the words scan with button for surprise!", windowWidth/2,windowHeight*.7,300,300);
 
 	}
 	else if (mode == 1) // recognizing
@@ -64,7 +64,7 @@ function draw() {
 		ellipse(windowWidth/2,windowHeight*.7,width/2);
 		fill(255);
 		textFont('Helvetica');
-		textSize(20);
+		textSize(50);
 		text("checking", windowWidth/2,windowHeight*.7)
 	}
 	else if (mode == 2) // displaying
