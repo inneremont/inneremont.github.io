@@ -11,7 +11,7 @@
  
 
     <a-scene 
-        mindar-image="imageTargetSrc: target/multiTest.mind; maxTrack: 2
+        mindar-image="imageTargetSrc: https://inneremont.github.io/pages/reclaimAR/target/multiTest.mind; maxTrack: 4
         uiScanning:no;" 
         color-space="sRGB" 
         renderer="colorManagement: true, physicallyCorrectLights" 
@@ -20,17 +20,21 @@
     <a-assets>
 
     <video 
-       video id="vid01" 
-       src="asset/clouds.mp4" 
+       video id="vid01"
+       crossorigin="anonymous"    
+       src="https://inneremont.github.io/pages/reclaimAR/asset/clouds.mp4"
+       timeout="4000"    
        type="video/mp4" 
        loop="true" 
        playsinline autoplay
        ></video>
 
       <video 
-       video id="vid02" 
-       src="asset/moon.mp4" 
-       type="video/mp4" 
+       video id="vid02"
+       crossorigin="anonymous"      
+       src="https://inneremont.github.io/pages/reclaimAR/asset/moon.mp4" 
+       type="video/mp4"
+       timeout="4000"        
        loop="true" 
        playsinline autoplay
        ></video>
