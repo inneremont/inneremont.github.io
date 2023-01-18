@@ -1,8 +1,39 @@
+
+html, body, div {
+    /* Height and width fallback for older browsers. */
+    height: 100%;
+    width: 100%;
+
+    /* Set the height to match that of the viewport. */
+    height: 100vh;
+
+    /* Set the width to match that of the viewport. */
+    width: 100vw;
+
+    /* Remove any browser-default margins. */
+    margin: 0;
+}
+
+iframe {
+
+  height:100%;
+  width:100vw;
+  border: none;
+  overflow: hidden;
+}
+
+
+
 .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 60px;
   height: 34px;
+  z-index:1000;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+  
 }
 
 .switch input {
@@ -36,12 +67,12 @@
 }
 
 input:checked+.slider {
-  background-color: #E21C90;
+  background-color: black;
 }
 
 input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
-  background-color: #E21C90;
+  background-color: black;
 }
 
 input:checked+.slider:before {
