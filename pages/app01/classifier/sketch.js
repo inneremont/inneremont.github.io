@@ -26,14 +26,14 @@ function preload(){
   text06 = loadStrings('assets/texts/text06.txt');
   text07 = loadStrings('assets/texts/text07.txt');
   text08 = loadStrings('assets/texts/text08.txt');
-   text09 = loadStrings('assets/texts/text09.txt');
-    text10 = loadStrings('assets/texts/text10.txt');
-     text11 = loadStrings('assets/texts/text11.txt');
-      text12 = loadStrings('assets/texts/text12.txt');
-       text13 = loadStrings('assets/texts/text13.txt');
-       text14 = loadStrings('assets/texts/text14.txt');
-       text15 = loadStrings('assets/texts/text15.txt');
-       text16 = loadStrings('assets/texts/text16.txt');
+  text09 = loadStrings('assets/texts/text09.txt');
+  text10 = loadStrings('assets/texts/text10.txt');
+  text11 = loadStrings('assets/texts/text11.txt');
+  text12 = loadStrings('assets/texts/text12.txt');
+  text13 = loadStrings('assets/texts/text13.txt');
+  text14 = loadStrings('assets/texts/text14.txt');
+  text15 = loadStrings('assets/texts/text15.txt');
+  text16 = loadStrings('assets/texts/text16.txt');
   //qrcode = loadImage('assets/images/frame.png');
   //sampleImg = loadImage('assets/images/sampleImg.jpeg');
 
@@ -42,7 +42,20 @@ function preload(){
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
-video=createCapture(VIDEO);
+var constraints = {
+    audio: false,
+    video: {
+      facingMode: {
+        exact: "environment"
+      }
+    }    
+    //video: {
+      //facingMode: "user"
+    //} 
+  };
+
+	
+video=createCapture(constraints);
 video.size(400, 400);
 video.hide();
 
