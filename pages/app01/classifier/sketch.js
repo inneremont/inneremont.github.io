@@ -222,11 +222,11 @@ else if (KNNresult == 17)
 
 labelP01.html(KNNresult + KNNdescr);
 //labelP02.html(description);
-translate(displayWidth*.70,10)
+//translate(displayWidth*.70,10)
 push();
 textSize(14);
 textLeading(18);
-rotate(90);
+//rotate(90);
 fill(0);
 text(description,0,0,290,300);
 pop();
