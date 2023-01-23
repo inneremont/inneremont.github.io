@@ -74,21 +74,18 @@
 .grid-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
 }
-.panel--rotate-y {
-  transform: rotateY(0deg);
-}
+
 
 .grid-item {
   font-family: Georgia;
-  font-size: 16px;
+  font-size: 12px;
   background-color: rgba(255, 255, 255, 0.8);
   padding-top:0px;
   
 
-  font-size: 16px;
   text-align: justify;  
   text-justify: auto;
 }
@@ -96,7 +93,7 @@
 
 .second {
   padding-top:30px;
-  font-size: 16;
+  font-size: 12;
   text-align: center;
   padding-bottom:10px;
 
@@ -264,9 +261,9 @@
 
 @media only screen and (max-width: 599px) {
   .newspaper {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
   }
 
   .grid-container { grid-template-columns: repeat(2, 1fr); }
