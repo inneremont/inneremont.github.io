@@ -1,0 +1,731 @@
+
+@font-face {font-family: "Bembo Book"; src: url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.eot"); 
+  src: url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.eot?#iefix") format("embedded-opentype"), 
+  url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.woff") format("woff"), url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.ttf") format("truetype"), 
+  url("//db.onlinewebfonts.com/t/2ec7f2b3756e80fc934be4aa8bdb6f26.svg#Bembo Book") format("svg"); 
+font-weight: Regular;}
+
+  @font-face {font-family: "Bembo Book"; src: url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.eot"); 
+    src: url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.eot?#iefix") format("embedded-opentype"), 
+    url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.woff") format("woff"), url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.ttf") format("truetype"), 
+    url("//db.onlinewebfonts.com/t/1c7fd2d89928c5b31cd294a09b22b9c5.svg#Bembo Book") format("svg");
+    font-weight: Bold; 
+  }
+
+@font-face {font-family: "Akzidenz Grotesk BE Bold"; 
+  src: url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.eot"); 
+  src: url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.eot?#iefix") format("embedded-opentype"), 
+  url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.woff") format("woff"), url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.ttf") 
+  format("truetype"), url("//db.onlinewebfonts.com/t/0fecedcc2f33a0880b3f56b9290da4d5.svg#Akzidenz Grotesk BE Bold") format("svg"); 
+  }
+
+  @font-face {font-family: "Schmalfette Fraktur"; src: url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.eot"); src: url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.woff") format("woff"), url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/23fd281455661207905b1f94f10b5c1f.svg#Schmalfette Fraktur") format("svg"); }
+
+
+
+.scrollbar {
+  background-color: #F5F5F5;
+  float: left;
+  height: 300px;
+  margin-bottom: 25px;
+  margin-left: 22px;
+  margin-top: 40px;
+  width: 65px;
+  overflow-y: scroll;
+}
+
+.force-overflow {
+  min-height: 450px;
+}
+
+
+
+
+.masthead{
+ font-family: 'Akzidenz Grotesk BE Bold', sans-serif;
+ font-size: 60px;
+ text-align: left;
+ padding-top:0px;
+ margin-top:-40px;
+ margin-left:-5px;
+ margin-bottom: -80px;
+
+
+}
+
+
+
+.first{
+ 
+  padding-bottom: 20px;
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+
+}
+
+.grid-maser {
+  
+      display: flex;
+   flex-direction: column;
+   height: 800px;
+   width: 100%;
+  
+
+}
+
+.grid-container01 {
+    display: flex;
+
+   height: 50%;
+   margin-bottom:20px;
+
+  
+  
+
+}
+
+
+
+
+.grid-item01 {
+  font-family: Bembo Book;
+  font-weight: Regular;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top:0px;
+  padding-right:10px;
+  flex: 2;
+
+  font-size: 16px;
+  text-align: justify;  
+  text-justify: auto;
+}
+
+.grid-item02 {
+  font-family: Bembo Book;
+  hyphens: auto;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top:0px;
+  padding-left:10px;
+  flex: 2;
+  
+
+  font-size: 16px;
+  text-align: justify;  
+  text-justify: auto;
+}
+
+.grid-container02 {
+    display: flex;
+
+   height: 50%;
+   
+  
+
+}
+
+.grid-item03 {
+  font-family: Bembo Book;
+  hyphens: auto;
+  font-weight: Regular;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top:0px;
+  padding-right:10px;
+
+  flex: 2;
+  
+
+  font-size: 16px;
+  text-align: justify;  
+  text-justify: auto;
+}
+
+.grid-item04 {
+  font-family: Bembo Book;
+  font-weight: Regular;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top:0px;
+  padding-left:10px;
+  margin-left:10px;
+  flex: 2;
+  
+
+  font-size: 16px;
+  text-align: justify;  
+  text-justify: auto;
+}
+
+.display01{
+
+    background-color: #FFF;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 3.5rem;
+  height: 10vh;
+}
+
+
+
+.blink-animation01 > span {
+  
+  animation: glow 5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    color: #000;
+    
+  }
+  
+  10%, 90% {
+    color: #FFF;
+    text-shadow: none;
+  }
+}
+
+.blink-animation01 > span:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.blink-animation01 > span:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.blink-animation01 > span:nth-child(4) {
+  animation-delay: 0.75s;
+}
+
+.blink-animation01 > span:nth-child(5) {
+  animation-delay: 1s;
+}
+
+.blink-animation01 > span:nth-child(6) {
+  animation-delay: 1.25s;
+}
+
+.blink-animation01 > span:nth-child(7) {
+  animation-delay: 1.5s;
+}
+
+.blink-animation01 > span:nth-child(8) {
+  animation-delay: 1.75s;
+}
+
+.blink-animation01 > span:nth-child(9) {
+  animation-delay: 2s;
+}
+
+.blink-animation01 > span:nth-child(10) {
+  animation-delay: 2.25s;
+}
+
+.blink-animation01 > span:nth-child(11) {
+  animation-delay: 2.50s;
+}
+
+.blink-animation01 > span:nth-child(12) {
+  animation-delay: 2.75s;
+}
+
+.blink-animation01 > span:nth-child(13) {
+  animation-delay: 3s;
+}
+
+.blink-animation01 > span:nth-child(14) {
+  animation-delay: 3.25s;
+}
+
+.blink-animation01 > span:nth-child(15) {
+  animation-delay: 3.50s;
+}
+
+.blink-animation01 > span:nth-child(16) {
+  animation-delay: 3.75s;
+}
+
+ /* animation 02*/ 
+
+ .display02{
+
+    background-color: #FFF;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 3.5rem;
+  height: 10vh;
+}
+
+.blink-animation02 > span {
+  
+  animation: glow 5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    color: #000;
+    
+  }
+  
+  10%, 90% {
+    color: #FFF;
+    text-shadow: none;
+  }
+}
+
+.blink-animation02 > span:nth-child(1) {
+  animation-delay: 3.50s;
+}
+.blink-animation02 > span:nth-child(2) {
+  animation-delay: 3.25s;
+}
+
+.blink-animation02 > span:nth-child(3) {
+  animation-delay: 3s;
+}
+
+.blink-animation02 > span:nth-child(4) {
+  animation-delay: 2.75s;
+}
+
+.blink-animation02 > span:nth-child(5) {
+  animation-delay: 2.50s;
+}
+
+.blink-animation02 > span:nth-child(6) {
+  animation-delay: 2.25s;
+}
+
+.blink-animation02 > span:nth-child(7) {
+  animation-delay: 2s;
+}
+
+.blink-animation02 > span:nth-child(8) {
+  animation-delay: 1.75s;
+}
+
+.blink-animation02 > span:nth-child(9) {
+  animation-delay: 1.50s;
+}
+
+.blink-animation02 > span:nth-child(10) {
+  animation-delay: 1.25s;
+}
+
+.blink-animation02 > span:nth-child(11) {
+  animation-delay: 1s;
+}
+
+.blink-animation02 > span:nth-child(12) {
+  animation-delay: 0.75s;
+}
+
+.blink-animation02 > span:nth-child(13) {
+  animation-delay: 0.50s;
+}
+
+.blink-animation02 > span:nth-child(14) {
+  animation-delay: 0.25s;
+}
+
+/* animation 03 */
+
+.display03{
+
+    background-color: #FFF;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 3.5rem;
+  height: 10vh;
+}
+
+.blink-animation03 > span {
+  
+  animation: glow 5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    color: #000;
+    
+  }
+  
+  10%, 90% {
+    color: #FFF;
+    text-shadow: none;
+  }
+}
+
+
+.blink-animation03 > span:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.blink-animation03 > span:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.blink-animation03 > span:nth-child(4) {
+  animation-delay: 0.75s;
+}
+
+.blink-animation03 > span:nth-child(5) {
+  animation-delay: 1s;
+}
+
+.blink-animation03 > span:nth-child(6) {
+  animation-delay: 1.25s;
+}
+
+.blink-animation03 > span:nth-child(7) {
+  animation-delay: 1.5s;
+}
+
+.blink-animation03 > span:nth-child(8) {
+  animation-delay: 1.75s;
+}
+
+.blink-animation03 > span:nth-child(9) {
+  animation-delay: 2s;
+}
+
+.blink-animation03 > span:nth-child(10) {
+  animation-delay: 2.25s;
+}
+
+.blink-animation03 > span:nth-child(11) {
+  animation-delay: 2.50s;
+}
+
+.blink-animation03 > span:nth-child(12) {
+  animation-delay: 2.75s;
+}
+
+.blink-animation03 > span:nth-child(13) {
+  animation-delay: 3s;
+}
+
+.blink-animation03 > span:nth-child(14) {
+  animation-delay: 3.25s;
+}
+
+
+.second {
+  font-family: 'Bembo Book', serif;
+  font-weight: Regular;
+  padding-top:30px;
+  margin-top:20px;
+  font-size: 16;
+  text-align: center;
+  padding-bottom:10px;
+  padding-bottom: 20px;
+  border-top-style: solid;
+  border-top-width: 10px;
+
+
+}
+
+.second--rotate-y {
+  font-family: Bembo Book;
+  hyphens: auto;
+  font-weight: Regular;
+     border-top-style: double;
+  border-top-width: 3px;
+  border-bottom-style: double;
+  border-bottom-width: 3px;
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:40px;
+  padding-right:40px;
+  margin-top:30px;
+  margin-left:25%;
+  margin-right:25%;
+  margin-bottom:70px;
+  
+ 
+
+}
+
+.newspaper {
+
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  padding-bottom:20px;
+    -webkit-column-count: 3;
+     -moz-column-count: 3;
+          column-count: 3;
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+          
+
+  column-rule: 2px solid #000000;
+  text-align: justify;  
+  text-justify: auto;
+  line-height: 1.3
+  
+}
+
+.news01 {
+
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  padding-top:15px;
+  padding-bottom:20px;
+    -webkit-column-count: 3;
+     -moz-column-count: 3;
+          column-count: 3;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+          
+
+  column-rule: 2px solid #000000;
+  hyphens: auto;
+  text-align: justify;  
+  text-justify: auto;
+  line-height: 1.3
+  
+}
+
+.news02 {
+
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+  padding-top:10px;
+  padding-bottom:40px;
+    -webkit-column-count: 4;
+     -moz-column-count: 4;
+          column-count: 4;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+          
+
+  column-rule: 2px solid #000000;
+  hyphens: auto;
+  text-align: justify;  
+  text-justify: auto;
+  line-height: 1.3
+  
+}
+
+
+
+
+
+
+.marqueecontainer {
+   grid-template-columns: repeat(1, 1fr);
+
+    width: 100%;
+    height: 24em;
+    margin: 0em auto;
+    overflow: hidden;
+    background: white;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom-style: solid;
+  border-bottom-width: 10px;
+  padding-bottom:10px;
+}
+
+.marquee {
+
+  margin: 0;
+    padding: 0 0em;
+    line-height: 1.6em;
+    font-family: 'Akzidenz Grotesk BE Bold', sans-serif;
+    font-size: 1.8em;
+    
+    top: 1em;
+    position: relative;
+    box-sizing: border-box;
+    animation: marquee 30s linear infinite;
+  
+  transform: rotate(-90deg);
+}
+
+
+img{
+max-width:100%;
+max-height:100%;
+}
+
+.image-holder01{
+  margin-top:-20px;
+
+}
+
+
+
+.master-circle{
+position: absolute;
+
+
+margin-top:-20px;
+
+width:100%;
+height: 20vh;
+}
+      .circle01 {
+        position:absolute;
+         top: 50%;
+  left: 35%;
+        background: #FF5500;
+        width: 128px;
+        height: 128px;
+        border-radius: 64px;
+z-index:3;
+      
+      }
+    .circle01 div {
+  position:relative;
+   width: 128px;
+  height: 128px;
+
+  top: 10%;
+  left: 80%;
+  margin: -50px 0 0 -50px;
+mix-blend-mode: multiply;
+   
+        
+z-index:1;
+
+      }
+
+      .circle02 {
+      position:relative;
+        background: #00FF33;
+      
+        width: 128px;
+        height: 128px;
+         top: 70%;
+  left: 50%;
+  margin: -50px 0 0 -50px;
+        border-radius: 64px;
+        mix-blend-mode: screen;
+z-index:3;
+      
+      }
+
+
+.the-end{
+  
+  position: relative;
+  margin-top:20vh;
+  width:100%;
+  height: 30vh;
+
+}
+
+.the-text{
+    position: absolute;
+  
+left:50%;
+top:90%;
+ 
+  background: none;
+
+
+  transform-origin: 25% -10%;
+  transform: rotate(180deg);
+  text-align: center;
+   font-family: "Schmalfette Fraktur";
+   font-size: 80px;
+  letter-spacing: 2px;
+
+}
+
+
+
+
+/* Make it move! */
+@keyframes marquee {
+    0%   { top:   13em }
+    100% { top: -23em }
+}
+
+/* Make it look pretty */
+
+
+.textMorph {
+    border-bottom-style: solid;
+  border-bottom-width: 10px;
+  padding-bottom:50px;
+
+}
+
+#morph {
+    position: absolute;
+    margin: auto;
+
+    width: 100vw;
+    height: 0pt;
+    top: 0;
+    bottom: 0;
+    transform: translate(0%, 390px);
+    filter: url(#threshold) blur(0.6px);
+}
+
+#text1,
+#text2 {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+
+    font-family: "Times";
+    font-size: 80px;
+
+    text-align: center;
+
+    user-select: none;
+}
+
+.ball {
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  background: #c00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1s;
+}
+
+@media only screen and (max-width: 599px) {
+  .newspaper {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+
+  .grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .newspaper {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+
+  .grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .newspaper {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
