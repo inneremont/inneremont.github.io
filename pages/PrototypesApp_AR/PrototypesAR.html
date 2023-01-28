@@ -20,7 +20,7 @@
     <a-assets>
 
     <video 
-       video id="poster01"
+       video id="posterForum"
        crossorigin="anonymous"
        src="https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/asset/forum.mp4" 
        type="video/mp4" 
@@ -32,7 +32,7 @@
       
 
       <video 
-       video id="poster02" 
+       video id="posterwalp" 
        crossorigin="anonymous"
        src="https://inneremont.github.io/pages/PrototypesApp_AR/asset/walp.mp4" 
        type="video/mp4" 
@@ -41,6 +41,20 @@
        
        playsinline autoplay
        ></video>
+      
+          <video 
+       video id="postergodjul"
+       crossorigin="anonymous"
+       src="https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/asset/godjul.mp4" 
+       type="video/mp4" 
+       timeout="5000"
+       loop="true" 
+       playsinline autoplay
+     
+       ></video>
+      
+ 
+      
 
       <a-asset-item id="pineNeedles" 
         crossorigin="anonymous"
@@ -58,15 +72,19 @@
       look-controls="enabled: false
       "></a-camera>
 
-      <a-entity mindar-image-target="targetIndex: 1">
-        <a-plane  material="src: #poster01"  position="0 0 0" height="3" width="2" rotation="0 0 0"></a-plane>
+      <a-entity mindar-image-target="targetIndex: 6">
+        <a-plane  material="src: #posterForum"  position="0 0 0" height="1" width="0.7" rotation="0 0 0"></a-plane>
       </a-entity>
 
         <a-entity mindar-image-target="targetIndex: 2">
-        <a-plane  material="src: #poster02"  position="0 0 0" height="3" width="2" rotation="0 0 0"></a-plane>   
+        <a-plane  material="src: #posterwalp"  position="0 0 0" height="1" width="0.7" rotation="0 0 0"></a-plane>   
       </a-entity>
 
-         <a-entity mindar-image-target="targetIndex: 3">
+   <a-entity mindar-image-target="targetIndex: 1">
+        <a-plane  material="src: #postergodjul"  position="0 0 0" height="1" width="0.7" rotation="0 0 0"></a-plane>   
+      </a-entity>
+
+         <a-entity mindar-image-target="targetIndex: 5">
         <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#pineNeedles" animation-mixer>
     
 
