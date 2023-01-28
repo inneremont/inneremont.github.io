@@ -11,15 +11,18 @@
  
 
     <a-scene 
-        mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/target/prototypes02.mind; maxTrack: 4
-        uiScanning:no;" 
+        mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/target/prototypes02.mind; maxTrack: 2
+        uiScanning:no" 
         color-space="sRGB" 
         renderer="colorManagement: true, physicallyCorrectLights" 
         vr-mode-ui="enabled: false" 
         device-orientation-permission-ui="enabled: false">
     <a-assets>
       
-      <img id="halmstadinv" src="https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/asset/halmstinv.jpeg">
+      <img id="halmstadinv" 
+           crossorigin="anonymous"
+           src="https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/asset/halmstinv.jpeg">
+           timeout="5000"
 
     <video 
        video id="posterForum"
@@ -74,9 +77,6 @@
       look-controls="enabled: false
       "></a-camera>
     
-       <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane  material="src: #halmstinv"  position="0 0 0" height="1.41" width="1" rotation="0 0 0"></a-plane>   
-      </a-entity>
     
        <a-entity mindar-image-target="targetIndex: 1">
         <a-plane  material="src: #postergodjul"  position="0 0 0" height="1.41" width="1" rotation="0 0 0"></a-plane>   
@@ -94,6 +94,10 @@
         <a-plane  material="src: #posterForum"  position="0 0 0" height="1.41" width="1" rotation="0 0 0"></a-plane>
       </a-entity>
 
+      
+       <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane  material="src: #halmstinv"  position="0 0 0" height="1.41" width="1" rotation="0 0 0"></a-plane>   
+      </a-entity>    
 
     </a-scene>
   </body>
