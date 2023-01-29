@@ -62,7 +62,7 @@ video=createCapture(constraints);
 
 video.size(400, 400);
 video.hide();
-frameRate(10);
+frameRate(6);
 
 angleMode(DEGREES);
 features = ml5.featureExtractor('MobileNet', modelReady);
