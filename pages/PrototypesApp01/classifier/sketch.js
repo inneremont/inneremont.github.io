@@ -45,7 +45,21 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-video=createCapture(VIDEO);
+	var constraints = {
+    audio: false,
+    video: {
+      facingMode: {
+        exact: "environment"
+      }
+    }    
+    //video: {
+      //facingMode: "user"
+    //} 
+  };
+
+	
+video=createCapture(constraints);
+
 video.size(400, 400);
 video.hide();
 frameRate(2);
