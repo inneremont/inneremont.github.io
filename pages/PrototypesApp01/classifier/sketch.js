@@ -271,7 +271,7 @@ knn.save("model.json")
 function modelReady(){
   console.log('MobileNet loaded');
   knn = ml5.KNNClassifier();
-  knn.load('assets/json/galleri.json', function(){
+  knn.load('https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp01/classifier/assets/json/galleri.json', function(){
     console.log('KNN Data Loaded');
     goClassify();
   });
