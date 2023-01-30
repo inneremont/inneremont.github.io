@@ -13,7 +13,7 @@
  
 
     <a-scene 
-        mindar-image="uiScanning:no; imageTargetSrc: https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/target/prototypes02.mind; 
+        mindar-image="uiScanning:no; imageTargetSrc: https://cdn.jsdelivr.net/gh/inneremont/inneremont.github.io@main/pages/PrototypesApp_AR/target/halmstad04.mind; 
         maxTrack: 2" 
         color-space="sRGB" 
         renderer="colorManagement: true, physicallyCorrectLights" 
@@ -70,21 +70,24 @@
       ></a-camera>
     
  
-    
-       <a-entity mindar-image-target="targetIndex: 1">
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane  material="src: #postergodjul"  position="0 0 0" height="1.52" width="1.05" rotation="0 0 0"></a-plane>   
+      </a-entity>
+      
+       <a-entity mindar-image-target="targetIndex: 2">
         <a-plane  material="src: #postergodjul"  position="0 0 0" height="1.52" width="1.05" rotation="0 0 0"></a-plane>   
       </a-entity>
 
     
-        <a-entity mindar-image-target="targetIndex: 2">
+        <a-entity mindar-image-target="targetIndex: 5">
         <a-plane  material="src: #posterwalp"  position="0 0 0" height="1.52" width="1.05" rotation="0 0 0"></a-plane>   
       </a-entity>
 
-         <a-entity mindar-image-target="targetIndex: 4">
+         <a-entity mindar-image-target="targetIndex: 3">
         <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#pineNeedles" animation-mixer>
              </a-entity>
     
-      <a-entity mindar-image-target="targetIndex: 5">
+      <a-entity mindar-image-target="targetIndex: 1">
         <a-plane  material="src: #posterForum"  position="0 0 0" height="1.52" width="1.05" rotation="0 0 0"></a-plane>
       </a-entity>
             
