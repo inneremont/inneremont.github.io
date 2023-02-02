@@ -1,0 +1,28 @@
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 7vw;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:normal;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #FF4500;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.blinking {
+    animation: mymove 1s infinite alternate;
+}
+
+@keyframes mymove {
+    from {opacity:0;}
+    to {opacity: 0.5;}
+}
