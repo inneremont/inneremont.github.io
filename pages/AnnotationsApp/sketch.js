@@ -98,7 +98,7 @@ labelP02.style('color', '#000000');
 //text-align: justify;
 //padding: 50px;
 //line-height: 1.6;
-labelP02.position(0, windowHeight*.3);  
+labelP02.position(0, windowHeight*.26);  
 }
 
 
@@ -231,7 +231,7 @@ fill(0);
 textFont('Helvetica');	
 textAlign(LEFT);	
 textSize(windowWidth*.09);
-text("Annotations", 200, 50, 100, 100);
+text("Annotations", 200, 60, 100, 100);
 pop();
 
 
