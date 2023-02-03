@@ -66,18 +66,9 @@ features = ml5.featureExtractor('MobileNet', modelReady);
 
 
 	
-labelP00 = createP(" "); 
 
-//myDiv.style('color', '#ffffff');
-//myDiv.position(0, 0);
 
-labelP00 = createP(" ");	
-  
-labelP00.style("font-size","10vw"); 
-labelP00.style("font-family", "Helvetica"); 
-labelP00.style('color', '#000000');
-//labelP00.style('padding', '20px');
-labelP00.position(100, windowHeight*.03);	
+	
 	
 	
 labelP01 = createP(" "); 
@@ -235,10 +226,14 @@ else if (KNNresult == 17)
 push();
 noStroke();
 fill(0,255,0);	
-icon01 = ellipse(20, windowHeight*.03, windowWidth*.1);
+icon01 = ellipse(100, 100, windowWidth*.1);
+fill(0);
+textFont('Helvetica');	
+textSize(20)	
+text("Annotations", 200, 100, 100, 100;)
 pop();
 
-labelP00.html("Annotations");
+
 labelP01.html(KNNdescr);
 labelP02.html(description);
 //translate(displayWidth*.70,10)
