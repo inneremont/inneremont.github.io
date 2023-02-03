@@ -70,7 +70,7 @@ labelP01 = createP(" ");
 //myDiv.position(0, 0);
 
   
-labelP01.style("font-size","32pt"); 
+labelP01.style("font-size","7vw"); 
 labelP01.style("font-family", "Helvetica"); 
 labelP01.style('color', '#000000');
 labelP01.style('padding', '20px');
@@ -79,8 +79,8 @@ labelP01.position(windowWidth*.05, windowHeight*.05);
 
 labelP02 = createP(" "); 
   
-labelP02.style("font-size","10pt"); 
-labelP02.style("font-family", "Helvetica"); 
+labelP02.style("font-size","4"); 
+labelP02.style("font-family", "Times New Roman"); 
 labelP02.style('text-align', 'justify');
 labelP02.style('text-justify', 'inter-word');
 labelP02.style('line-height', '1.5');
@@ -221,14 +221,14 @@ else if (KNNresult == 17)
 
 
 labelP01.html(KNNdescr);
-//labelP02.html(description);
+labelP02.html(description);
 //translate(displayWidth*.70,10)
 push();
 textSize(14);
 textLeading(18);
 //rotate(90);
 fill(0);
-text(description,0,0,windowWidth,windowHeight);
+//text(description,0,0,windowWidth,windowHeight);
 pop();
 
 goClassify();
