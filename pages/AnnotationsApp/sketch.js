@@ -80,8 +80,8 @@ labelP01 = createP(" ");
 labelP01.style("font-size","10vw"); 
 labelP01.style("font-family", "Helvetica"); 
 labelP01.style('color', '#000000');
-labelP01.style('padding', '20px');
-labelP01.position(0, windowHeight*.05);
+labelP01.style('padding', '30px');
+labelP01.position(0, windowHeight*.07);
 //labelP01.style('transform', 'rotate(90deg)');
 
 labelP02 = createP(" "); 
@@ -91,7 +91,7 @@ labelP02.style("font-family", "Times New Roman");
 labelP02.style('text-align', 'justify');
 labelP02.style('text-justify', 'inter-word');
 labelP02.style('line-height', '1.5');
-labelP02.style('padding', '20px');
+labelP02.style('padding', '30px');
 labelP02.style('color', '#000000');
 //labelP02.style('transform', 'rotate(90deg)');
 //text-justify: inter-word;
@@ -229,7 +229,7 @@ fill(0,255,0);
 icon01 = ellipse(100, 100, windowWidth*.1);
 fill(0);
 textFont('Helvetica');	
-textSize(20);	
+textSize(windowWidth*.09);	
 text("Annotations", 200, 100, 100, 100);
 pop();
 
