@@ -1,7 +1,7 @@
 let video;
 let features;
 let knn;
-let labelP01,labelP02;
+let labelP01,labelP02, labelP00;
 let ready = false;
 let customFont;
 let KNNresult;
@@ -65,6 +65,21 @@ angleMode(DEGREES);
 features = ml5.featureExtractor('MobileNet', modelReady);
 
 
+	
+labelP00 = createP(" "); 
+
+//myDiv.style('color', '#ffffff');
+//myDiv.position(0, 0);
+
+labelP00 = createP(" ");	
+  
+labelP00.style("font-size","10vw"); 
+labelP00.style("font-family", "Helvetica"); 
+labelP00.style('color', '#000000');
+//labelP00.style('padding', '20px');
+labelP00.position(100px, windowHeight*.03);	
+	
+	
 labelP01 = createP(" "); 
 
 //myDiv.style('color', '#ffffff');
@@ -75,7 +90,7 @@ labelP01.style("font-size","10vw");
 labelP01.style("font-family", "Helvetica"); 
 labelP01.style('color', '#000000');
 labelP01.style('padding', '20px');
-labelP01.position(windowWidth*.05, windowHeight*.05);
+labelP01.position(0, windowHeight*.05);
 //labelP01.style('transform', 'rotate(90deg)');
 
 labelP02 = createP(" "); 
@@ -85,14 +100,14 @@ labelP02.style("font-family", "Times New Roman");
 labelP02.style('text-align', 'justify');
 labelP02.style('text-justify', 'inter-word');
 labelP02.style('line-height', '1.5');
-labelP02.style('padding', '10px');
+labelP02.style('padding', '20px');
 labelP02.style('color', '#000000');
 //labelP02.style('transform', 'rotate(90deg)');
 //text-justify: inter-word;
 //text-align: justify;
 //padding: 50px;
 //line-height: 1.6;
-labelP02.position(windowWidth*.1, windowHeight*.3);  
+labelP02.position(0, windowHeight*.3);  
 }
 
 
@@ -220,9 +235,10 @@ else if (KNNresult == 17)
 push();
 noStroke();
 fill(0,255,0);	
-icon01 = ellipse(windowWidth*.01, windowHeight*.025, windowWidth*.03);
+icon01 = ellipse(20px, windowHeight*.03, windowWidth*.1);
 pop();
 
+labelP00.html("Annotations");
 labelP01.html(KNNdescr);
 labelP02.html(description);
 //translate(displayWidth*.70,10)
