@@ -77,7 +77,7 @@ labelP01 = createP(" ");
 //myDiv.position(0, 0);
 
   
-labelP01.style("font-size","10vw"); 
+labelP01.style("font-size","8vw"); 
 labelP01.style("font-family", "Helvetica"); 
 labelP01.style('color', '#000000');
 labelP01.style('padding', '50px');
@@ -86,7 +86,7 @@ labelP01.position(0, windowHeight*.08);
 
 labelP02 = createP(" "); 
   
-labelP02.style("font-size","6vw"); 
+labelP02.style("font-size","5vw"); 
 labelP02.style("font-family", "Times New Roman"); 
 labelP02.style('text-align', 'justify');
 labelP02.style('text-justify', 'inter-word');
@@ -98,7 +98,7 @@ labelP02.style('color', '#000000');
 //text-align: justify;
 //padding: 50px;
 //line-height: 1.6;
-labelP02.position(0, windowHeight*.2);  
+labelP02.position(0, windowHeight*.22);  
 }
 
 
