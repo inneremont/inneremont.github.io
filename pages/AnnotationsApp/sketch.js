@@ -12,6 +12,7 @@ let text02 =[]
 let text03 =[]
 let text04 =[]
 let qrcode, sampleImg;
+let icon01;
 
 
 function preload(){
@@ -26,14 +27,14 @@ function preload(){
   text06 = loadStrings('assets/texts/text06.txt');
   text07 = loadStrings('assets/texts/text07.txt');
   text08 = loadStrings('assets/texts/text08.txt');
-   text09 = loadStrings('assets/texts/text09.txt');
-    text10 = loadStrings('assets/texts/text10.txt');
-     text11 = loadStrings('assets/texts/text11.txt');
-      text12 = loadStrings('assets/texts/text12.txt');
-       text13 = loadStrings('assets/texts/text13.txt');
-       text14 = loadStrings('assets/texts/text14.txt');
-       text15 = loadStrings('assets/texts/text15.txt');
-       text16 = loadStrings('assets/texts/text16.txt');
+  text09 = loadStrings('assets/texts/text09.txt');
+  text10 = loadStrings('assets/texts/text10.txt');
+  text11 = loadStrings('assets/texts/text11.txt');
+  text12 = loadStrings('assets/texts/text12.txt');
+  text13 = loadStrings('assets/texts/text13.txt');
+  text14 = loadStrings('assets/texts/text14.txt');
+  text15 = loadStrings('assets/texts/text15.txt');
+  text16 = loadStrings('assets/texts/text16.txt');
   //qrcode = loadImage('assets/images/frame.png');
   //sampleImg = loadImage('assets/images/sampleImg.jpeg');
 
@@ -79,7 +80,7 @@ labelP01.position(windowWidth*.05, windowHeight*.05);
 
 labelP02 = createP(" "); 
   
-labelP02.style("font-size","4"); 
+labelP02.style("font-size","6vw"); 
 labelP02.style("font-family", "Times New Roman"); 
 labelP02.style('text-align', 'justify');
 labelP02.style('text-justify', 'inter-word');
@@ -216,9 +217,11 @@ else if (KNNresult == 17)
 
 }
 
-
-
-
+push();
+noStroke();
+fill(0,255,0);	
+icon01 = ellipse(windowWidth*.01, windowHeight*.025, windowWidth*.03);
+pop();
 
 labelP01.html(KNNdescr);
 labelP02.html(description);
