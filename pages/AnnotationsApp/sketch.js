@@ -130,12 +130,12 @@ else if (KNNresult == 1)
 } 
 else if (KNNresult == 2)
 {
-  KNNdescr = "item01"
+  KNNdescr = "A workspace"
   description = text01
 } 
 else if (KNNresult == 3)
 {
-  KNNdescr = "item02"
+  KNNdescr = "Mixed media"
   description = text02
       push();
 
@@ -186,7 +186,7 @@ else if (KNNresult == 10)
 }
 else if (KNNresult == 11)
 {
-  KNNdescr = "item10"
+  KNNdescr = "Proxemics Made Bare"
   description = text10
 }
 else if (KNNresult == 12)
