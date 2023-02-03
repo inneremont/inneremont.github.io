@@ -229,9 +229,9 @@ fill(0,255,0);
 icon01 = ellipse(100, 100, windowWidth*.1);
 fill(0);
 textFont('Helvetica');	
-textAlign(LEFT, CENTER);	
+textAlign(LEFT);	
 textSize(windowWidth*.09);
-text("Annotations", 200, 100, 100, 100);
+text("Annotations", 200, 50, 100, 100);
 pop();
 
 
