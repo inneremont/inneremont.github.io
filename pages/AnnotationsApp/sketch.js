@@ -77,7 +77,7 @@ labelP00.style("font-size","10vw");
 labelP00.style("font-family", "Helvetica"); 
 labelP00.style('color', '#000000');
 //labelP00.style('padding', '20px');
-labelP00.position(100px, windowHeight*.03);	
+labelP00.position(100, windowHeight*.03);	
 	
 	
 labelP01 = createP(" "); 
@@ -235,7 +235,7 @@ else if (KNNresult == 17)
 push();
 noStroke();
 fill(0,255,0);	
-icon01 = ellipse(20px, windowHeight*.03, windowWidth*.1);
+icon01 = ellipse(20, windowHeight*.03, windowWidth*.1);
 pop();
 
 labelP00.html("Annotations");
