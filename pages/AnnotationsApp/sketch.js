@@ -191,8 +191,8 @@ else if (KNNresult == 11)
 }
 else if (KNNresult == 12)
 {
-  KNNdescr = "item11"
-  description = text12
+  KNNdescr = "Art Direction"
+  description = text11
 }
 else if (KNNresult == 13)
 {
