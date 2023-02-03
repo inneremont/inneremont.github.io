@@ -1,1 +1,1 @@
-So this is what I think it is about. Blur and things.
+A part of the Proxemics Made Bare project revolved around researching interactive elements as a way to regulate space. QR codes are generally hard to integrate in designs, as they do not allow much manipulation. If the codes are to heavily manipulated the camera sensor cannot read the content. The QR code however does allow careful distortions to angle, size and even rotation as is seen in the examples here. 
