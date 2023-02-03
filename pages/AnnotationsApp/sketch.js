@@ -81,7 +81,7 @@ labelP01.style("font-size","10vw");
 labelP01.style("font-family", "Helvetica"); 
 labelP01.style('color', '#000000');
 labelP01.style('padding', '50px');
-labelP01.position(0, windowHeight*.07);
+labelP01.position(0, windowHeight*.08);
 //labelP01.style('transform', 'rotate(90deg)');
 
 labelP02 = createP(" "); 
@@ -98,7 +98,7 @@ labelP02.style('color', '#000000');
 //text-align: justify;
 //padding: 50px;
 //line-height: 1.6;
-labelP02.position(0, windowHeight*.26);  
+labelP02.position(0, windowHeight*.2);  
 }
 
 
