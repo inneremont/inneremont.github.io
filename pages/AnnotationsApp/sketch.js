@@ -231,7 +231,7 @@ fill(0);
 textFont('Helvetica');	
 textAlign(LEFT);	
 textSize(windowWidth*.09);
-text("Annotations", 200, 60, 100, 100);
+text("Annotations", 180, 60, 100, 100);
 pop();
 
 
