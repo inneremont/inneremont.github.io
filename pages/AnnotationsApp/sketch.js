@@ -88,8 +88,8 @@ labelP02 = createP(" ");
   
 labelP02.style("font-size","5vw"); 
 labelP02.style("font-family", "Times New Roman"); 
-labelP02.style('text-align', 'justify');
-labelP02.style('text-justify', 'inter-word');
+//labelP02.style('text-align', 'justify');
+//labelP02.style('text-justify', 'inter-word');
 labelP02.style('line-height', '1.5');
 labelP02.style('padding', '50px');
 labelP02.style('color', '#000000');
