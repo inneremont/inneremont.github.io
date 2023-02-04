@@ -143,12 +143,12 @@ else if (KNNresult == 3)
 } 
 else if (KNNresult == 4)
 {
-  KNNdescr = "item03"
+  KNNdescr = "On drawing"
   description = text03
 }
 else if (KNNresult == 5)
 {
-  KNNdescr = " item04"
+  KNNdescr = " Working words"
   description = text04
   push();
  
@@ -156,13 +156,13 @@ pop();
 }
 else if (KNNresult == 6)
 {
-  KNNdescr = "item05"
+  KNNdescr = "On Hangö Tryckeri"
   
   description = text05
 }
 else if (KNNresult == 7)
 {
-  KNNdescr = "item06"
+  KNNdescr = "Fleamarket to letterpress"
   description = text06
   //  push();
 	//imageMode(CENTER);
@@ -171,17 +171,17 @@ else if (KNNresult == 7)
 }
 else if (KNNresult == 8)
 {
-  KNNdescr = "item07"
+  KNNdescr = "Svinstad"
   description = text07
 }
 else if (KNNresult == 9)
 {
-  KNNdescr = "item08"
+  KNNdescr = "Where do I sign?"
   description = text08
 }
 else if (KNNresult == 10)
 {
-  KNNdescr = "item09"
+  KNNdescr = "Screenprinting"
   description = text09
 }
 else if (KNNresult == 11)
@@ -196,29 +196,29 @@ else if (KNNresult == 12)
 }
 else if (KNNresult == 13)
 {
-  KNNdescr = "item12"
+  KNNdescr = "Mixed Composition"
   description = text13
 }
 else if (KNNresult == 14)
 {
-  KNNdescr = "item13"
+  KNNdescr = "Type Design"
   description = text15
 }
 else if (KNNresult == 15)
 {
-  KNNdescr = "item14"
+  KNNdescr = "New elements"
   description = text14
 }
 else if (KNNresult == 16)
 {
-  KNNdescr = "item15"
+  KNNdescr = "Physical and digital"
   description = text16
 
 }
 
 else if (KNNresult == 17)
 {
-  KNNdescr = "item16"
+  KNNdescr = "Compositions"
   description = text12
 
 }
@@ -231,7 +231,7 @@ fill(0);
 textFont('Helvetica');	
 textAlign(LEFT);	
 textSize(windowWidth*.09);
-text("Annotations", 180, 60, 100, 100);
+text("Annotations", 180, 55, 100, 100);
 pop();
 
 
