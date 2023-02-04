@@ -1,1 +1,1 @@
-Compositions
+Another part of my interests is to combining physical objects and interactive elements in shaping space. Here is an letter from the facade of Hangö Tryckeri combined with a microcontroller controlling a led diode. This is operated wirelessly by the other device that is available on the workdesk.
