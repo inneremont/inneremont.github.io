@@ -207,19 +207,19 @@ else if (KNNresult == 14)
 else if (KNNresult == 15)
 {
   KNNdescr = "item14"
-  description = text14
+  description = text15
 }
 else if (KNNresult == 16)
 {
   KNNdescr = "item15"
-  description = text15
+  description = text16
 
 }
 
 else if (KNNresult == 17)
 {
   KNNdescr = "item16"
-  description = text16
+  description = text17
 
 }
 
