@@ -219,7 +219,7 @@ else if (KNNresult == 16)
 else if (KNNresult == 17)
 {
   KNNdescr = "item16"
-  description = text17
+  description = text12
 
 }
 
