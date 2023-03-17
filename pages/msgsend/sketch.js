@@ -14,7 +14,7 @@
 let broker = {
 
   hostname: 'inneremont.cloud.shiftr.io',
-  port: 443
+  port: 1883
 };
 // MQTT client:
 let client;
@@ -25,7 +25,7 @@ let creds = {
   password: '5JMspsRcKHQwrb9O' // unique Secret from token
 }
 // topic to subscribe to when you connect:
-let topic = 'imageDisplay';
+let topic = 'esp32/led';
 
 // a pushbutton to send messages
 let sendButton;
@@ -41,13 +41,13 @@ let remoteDiv2;
 let slider1;
 
 // intensity of the circle in the middle
-let intensity = 255;
+//let intensity = 255;
 
 let leds = [];
 
 function setup() {
-  createCanvas(800, 400);
-
+  createCanvas(windowWidth, windowHeight);
+  textFont('Helvetica')
   for (let i = 0; i < 4; i++) {
     leds[i] = new Led(i * 50 + 20, height / 2, color(120,120,120), false);
   }
@@ -64,22 +64,29 @@ function setup() {
     useSSL: true // use SSL
   });
   // create input
-  // inpt = createInput("enter 0-255");
-  // inpt.position(20, 0);
+   inpt = createInput("");
+   inpt.position(20, 0);
   // // create the send button:
-  // sendButton = createButton('send to LED 1');
-  // sendButton.position(20, 20);
-  // sendButton.mousePressed(sendMqttMessage);
+   sendButton = createButton('send');
+   sendButton.position(0, 0);
+   sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
   localDiv = createDiv('local messages will go here');
-  localDiv.position(20, 50);
-  localDiv.style('color', '#fff');
+  localDiv.position(width/2-50, 300);
+  localDiv.style('text-align', 'Center');
   // create a div for the response:
-  remoteDiv = createDiv('waiting for messages');
-  remoteDiv.position(20, 80);
-  remoteDiv.style('color', '#fff');
+  remoteDiv = createDiv('Hello device!');
+  remoteDiv.position(width/2-50, 40);
+ 
+  remoteDiv.style('font-size', '18px');
+remoteDiv.style('background-color', 'black');
+remoteDiv.style('color', 'rgb(255, 165, 0)');
+remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
+
+  remoteDiv.style('font-weight', 'bold');
+  remoteDiv.style('text-align', 'center');
   //test adjust slider value
-  localSlider = createSlider(0, width, 400, 1)
+ 
   
   
   
@@ -109,11 +116,8 @@ function setup() {
 }
 
 function draw() {
-  background(50);
-  for (let i = 0; i < leds.length; i++) {
-    leds[i].show();
-    leds[i].detect();
-  }
+  background(255, 165, 0);
+
   // draw a circle whose brightness changes then a message is received:
   // fill(intensity);
   // circle(width / 2, height / 2, width / 2);
@@ -162,9 +166,9 @@ function sendMqttMessage() {
   // if the client is connected to the MQTT broker:
   if (client.isConnected()) {
     // make a string with a random number form 0 to 15:
-     let msg2 = String(round(random(15)));
+     let msg2 = inpt.value();
    // let msg2 = String(inpt.value());
-    let msg = "ledG/" + msg2;
+    let msg = msg2;
     // start an MQTT message:
     message = new Paho.MQTT.Message(msg);
     // choose the destination topic:
@@ -182,9 +186,9 @@ function sendMqttMessage2() {
   if (client.isConnected()) {
     // make a string with a random number form 0 to 15:
     //let msg2 = String(round(random(15)));
-    let msg2 = String(input2.value());
+    let msg2 = off;
 
-    let msg = "ledY/" + msg2 + "\n";
+    let msg = "esp32/led/" + msg2 + "\n";
     // start an MQTT message:
     message = new Paho.MQTT.Message(msg);
     // choose the destination topic:
@@ -209,7 +213,7 @@ class Led {
   sendMsg() {
     if (client.isConnected()) {
       // make a string with a random number form 0 to 15:
-       let msg2 = String(round(random(15)));
+       let msg2 = "on";
 
       this.onOff = !this.onOff;
       let out;
