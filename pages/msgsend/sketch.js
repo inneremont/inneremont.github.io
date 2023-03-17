@@ -14,7 +14,7 @@
 let broker = {
 
   hostname: 'inneremont.cloud.shiftr.io',
-  port: 1883
+  port: 443
 };
 // MQTT client:
 let client;
