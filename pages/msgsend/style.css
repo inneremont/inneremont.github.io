@@ -1,6 +1,41 @@
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 2;
+  font-size: 16px;
+  line-height: 1.625;
+  color: offwhite;
+  font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+input {
+background-color: rgb(250,250,250);
+   border: none;
+  border-color: grey;
+  
+   border-radius: 20px;
+  padding-top: 1.5vw;
+padding-left: 1vw;
+  padding-bottom: 1.5vw;
+  margin-left: 10vw;
+ margin-top: 10vw;
+  font-size: 20px;
+  
+}
+button {
+  background-color: rgb(255, 165, 0); 
+  border: solid;
+  border-radius: 20px;
+ 
+  color: black;
+  padding: 1.5vw 10vw 1.5vw 10vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 17vw;
+  margin-top: 30vw;
+
 }
 canvas {
   display: block;
