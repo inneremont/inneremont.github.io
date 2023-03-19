@@ -13,12 +13,14 @@ background-color: rgb(250,250,250);
    border: none;
   border-color: grey;
   
-   border-radius: 20px;
+  border-radius: 20px;
   padding-top: 1.5vw;
-padding-left: 1vw;
+  padding-left: 1vw;
   padding-bottom: 1.5vw;
-  margin-left: 10vw;
- margin-top: 10vw;
+  margin-left: auto;
+  margin-right: auto;  
+  margin-top: 10vw;
+  width: 70%;
   font-size: 20px;
   
 }
@@ -33,8 +35,12 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
-  margin-left: 17vw;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30vw;
+  width: 70%;
+ 
+ 
 
 }
 canvas {
