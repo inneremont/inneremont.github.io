@@ -20,7 +20,7 @@ let broker = {
 let client;
 // client credentials:
 let creds = {
-  clientID: 'senderUnit', // choose whatever name you want
+  clientID: 'world wide web', // choose whatever name you want
   userName: 'inneremont', // unique Key from token
   password: '5JMspsRcKHQwrb9O' // unique Secret from token
 }
@@ -72,16 +72,19 @@ function setup() {
    sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
   localDiv = createDiv('local messages will go here');
-  localDiv.position(width/2-50, 300);
+  localDiv.addClass('recieved');
+  localDiv.position(0, 0);
   localDiv.style('text-align', 'Center');
+     
   // create a div for the response:
   remoteDiv = createDiv('Hello device!');
-  remoteDiv.position(width/2-50, 40);
+  remoteDiv.addClass('masthead');
+  remoteDiv.position(0, 0);
  
   remoteDiv.style('font-size', '18px');
-remoteDiv.style('background-color', 'black');
-remoteDiv.style('color', 'rgb(255, 165, 0)');
-remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
+  remoteDiv.style('background-color', 'black');
+  remoteDiv.style('color', 'rgb(255, 165, 0)');
+  remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
 
   remoteDiv.style('font-weight', 'bold');
   remoteDiv.style('text-align', 'center');
