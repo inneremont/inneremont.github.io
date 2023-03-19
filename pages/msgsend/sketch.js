@@ -71,7 +71,7 @@ function setup() {
    sendButton.position(width*0.1, 0);
    sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
-  localDiv = createDiv('I’m on the internets!');
+  localDiv = createDiv('Messages goes here');
   localDiv.addClass('recieved');
   localDiv.position(width*0.1, 0);
   localDiv.style('text-align', 'center');
@@ -140,7 +140,7 @@ function mousePressed() {
 
 // called when the client connects
 function onConnect() {
-  localDiv.html('client is connected');
+  localDiv.html('I’m on the internets!');
   client.subscribe(topic);
   console.log("connected")
 }
