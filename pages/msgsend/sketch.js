@@ -65,15 +65,15 @@ function setup() {
   });
   // create input
    inpt = createInput("");
-   inpt.position(width*0.2, 0);
+   inpt.position(width*0.1, 0);
   // // create the send button:
    sendButton = createButton('send');
-   sendButton.position(width*0.2, 0);
+   sendButton.position(width*0.1, 0);
    sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
-  localDiv = createDiv('local messages will go here');
+  localDiv = createDiv('I’m on the internets!');
   localDiv.addClass('recieved');
-  localDiv.position(width*0.2, 0);
+  localDiv.position(width*0.1, 0);
   localDiv.style('text-align', 'center');
      
   // create a div for the response:
