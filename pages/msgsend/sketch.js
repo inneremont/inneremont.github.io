@@ -68,7 +68,7 @@ function setup() {
    inpt.position(width*0.1, 0);
   // // create the send button:
    sendButton = createButton('send');
-   sendButton.position(width*0.12, 0);
+   sendButton.position(width*0.11, 0);
    sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
   localDiv = createDiv('Messages goes here');
