@@ -74,7 +74,7 @@ function setup() {
   localDiv = createDiv('local messages will go here');
   localDiv.addClass('recieved');
   localDiv.position(0, 0);
-  localDiv.style('text-align', 'Center');
+  localDiv.style('text-align', 'center');
      
   // create a div for the response:
   remoteDiv = createDiv('¡Hola! soy LED Flanders');
@@ -84,7 +84,7 @@ function setup() {
   remoteDiv.style('font-size', '18px');
   remoteDiv.style('background-color', 'black');
   remoteDiv.style('color', 'rgb(255, 165, 0)');
-  remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
+ // remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
 
   remoteDiv.style('font-weight', 'bold');
   remoteDiv.style('text-align', 'center');
