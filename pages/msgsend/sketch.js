@@ -77,7 +77,7 @@ function setup() {
   localDiv.style('text-align', 'Center');
      
   // create a div for the response:
-  remoteDiv = createDiv('Hi! I’m LED Flanders');
+  remoteDiv = createDiv('¡Hola! soy LED Flanders');
   remoteDiv.addClass('masthead');
   remoteDiv.position(0, 0);
  
