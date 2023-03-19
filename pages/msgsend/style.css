@@ -12,6 +12,8 @@ html, body {
   margin-left: auto;
   margin-right: auto; 
   margin-top: 0vw;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
   width: 100%;
    
 }
@@ -19,8 +21,8 @@ html, body {
 .recieved {
   margin-left: auto;
   margin-right: auto;  
-  margin-top: 80vw;
-  width: 50%;
+  margin-top: 100vw;
+  width: 70%;
   
 }
 
@@ -38,7 +40,7 @@ background-color: rgb(250,250,250);
   padding-bottom: 1.5vw;
   margin-left: auto;
   margin-right: auto;  
-  margin-top: 30vw;
+  margin-top: 50vw;
   width: 70%;
   font-size: 20px;
   
@@ -50,13 +52,15 @@ button {
  
   color: black;
   padding: 2vw 20vw  2vw 20vw;
+ 
+  padding-left: 1vw;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50vw;
+  margin-top: 80vw;
   width: 70%;
  
  
