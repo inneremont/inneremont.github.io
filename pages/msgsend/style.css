@@ -8,6 +8,25 @@ html, body {
     text-align: center;
 }
 
+.masthead {
+  margin-left: auto;
+  margin-right: auto; 
+  margin-top: 0vw;
+  width: 100%;
+   
+}
+
+.description {
+  margin-left: auto;
+  margin-right: auto;  
+  margin-top: 80vw;
+  width: 50%;
+  
+}
+
+
+
+
 input {
 background-color: rgb(250,250,250);
    border: none;
@@ -19,7 +38,7 @@ background-color: rgb(250,250,250);
   padding-bottom: 1.5vw;
   margin-left: auto;
   margin-right: auto;  
-  margin-top: 10vw;
+  margin-top: 30vw;
   width: 70%;
   font-size: 20px;
   
@@ -30,14 +49,14 @@ button {
   border-radius: 20px;
  
   color: black;
-  padding: 1.5vw 10vw 1.5vw 10vw;
+  padding: 1vw 10vw 1vw 10vw;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30vw;
+  margin-top: 50vw;
   width: 70%;
  
  
