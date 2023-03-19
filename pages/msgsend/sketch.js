@@ -65,15 +65,15 @@ function setup() {
   });
   // create input
    inpt = createInput("");
-   inpt.position(20, 0);
+   inpt.position(width*0.2, 0);
   // // create the send button:
    sendButton = createButton('send');
-   sendButton.position(0, 0);
+   sendButton.position(width*0.2, 0);
    sendButton.mousePressed(sendMqttMessage);
   // create a div for local messages:
   localDiv = createDiv('local messages will go here');
   localDiv.addClass('recieved');
-  localDiv.position(0, 0);
+  localDiv.position(width*0.2, 0);
   localDiv.style('text-align', 'center');
      
   // create a div for the response:
@@ -81,7 +81,7 @@ function setup() {
   remoteDiv.addClass('masthead');
   remoteDiv.position(0, 0);
  
-  remoteDiv.style('font-size', '18px');
+  remoteDiv.style('font-size', '20 px');
   remoteDiv.style('background-color', 'black');
   remoteDiv.style('color', 'rgb(255, 165, 0)');
  // remoteDiv.style('padding', '2vw 20vw  2vw 20vw');
