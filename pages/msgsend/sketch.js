@@ -171,7 +171,7 @@ function sendMqttMessage() {
     // make a string with a random number form 0 to 15:
      let msg2 = inpt.value();
    // let msg2 = String(inpt.value());
-    let msg = msg2;
+    let msg = inpt.value();
     // start an MQTT message:
     message = new Paho.MQTT.Message(msg);
     // choose the destination topic:
@@ -216,7 +216,7 @@ class Led {
   sendMsg() {
     if (client.isConnected()) {
       // make a string with a random number form 0 to 15:
-       let msg2 = "on";
+       let msg2 = inpt.value();
 
       this.onOff = !this.onOff;
       let out;
