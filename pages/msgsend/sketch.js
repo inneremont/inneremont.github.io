@@ -182,7 +182,7 @@ function sendMqttMessage() {
     localDiv.html('I sent: ' + message.payloadString);
   }
 }
-
+/*
 // called when you want to send a message:
 function sendMqttMessage2() {
   // if the client is connected to the MQTT broker:
@@ -202,7 +202,7 @@ function sendMqttMessage2() {
     localDiv2.html('I sent: ' + message.payloadString);
   }
 }
-
+*/
 
 class Led {
   constructor(x, y, fil, onOff) {
