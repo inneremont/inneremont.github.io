@@ -20,7 +20,7 @@ function setup() {
 	createCanvas(895, 1280)
 	pixelDensity(1)
 	
-	fence = new geoFenceCircle( 59.829081,22.959678, 0.02, onEnterFence, onLeaveFence, 'mi')
+	fence = new geoFenceCircle( 59.829081,22.959678, 0.05, onEnterFence, onLeaveFence, 'mi')
 
 	posterLayer = createGraphics(width, height, P2D, document.getElementById('canvas'))
 	
