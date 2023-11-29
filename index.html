@@ -13,10 +13,10 @@
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
     >
       <a-assets timeout="30000">
-               <a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb" response-type="arraybuffer"></a-asset-item>
       </a-assets>
 
-      <a-marker preset="hiro">
+      <a-marker preset="hiro" id="marker">
         <!-- A marker-specific entity for initialization -->
         <a-entity
           id="dino"
@@ -89,7 +89,7 @@
       });
 
       // Update the model's position on every frame (optional)
-      document.querySelector('a-scene').addEventListener('enterframe', () => {
+      document.querySelector('a-scene').addEventListener('render', () => {
         if (modelVisible) {
           // You can add additional logic here if needed
         }
