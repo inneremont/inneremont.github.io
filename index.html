@@ -30,20 +30,34 @@
         init: function () {
           const sceneEl = this.el.sceneEl;
           
-          // Function to create a new plane at a random position
-          const createNewPlane = () => {
+          // Function to create a new plane at the specified position and rotation
+          const createNewPlane = (position, rotation) => {
             const newPlane = document.createElement('a-plane');
-            newPlane.setAttribute('position', `${Math.random() * 10 - 5} 2.15 ${Math.random() * 10 - 5}`);
-            newPlane.setAttribute('rotation', `0 ${Math.random() * 360} 0`);
+            newPlane.setAttribute('position', position);
+            newPlane.setAttribute('rotation', rotation);
             newPlane.setAttribute('shadow', 'cast: true; receive: false');
             this.el.appendChild(newPlane);
           };
 
           // Listen for the camera move event to create a new plane
-          sceneEl.addEventListener('camera-move', createNewPlane);
+          sceneEl.addEventListener('camera-move', () => {
+            const cameraEl = sceneEl.camera.el;
+
+            // Get camera position and rotation 1 second ago
+            const position = cameraEl.object3D.position.clone();
+            const rotation = cameraEl.object3D.rotation.clone();
+
+            // Emit camera move event
+            sceneEl.emit('camera-move', { position, rotation });
+          });
+
+          // Listen for the camera move data and create a new plane
+          sceneEl.addEventListener('camera-move', (event) => {
+            createNewPlane(event.detail.position, event.detail.rotation);
+          });
 
           // Initial plane creation
-          createNewPlane();
+          createNewPlane('0 2.15 -5', '0 0 0'); // You can set the initial position and rotation here
         }
       });
 
@@ -60,7 +74,6 @@
               cameraEl.addEventListener('componentchanged', (event) => {
                 if (event.detail.name === 'position' || event.detail.name === 'rotation') {
                   // Emit camera move event
-                  console.log("inside componentchanged");
                   sceneEl.emit('camera-move');
                 }
               });
