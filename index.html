@@ -28,7 +28,6 @@
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
     <script>
-
       AFRAME.registerComponent('hide-in-ar-mode', {
         // Set this object invisible while in AR mode.
         init: function () {
@@ -66,24 +65,63 @@
             if (!this.wasVisible) this.el.setAttribute('visible', false);
           });
         }
-      });    
-  </script>
+      });
+
+      AFRAME.registerComponent('plane-generator', {
+        init: function () {
+          const sceneEl = this.el.sceneEl;
+
+          // Function to create a new plane at a random position
+          const createNewPlane = () => {
+            const newPlane = document.createElement('a-plane');
+            newPlane.setAttribute('position', `${Math.random() * 10 - 5} 2.15 ${Math.random() * 10 - 5}`);
+            newPlane.setAttribute('rotation', `0 ${Math.random() * 360} 0`);
+            newPlane.setAttribute('shadow', 'cast: true; receive: false');
+            this.el.appendChild(newPlane);
+          };
+
+          // Listen for the camera move event to create a new plane
+          sceneEl.addEventListener('camera-move', createNewPlane);
+
+          // Initial plane creation
+          createNewPlane();
+        }
+      });
+
+      // Emit camera move event on AR mode
+      AFRAME.registerComponent('ar-camera', {
+        init: function () {
+          const sceneEl = this.el.sceneEl;
+
+          sceneEl.addEventListener('enter-vr', (ev) => {
+            if (sceneEl.is('ar-mode')) {
+              const camera = sceneEl.camera;
+              const cameraEl = camera.el;
+
+              // Listen for camera component change events
+              cameraEl.addEventListener('componentchanged', (event) => {
+                if (event.detail.name === 'position' || event.detail.name === 'rotation') {
+                  // Emit camera move event
+                  sceneEl.emit('camera-move');
+                }
+              });
+            }
+          });
+        }
+      });
+    </script>
   </head>  
   <body>
 
     <a-scene>
-      <a-camera position="0 1.2 0"></a-camera>
+      <a-entity ar-camera></a-entity>
+      <a-entity plane-generator></a-entity>
 
       <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
       <a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
                 hide-in-ar-mode></a-entity>
       
-      <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5">
-         <!-- how can i dynamically add planes when camera moves and store their positions?  -->
-        <a-plane position="0 2.15 0" rotation="0 55 0"
-                  
-                  shadow="cast: true; receive: false"></a-plane>
-      </a-entity>  
+      <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5" plane-generator></a-entity>  
       
       <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
       <a-light type="directional"
@@ -112,14 +150,6 @@
         Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
       </p>
     </div>
-    <script>
-      function setSize(scale) {
-        document.getElementById('dino').setAttribute('scale', {x: scale, y: scale, z: scale});
-      }
-      document.getElementById('btn_full').onclick = setSize.bind(this, 1);
-      document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-      document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.25);
-    </script>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
