@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AR.js Test</title>
+    <title>XR test</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-    <!-- Import A-Frame and AR.js -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
     <script>
-      AFRAME.registerComponent('ar-hit-test', {
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (window.location.protocol == "http:" &&
+          window.location.hostname != "localhost" && 
+          window.location.hostname != "127.0.0.1" &&
+          window.location.hostname != "[::1]") {
+        window.location = window.location.href.replace('http:', 'https:');        
+      }
+    </script>    
+    
+    <!-- import the webpage's javascript files -->
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent('plane-generator', {
         init: function () {
-          this.planeAnchor = document.getElementById('plane-anchor');
+          const sceneEl = this.el.sceneEl;
 
-          // Listen for AR hit testing events
-          this.el.sceneEl.addEventListener('arhitstart', (event) => {
-            this.createNewPlane(event.detail.intersectedPoint);
-          });
-        },
+          // Function to create a new plane in front of the camera
+          const createNewPlane = () => {
+            const cameraEl = sceneEl.camera.el;
+            const position = cameraEl.object3D.position.clone();
 
-        createNewPlane: function (position) {
-          // Create a new plane
-          const newPlane = document.createElement('a-plane');
-          newPlane.setAttribute('position', position);
-          newPlane.setAttribute('width', '1');
-          newPlane.setAttribute('height', '1');
-          newPlane.setAttribute('color', 'red'); // Set color for visibility
-          newPlane.setAttribute('shadow', 'cast: true; receive: false');
+            // Move the new plane in front of the camera
+            const distance = -5; // Adjust this distance as needed
+            position.add(cameraEl.object3D.getWorldDirection().multiplyScalar(distance));
 
-          // Append the new plane to the anchor entity
-          this.planeAnchor.appendChild(newPlane);
+            // Create a new plane
+            const newPlane = document.createElement('a-plane');
+            newPlane.setAttribute('position', position);
+            newPlane.setAttribute('width', '1');
+            newPlane.setAttribute('height', '1');
+            newPlane.setAttribute('color', 'red'); // Set color for visibility
+            newPlane.setAttribute('shadow', 'cast: true; receive: false');
+            sceneEl.appendChild(newPlane);
+          };
 
-          // Update plane position based on device movement
-          this.el.sceneEl.addEventListener('arhitupdate', (event) => {
-            const newPosition = event.detail.intersectedPoint;
-            newPlane.setAttribute('position', newPosition);
-          });
+          // Create a new plane every second
+          setInterval(createNewPlane, 1000);
         }
       });
     </script>
-     <!-- AR.js scene with a-camera -->
-    <a-scene embedded arjs>
-      <a-camera></a-camera>
+  </head>  
+  <body>
 
-      <!-- AR hit testing component -->
-      <a-entity ar-hit-test>
-        <!-- Placeholder entity to anchor new planes -->
-        <a-entity id="plane-anchor"></a-entity>
-      </a-entity>
+    <a-scene>
+      <a-entity plane-generator></a-entity>
+      <a-camera position="0 1.2 0"></a-camera>
     </a-scene>
 
     <div id="text">
-      <h1>A-Frame planes for AR.js</h1>
+      <h1>A-Frame planes for VR/AR</h1>
+    
       <p>
-        Powered by <a href="https://aframe.io/">A-Frame</a> and <a href="https://ar-js-org.github.io/AR.js-Docs/">AR.js</a>.
+        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
       </p>
     </div>
 
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
   </body>
 </html>
