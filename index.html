@@ -10,14 +10,6 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
   </head>  
   <body>
-
-    <a-scene>
-      <a-camera position="0 1.2 0" id="camera"></a-camera>
-
-      <!-- Register a component to dynamically add planes based on camera movement -->
-      <a-entity id="plane-container" dynamic-planes></a-entity>
-    </a-scene>
-
     <script>
       AFRAME.registerComponent('dynamic-planes', {
         init: function () {
@@ -53,5 +45,12 @@
         },
       });
     </script>
+    <a-scene>
+      <a-camera position="0 1.2 0" id="camera"></a-camera>
+
+      <!-- Register a component to dynamically add planes based on camera movement -->
+      <a-entity id="plane-container" dynamic-planes></a-entity>
+    </a-scene>
+    
   </body>
 </html>
