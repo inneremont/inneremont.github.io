@@ -29,10 +29,10 @@
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           const sceneEl = this.el.sceneEl;
-          const cameraEl = this.el.sceneEl.camera.el;
 
           // Function to create a new plane in front of the camera
           const createNewPlane = () => {
+            const cameraEl = sceneEl.camera.el;
             const position = cameraEl.object3D.position.clone();
 
             // Move the new plane in front of the camera
@@ -46,7 +46,7 @@
             newPlane.setAttribute('height', '1');
             newPlane.setAttribute('color', 'red'); // Set color for visibility
             newPlane.setAttribute('shadow', 'cast: true; receive: false');
-            this.el.appendChild(newPlane);
+            sceneEl.appendChild(newPlane);
           };
 
           // Create a new plane every second
