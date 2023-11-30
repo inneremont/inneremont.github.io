@@ -13,40 +13,7 @@
   </head>
   <body>
     <!-- AR.js scene with a-camera -->
-    <script>
-      AFRAME.registerComponent('ar-hit-test', {
-        init: function () {
-          this.planeAnchor = document.getElementById('plane-anchor');
-
-          // Use the click event for simplicity
-          this.el.sceneEl.addEventListener('click', (event) => {
-            this.createNewPlane();
-          });
-        },
-
-        createNewPlane: function () {
-          const camera = document.querySelector('a-camera');
-          const position = camera.object3D.getWorldPosition();
-          const rotation = camera.object3D.getWorldRotation();
-
-          // Calculate a position in front of the camera
-          const distance = -2; // Adjust as needed
-          const newPosition = new THREE.Vector3(0, 0, distance).applyQuaternion(rotation).add(position);
-
-          // Create a new plane
-          const newPlane = document.createElement('a-plane');
-          newPlane.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-          newPlane.setAttribute('width', '1');
-          newPlane.setAttribute('height', '1');
-          newPlane.setAttribute('color', 'red'); // Set color for visibility
-          newPlane.setAttribute('shadow', 'cast: true; receive: false');
-
-          // Append the new plane to the anchor entity
-          this.planeAnchor.appendChild(newPlane);
-        }
-      });
-    </script>
-        <a-scene embedded arjs>
+    <a-scene embedded arjs>
       <a-camera></a-camera>
 
       <!-- AR hit testing component -->
@@ -62,5 +29,31 @@
         Powered by <a href="https://aframe.io/">A-Frame</a> and <a href="https://ar-js-org.github.io/AR.js-Docs/">AR.js</a>.
       </p>
     </div>
+
+    <script>
+      AFRAME.registerComponent('ar-hit-test', {
+        init: function () {
+          this.planeAnchor = document.getElementById('plane-anchor');
+
+          // Listen for AR hit testing events
+          this.el.sceneEl.addEventListener('arhitstart', (event) => {
+            this.createNewPlane(event.detail.intersectedPoint);
+          });
+        },
+
+        createNewPlane: function (position) {
+          // Create a new plane
+          const newPlane = document.createElement('a-plane');
+          newPlane.setAttribute('position', position);
+          newPlane.setAttribute('width', '1');
+          newPlane.setAttribute('height', '1');
+          newPlane.setAttribute('color', 'red'); // Set color for visibility
+          newPlane.setAttribute('shadow', 'cast: true; receive: false');
+
+          // Append the new plane to the anchor entity
+          this.planeAnchor.appendChild(newPlane);
+        }
+      });
+    </script>
   </body>
 </html>
