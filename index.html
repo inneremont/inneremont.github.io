@@ -31,44 +31,40 @@
           this.sceneEl = this.el.sceneEl;
           this.lastPosition = new THREE.Vector3();
 
-          // Function to create a new plane in front of the camera
-          const createNewPlane = () => {
-            const cameraEl = this.sceneEl.camera.el;
-            const currentPosition = cameraEl.object3D.position.clone();
-
-            // Check if the camera has moved a significant distance
-            const distanceThreshold = 0.5; // Adjust this distance as needed
-            if (currentPosition.distanceTo(this.lastPosition) > distanceThreshold) {
-              this.lastPosition.copy(currentPosition);
-
-              // Move the new plane in front of the camera
-              const distance = -5; // Adjust this distance as needed
-              const direction = new THREE.Vector3();
-              cameraEl.object3D.getWorldDirection(direction);
-              currentPosition.addScaledVector(direction, distance);
-
-              // Create a new plane
-              const newPlane = document.createElement('a-plane');
-              newPlane.setAttribute('position', currentPosition);
-              newPlane.setAttribute('width', '1');
-              newPlane.setAttribute('height', '1');
-              newPlane.setAttribute('color', 'red'); // Set color for visibility
-              newPlane.setAttribute('shadow', 'cast: true; receive: false');
-              this.sceneEl.appendChild(newPlane);
-            }
-          };
-
-          // Check if XR session is AR before creating planes
-          if (this.sceneEl.is('ar-mode')) {
-            // Create a new plane when the device orientation changes
-            window.addEventListener('deviceorientation', createNewPlane);
-          }
+          // Create an initial plane
+          this.createNewPlane();
         },
 
         tick: function () {
-          // This function will be called on every frame render
-          // You can use it to continuously update the plane positions based on camera movement
-          // For example, you can check if the camera has moved a certain distance and update the planes accordingly
+          // Check if the camera has moved a significant distance
+          const cameraEl = this.sceneEl.camera.el;
+          const currentPosition = cameraEl.object3D.position.clone();
+          const distanceThreshold = 0.5; // Adjust this distance as needed
+
+          if (currentPosition.distanceTo(this.lastPosition) > distanceThreshold) {
+            this.lastPosition.copy(currentPosition);
+            this.createNewPlane();
+          }
+        },
+
+        createNewPlane: function () {
+          const cameraEl = this.sceneEl.camera.el;
+          const currentPosition = cameraEl.object3D.position.clone();
+
+          // Move the new plane in front of the camera
+          const distance = -5; // Adjust this distance as needed
+          const direction = new THREE.Vector3();
+          cameraEl.object3D.getWorldDirection(direction);
+          currentPosition.addScaledVector(direction, distance);
+
+          // Create a new plane
+          const newPlane = document.createElement('a-plane');
+          newPlane.setAttribute('position', currentPosition);
+          newPlane.setAttribute('width', '1');
+          newPlane.setAttribute('height', '1');
+          newPlane.setAttribute('color', 'red'); // Set color for visibility
+          newPlane.setAttribute('shadow', 'cast: true; receive: false');
+          this.sceneEl.appendChild(newPlane);
         }
       });
     </script>
@@ -80,7 +76,7 @@
 
       <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5" plane-generator>
         <!-- Existing plane that's always visible -->
-        <a-plane position="0 2.15 0" rotation="0 55 0" color="yellow" shadow="cast: true; receive: false"></a-plane>
+        <a-plane position="0 2.15 0" rotation="0 55 0" color="blue" shadow="cast: true; receive: false"></a-plane>
       </a-entity>  
       
       <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
