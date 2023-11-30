@@ -29,26 +29,33 @@
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           this.sceneEl = this.el.sceneEl;
+          this.lastPosition = new THREE.Vector3();
 
           // Function to create a new plane in front of the camera
           const createNewPlane = () => {
             const cameraEl = this.sceneEl.camera.el;
-            const position = cameraEl.object3D.position.clone();
+            const currentPosition = cameraEl.object3D.position.clone();
 
-            // Move the new plane in front of the camera
-            const distance = -5; // Adjust this distance as needed
-            const direction = new THREE.Vector3();
-            cameraEl.object3D.getWorldDirection(direction);
-            position.addScaledVector(direction, distance);
+            // Check if the camera has moved a significant distance
+            const distanceThreshold = 0.5; // Adjust this distance as needed
+            if (currentPosition.distanceTo(this.lastPosition) > distanceThreshold) {
+              this.lastPosition.copy(currentPosition);
 
-            // Create a new plane
-            const newPlane = document.createElement('a-plane');
-            newPlane.setAttribute('position', position);
-            newPlane.setAttribute('width', '1');
-            newPlane.setAttribute('height', '1');
-            newPlane.setAttribute('color', 'red'); // Set color for visibility
-            newPlane.setAttribute('shadow', 'cast: true; receive: false');
-            this.sceneEl.appendChild(newPlane);
+              // Move the new plane in front of the camera
+              const distance = -5; // Adjust this distance as needed
+              const direction = new THREE.Vector3();
+              cameraEl.object3D.getWorldDirection(direction);
+              currentPosition.addScaledVector(direction, distance);
+
+              // Create a new plane
+              const newPlane = document.createElement('a-plane');
+              newPlane.setAttribute('position', currentPosition);
+              newPlane.setAttribute('width', '1');
+              newPlane.setAttribute('height', '1');
+              newPlane.setAttribute('color', 'red'); // Set color for visibility
+              newPlane.setAttribute('shadow', 'cast: true; receive: false');
+              this.sceneEl.appendChild(newPlane);
+            }
           };
 
           // Check if XR session is AR before creating planes
