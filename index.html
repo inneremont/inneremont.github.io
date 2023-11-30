@@ -18,8 +18,8 @@
 
       <!-- AR hit testing component -->
       <a-entity ar-hit-test>
-        <!-- Initial plane that's always visible -->
-        <a-plane position="0 1.5 -2" rotation="-90 0 0" color="blue" shadow="cast: true; receive: false"></a-plane>
+        <!-- Placeholder entity to anchor new planes -->
+        <a-entity id="plane-anchor"></a-entity>
       </a-entity>
     </a-scene>
 
@@ -33,18 +33,19 @@
     <script>
       AFRAME.registerComponent('ar-hit-test', {
         init: function () {
-          this.el.sceneEl.addEventListener('click', (event) => {
-            // Use the click event for simplicity
-            const camera = document.querySelector('a-camera');
-            const position = camera.object3D.getWorldPosition();
-            const rotation = camera.object3D.getWorldRotation();
+          this.planeAnchor = document.getElementById('plane-anchor');
 
-            // Create a new plane in front of the camera
-            this.createNewPlane(position, rotation);
+          // Use the click event for simplicity
+          this.el.sceneEl.addEventListener('click', (event) => {
+            this.createNewPlane();
           });
         },
 
-        createNewPlane: function (position, rotation) {
+        createNewPlane: function () {
+          const camera = document.querySelector('a-camera');
+          const position = camera.object3D.getWorldPosition();
+          const rotation = camera.object3D.getWorldRotation();
+
           // Calculate a position in front of the camera
           const distance = -2; // Adjust as needed
           const newPosition = new THREE.Vector3(0, 0, distance).applyQuaternion(rotation).add(position);
@@ -57,8 +58,8 @@
           newPlane.setAttribute('color', 'red'); // Set color for visibility
           newPlane.setAttribute('shadow', 'cast: true; receive: false');
 
-          // Attach the new plane to the scene
-          this.el.sceneEl.appendChild(newPlane);
+          // Append the new plane to the anchor entity
+          this.planeAnchor.appendChild(newPlane);
         }
       });
     </script>
