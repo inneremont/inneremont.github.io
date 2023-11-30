@@ -51,8 +51,11 @@
             this.sceneEl.appendChild(newPlane);
           };
 
-          // Create a new plane when the device orientation changes
-          window.addEventListener('deviceorientation', createNewPlane);
+          // Check if XR session is AR before creating planes
+          if (this.sceneEl.is('ar-mode')) {
+            // Create a new plane when the device orientation changes
+            window.addEventListener('deviceorientation', createNewPlane);
+          }
         },
 
         tick: function () {
