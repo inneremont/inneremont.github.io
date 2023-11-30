@@ -29,7 +29,7 @@
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           const sceneEl = this.el.sceneEl;
-          
+
           // Function to create a new plane at the specified position and rotation
           const createNewPlane = (position, rotation) => {
             const newPlane = document.createElement('a-plane');
@@ -40,45 +40,32 @@
           };
 
           // Listen for the camera move event to create a new plane
-          sceneEl.addEventListener('camera-move', () => {
-            const cameraEl = sceneEl.camera.el;
-
-            // Get camera position and rotation 1 second ago
-            const position = cameraEl.object3D.position.clone();
-            const rotation = cameraEl.object3D.rotation.clone();
-
-            // Emit camera move event
-            sceneEl.emit('camera-move', { position, rotation });
-          });
-
-          // Listen for the camera move data and create a new plane
           sceneEl.addEventListener('camera-move', (event) => {
             createNewPlane(event.detail.position, event.detail.rotation);
           });
 
+          // Check the camera's position every tick
+          this.el.sceneEl.addEventListener('tick', () => {
+            const cameraEl = this.el.sceneEl.camera.el;
+            const currentPosition = cameraEl.object3D.position.clone();
+            const currentRotation = cameraEl.object3D.rotation.clone();
+
+            if (
+              !this.previousPosition ||
+              !this.previousPosition.equals(currentPosition) ||
+              !this.previousRotation.equals(currentRotation)
+            ) {
+              // Emit camera move event if the position or rotation changed
+              sceneEl.emit('camera-move', { position: currentPosition, rotation: currentRotation });
+            }
+
+            // Save the current position and rotation for the next tick
+            this.previousPosition = currentPosition;
+            this.previousRotation = currentRotation;
+          });
+
           // Initial plane creation
           createNewPlane('0 2.15 -5', '0 0 0'); // You can set the initial position and rotation here
-        }
-      });
-
-      // Emit camera move event on AR mode
-      AFRAME.registerComponent('ar-camera', {
-        init: function () {
-          const sceneEl = this.el.sceneEl;
-
-          sceneEl.addEventListener('enter-vr', (ev) => {
-            if (sceneEl.is('ar-mode')) {
-              const cameraEl = sceneEl.camera.el;
-
-              // Listen for camera component change events
-              cameraEl.addEventListener('componentchanged', (event) => {
-                if (event.detail.name === 'position' || event.detail.name === 'rotation') {
-                  // Emit camera move event
-                  sceneEl.emit('camera-move');
-                }
-              });
-            }
-          });
         }
       });
     </script>
@@ -86,7 +73,6 @@
   <body>
 
     <a-scene>
-      <a-entity ar-camera></a-entity>
       <a-entity plane-generator></a-entity>
     </a-scene>
 
