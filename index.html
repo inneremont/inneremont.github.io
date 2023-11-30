@@ -27,49 +27,39 @@
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
     <script>
-  AFRAME.registerComponent('plane-generator', {
-  init: function () {
-    const sceneEl = this.el.sceneEl;
+      AFRAME.registerComponent('plane-generator', {
+        init: function () {
+          const sceneEl = this.el.sceneEl;
 
-    // Function to create a new plane in front of the camera
-    const createNewPlane = () => {
-      const cameraEl = sceneEl.camera.el;
-      const position = cameraEl.object3D.position.clone();
-      
-      // Create a target vector
-      const direction = new THREE.Vector3();
-      cameraEl.object3D.getWorldDirection(direction);
+          // Function to create a new plane in front of the camera
+          const createNewPlane = () => {
+            const cameraEl = sceneEl.camera.el;
+            const position = cameraEl.object3D.position.clone();
 
-      // Move the new plane in front of the camera
-      const distance = -5; // Adjust this distance as needed
-      position.add(direction.multiplyScalar(distance));
+            // Move the new plane in front of the camera
+            const distance = -5; // Adjust this distance as needed
+            position.add(cameraEl.object3D.getWorldDirection().multiplyScalar(distance));
 
-      // Create a new plane
-      const newPlane = document.createElement('a-plane');
-      newPlane.setAttribute('position', position);
-      newPlane.setAttribute('width', '1');
-      newPlane.setAttribute('height', '1');
-      newPlane.setAttribute('color', 'red'); // Set color for visibility
-      newPlane.setAttribute('shadow', 'cast: true; receive: false');
-      sceneEl.appendChild(newPlane);
-    };
+            // Create a new plane
+            const newPlane = document.createElement('a-plane');
+            newPlane.setAttribute('position', position);
+            newPlane.setAttribute('width', '1');
+            newPlane.setAttribute('height', '1');
+            newPlane.setAttribute('color', 'red'); // Set color for visibility
+            newPlane.setAttribute('shadow', 'cast: true; receive: false');
+            sceneEl.appendChild(newPlane);
+          };
 
-    // Create a new plane every second
-    setInterval(createNewPlane, 1000);
-  }
-});
-
+          // Create a new plane every second
+          setInterval(createNewPlane, 1000);
+        }
+      });
     </script>
   </head>  
   <body>
 
-    <a-scene xrweb>
-      <a-entity plane-generator></a-entity>
-      <a-camera position="0 1.2 0"></a-camera>
-    </a-scene>
-
     <div id="text">
-      <h1>Dick Butt</h1>
+      <h1>A-Frame planes for VR/AR</h1>
     
       <p>
         Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.2.0</a>.
@@ -80,5 +70,23 @@
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
+
+    <script>
+      // Check for WebXR support
+      if ('xr' in navigator) {
+        // Enter AR mode
+        navigator.xr.requestDevice().then(device => {
+          device.requestSession({ mode: 'immersive-ar' }).then(session => {
+            document.querySelector('a-scene').setAttribute('xrweb', 'session', session);
+            document.querySelector('a-scene').enterVR();
+          });
+        });
+      }
+    </script>
+    <a-scene xrweb>
+      <a-entity plane-generator></a-entity>
+      <a-camera position="0 1.2 0"></a-camera>
+    </a-scene>
+    
   </body>
 </html>
