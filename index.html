@@ -27,32 +27,26 @@
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.1.7/aframe/build/aframe-ar.js"></script>
 
     <script>
-      AFRAME.registerComponent('plane-generator', {
+      AFRAME.registerComponent('ar-hit-test', {
         init: function () {
-          this.sceneEl = this.el.sceneEl;
-
-          // Create an initial plane
-          this.createNewPlane();
+          this.el.sceneEl.addEventListener('arhit', (event) => {
+            const hit = event.detail.intersections[0];
+            
+            // Create a new plane at the hit position
+            this.createNewPlane(hit.position);
+          });
         },
 
-        createNewPlane: function () {
-          const cameraEl = this.sceneEl.camera.el;
-          const currentPosition = cameraEl.object3D.position.clone();
-
-          // Move the new plane in front of the camera
-          const distance = -5; // Adjust this distance as needed
-          const direction = new THREE.Vector3();
-          cameraEl.object3D.getWorldDirection(direction);
-          currentPosition.addScaledVector(direction, distance);
-
-          // Create a new plane
+        createNewPlane: function (position) {
           const newPlane = document.createElement('a-plane');
-          newPlane.setAttribute('position', currentPosition);
+          newPlane.setAttribute('position', position);
           newPlane.setAttribute('width', '1');
           newPlane.setAttribute('height', '1');
           newPlane.setAttribute('color', 'red'); // Set color for visibility
           newPlane.setAttribute('shadow', 'cast: true; receive: false');
-          this.sceneEl.appendChild(newPlane);
+          
+          // Attach the new plane to the scene
+          this.el.sceneEl.appendChild(newPlane);
         }
       });
     </script>
@@ -62,9 +56,9 @@
     <a-scene embedded arjs>
       <a-camera position="0 1.2 0"></a-camera>
 
-      <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5" plane-generator>
+      <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5" ar-hit-test>
         <!-- Existing plane that's always visible -->
-        <a-plane position="0 2.15 0" rotation="0 55 0" color="yellow" shadow="cast: true; receive: false"></a-plane>
+        <a-plane position="0 2.15 0" rotation="0 55 0" color="blue" shadow="cast: true; receive: false"></a-plane>
       </a-entity>  
       
       <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
