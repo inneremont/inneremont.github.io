@@ -30,22 +30,9 @@
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           this.sceneEl = this.el.sceneEl;
-          this.lastPosition = new THREE.Vector3();
 
           // Create an initial plane
           this.createNewPlane();
-        },
-
-        tick: function () {
-          // Check if the camera has moved a significant distance
-          const cameraEl = this.sceneEl.camera.el;
-          const currentPosition = cameraEl.object3D.position.clone();
-          const distanceThreshold = 0.5; // Adjust this distance as needed
-
-          if (currentPosition.distanceTo(this.lastPosition) > distanceThreshold) {
-            this.lastPosition.copy(currentPosition);
-            this.createNewPlane();
-          }
         },
 
         createNewPlane: function () {
