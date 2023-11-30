@@ -33,18 +33,21 @@
     <script>
       AFRAME.registerComponent('ar-hit-test', {
         init: function () {
-          this.el.sceneEl.addEventListener('arhit', (event) => {
-            const hit = event.detail.intersections[0];
+          this.el.sceneEl.addEventListener('click', (event) => {
+            // Use the click event for simplicity
+            const camera = document.querySelector('a-camera');
+            const position = camera.object3D.getWorldPosition();
+            const rotation = camera.object3D.getWorldRotation();
 
             // Create a new plane in front of the camera
-            this.createNewPlane(hit.position, hit.faceNormal);
+            this.createNewPlane(position, rotation);
           });
         },
 
-        createNewPlane: function (position, faceNormal) {
+        createNewPlane: function (position, rotation) {
           // Calculate a position in front of the camera
-          const distance = 1; // Adjust as needed
-          const newPosition = new THREE.Vector3().copy(position).addScaledVector(faceNormal, distance);
+          const distance = -2; // Adjust as needed
+          const newPosition = new THREE.Vector3(0, 0, distance).applyQuaternion(rotation).add(position);
 
           // Create a new plane
           const newPlane = document.createElement('a-plane');
