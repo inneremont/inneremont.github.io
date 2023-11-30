@@ -24,53 +24,12 @@
     
     <!-- import the webpage's javascript files -->
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
     <script>
-      AFRAME.registerComponent('hide-in-ar-mode', {
-        // Set this object invisible while in AR mode.
-        init: function () {
-          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
-            this.wasVisible = this.el.getAttribute('visible');
-            if (this.el.sceneEl.is('ar-mode')) {
-              this.el.setAttribute('visible', false);
-            }
-          });
-          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
-            if (this.wasVisible) this.el.setAttribute('visible', true);
-          });
-        }
-      });
-      
-      AFRAME.registerComponent('ar-shadows', {
-        schema: {
-          opacity: {default: 0.3}
-        },
-        init: function () {
-          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
-            this.wasVisible = this.el.getAttribute('visible');
-            if (this.el.sceneEl.is('ar-mode')) {
-              this.savedMaterial = this.el.object3D.children[0].material;
-              this.el.object3D.children[0].material = new THREE.ShadowMaterial();
-              this.el.object3D.children[0].material.opacity = this.data.opacity;
-              this.el.setAttribute('visible', true);
-            }
-          });
-          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
-            if (this.savedMaterial) {
-              this.el.object3D.children[0].material = this.savedMaterial;
-              this.savedMaterial = null;
-            }
-            if (!this.wasVisible) this.el.setAttribute('visible', false);
-          });
-        }
-      });
-
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           const sceneEl = this.el.sceneEl;
-
+          
           // Function to create a new plane at a random position
           const createNewPlane = () => {
             const newPlane = document.createElement('a-plane');
@@ -95,13 +54,13 @@
 
           sceneEl.addEventListener('enter-vr', (ev) => {
             if (sceneEl.is('ar-mode')) {
-              const camera = sceneEl.camera;
-              const cameraEl = camera.el;
+              const cameraEl = sceneEl.camera.el;
 
               // Listen for camera component change events
               cameraEl.addEventListener('componentchanged', (event) => {
                 if (event.detail.name === 'position' || event.detail.name === 'rotation') {
                   // Emit camera move event
+                  console.log("inside componentchanged");
                   sceneEl.emit('camera-move');
                 }
               });
@@ -116,31 +75,6 @@
     <a-scene>
       <a-entity ar-camera></a-entity>
       <a-entity plane-generator></a-entity>
-
-      <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
-      <a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
-                hide-in-ar-mode></a-entity>
-      
-      <a-entity id="new-planes" position="-1 0 -3" scale="0.5 0.5 0.5" plane-generator></a-entity>  
-      
-      <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
-      <a-light type="directional"
-               light="castShadow: true;
-                      shadowMapHeight: 1024;
-                      shadowMapWidth: 1024;
-                      shadowCameraLeft: -7;
-                      shadowCameraRight: 5;
-                      shadowCameraBottom: -5;
-                      shadowCameraTop: 5;"
-               id="light"
-               target="new-planes"
-               position="-5 3 1.5"></a-light>
-
-      <!-- This shadow-receiving plane is only visible in AR mode. -->
-      <a-plane height="15" width="15" position="0 0 -3" rotation="-90 0 0"
-               shadow="receive: true"
-               ar-shadows="opacity: 0.3"
-               visible="false"></a-plane>
     </a-scene>
 
     <div id="text">
