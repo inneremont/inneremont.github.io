@@ -1,81 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>AR Drawing with A-Frame</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script>
-      AFRAME.registerComponent('draw', {
-        schema: {
-          color: { default: '#00FF00' },
-          lineWidth: { default: 0.1 },
-        },
-        init: function () {
-          this.isDrawing = false;
-          this.lastPosition = new THREE.Vector3();
-          this.currentPosition = new THREE.Vector3();
-
-          this.el.addEventListener('mousedown', this.startDrawing.bind(this));
-          this.el.addEventListener('mouseup', this.stopDrawing.bind(this));
-          this.el.addEventListener('mousemove', this.draw.bind(this));
-        },
-        startDrawing: function (event) {
-          this.isDrawing = true;
-          this.lastPosition.copy(event.detail.intersection.point);
-        },
-        stopDrawing: function () {
-          this.isDrawing = false;
-        },
-        draw: function (event) {
-          if (!this.isDrawing) return;
-
-          this.currentPosition.copy(event.detail.intersection.point);
-
-          const line = document.createElement('a-entity');
-          line.setAttribute('line', {
-            start: this.lastPosition,
-            end: this.currentPosition,
-            color: this.data.color,
-            opacity: 0.9,
-            lineWidth: this.data.lineWidth,
-          });
-
-          this.el.sceneEl.appendChild(line);
-
-          this.lastPosition.copy(this.currentPosition);
-        },
-      });
-    </script>
   </head>
   <body>
     <a-scene
-      embedded
-      vr-mode-ui="enabled: false"
       renderer="antialias: true"
+      embedded
+      xr
+      stats
+      keyboard-shortcuts
+      screenshot
+      inspector
     >
+      <a-entity position="0 1.6 0">
+        <a-camera>
+          <a-cursor></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <a-sky color="#ECECEC"></a-sky>
+
+      <a-light
+        type="hemisphere"
+        color="#606060"
+        ground-color="#404040"
+      ></a-light>
+
+      <a-light
+        type="directional"
+        position="1 1 1"
+        target="#your3DModel"
+      ></a-light>
+
       <a-entity
-        id="player"
-        position="0 1.6 0"
-        rotation="0 0 0"
-        wasd-controls
-        look-controls
+        id="your3DModel"
+        geometry="primitive: box; width: 0.06; height: 0.06; depth: 0.06"
+        material="color: #ffffff; shader: flat"
       ></a-entity>
 
       <a-entity
-        id="ground"
-        geometry="primitive: plane; width: 100; height: 100"
-        rotation="-90 0 0"
-        material="color: #CCC"
+        id="controller"
+        laser-controls
+        raycaster="objects: #your3DModel"
+        line="color: #ECECEC"
       ></a-entity>
 
-      <a-camera>
-        <a-cursor></a-cursor>
-      </a-camera>
-
-      <a-entity draw="color: #FF0000; lineWidth: 0.2" class="raycastable"></a-entity>
-
-      <!-- Define raycaster and specify objects to intersect -->
-      <a-entity raycaster="objects: .raycastable"></a-entity>
+      <a-entity
+        id="rig"
+        teleport-controls="type: parabolic; collisionEntities: [mymodel]"
+        movement-controls
+        kinematic-body
+        position="0 0 0"
+      ></a-entity>
     </a-scene>
   </body>
 </html>
