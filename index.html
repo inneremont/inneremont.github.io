@@ -60,12 +60,9 @@
             }
 
             // Save the current position and rotation for the next tick
-            this.previousPosition = currentPosition;
-            this.previousRotation = currentRotation;
+            this.previousPosition = currentPosition.clone();
+            this.previousRotation = currentRotation.clone();
           });
-
-          // Initial plane creation
-          createNewPlane('0 2.15 -5', '0 0 0'); // You can set the initial position and rotation here
         }
       });
     </script>
