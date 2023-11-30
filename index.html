@@ -28,16 +28,18 @@
     <script>
       AFRAME.registerComponent('plane-generator', {
         init: function () {
-          const sceneEl = this.el.sceneEl;
+          this.sceneEl = this.el.sceneEl;
 
           // Function to create a new plane in front of the camera
           const createNewPlane = () => {
-            const cameraEl = sceneEl.camera.el;
+            const cameraEl = this.sceneEl.camera.el;
             const position = cameraEl.object3D.position.clone();
 
             // Move the new plane in front of the camera
             const distance = -5; // Adjust this distance as needed
-            position.add(cameraEl.object3D.getWorldDirection().multiplyScalar(distance));
+            const direction = new THREE.Vector3();
+            cameraEl.object3D.getWorldDirection(direction);
+            position.addScaledVector(direction, distance);
 
             // Create a new plane
             const newPlane = document.createElement('a-plane');
@@ -46,11 +48,17 @@
             newPlane.setAttribute('height', '1');
             newPlane.setAttribute('color', 'red'); // Set color for visibility
             newPlane.setAttribute('shadow', 'cast: true; receive: false');
-            sceneEl.appendChild(newPlane);
+            this.sceneEl.appendChild(newPlane);
           };
 
           // Create a new plane every second
           setInterval(createNewPlane, 1000);
+        },
+
+        tick: function () {
+          // This function will be called on every frame render
+          // You can use it to continuously update the plane positions based on camera movement
+          // For example, you can check if the camera has moved a certain distance and update the planes accordingly
         }
       });
     </script>
