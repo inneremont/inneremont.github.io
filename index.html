@@ -49,6 +49,26 @@
         laser-controls
         raycaster="objects: #your3DModel"
         line="color: #ECECEC"
+        events={{
+          gripdown: () => {
+            const material = new THREE.MeshPhongMaterial({
+              color: new THREE.Color(Math.random(), Math.random(), Math.random())
+            });
+            const position = new THREE.Vector3(0, 0, -0.3)
+              .applyMatrix4(controller.object3D.matrixWorld);
+            const rotation = new THREE.Quaternion().setFromRotationMatrix(
+              controller.object3D.matrixWorld
+            );
+
+            const newEntity = document.createElement("a-entity");
+            newEntity.setAttribute("geometry", "primitive: box; width: 0.06; height: 0.06; depth: 0.06");
+            newEntity.setAttribute("material", "color: #ffffff; shader: flat");
+            newEntity.object3D.position.copy(position);
+            newEntity.object3D.quaternion.copy(rotation);
+
+            scene.appendChild(newEntity);
+          }
+        }}
       ></a-entity>
 
       <a-entity
