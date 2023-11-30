@@ -1,45 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AR Dynamic Planes</title>
+    <title>Dynamic Planes in A-Frame</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  </head>  
+  <body>
+
+    <a-scene>
+      <a-camera position="0 1.2 0" id="camera"></a-camera>
+
+      <!-- Register a component to dynamically add planes based on camera movement -->
+      <a-entity id="plane-container" dynamic-planes></a-entity>
+    </a-scene>
 
     <script>
       AFRAME.registerComponent('dynamic-planes', {
         init: function () {
-          // Create and append a new plane to the scene when the camera moves
-          this.el.sceneEl.addEventListener('camera-move', () => {
-            const newPlane = document.createElement('a-plane');
-            newPlane.setAttribute('width', '1');
-            newPlane.setAttribute('height', '1');
-            newPlane.setAttribute('color', 'blue');
-            // Adjust the position based on the camera's position
-            newPlane.setAttribute('position', this.el.getAttribute('position'));
-            this.el.sceneEl.appendChild(newPlane);
-          });
-        }
-      });
+          this.cameraEl = document.getElementById('camera');
+          this.planeContainer = this.el;
 
-      AFRAME.registerComponent('camera-listener', {
-        init: function () {
-          // Listen for camera movement and emit 'camera-move' event
-          this.el.sceneEl.addEventListener('camera-moved', () => {
-            this.el.emit('camera-move');
-          });
-        }
+          // Listen for camera movement events
+          this.cameraEl.addEventListener('componentchanged', this.onCameraChanged.bind(this));
+        },
+
+        onCameraChanged: function (event) {
+          if (event.detail.name === 'rotation') {
+            // Camera rotation has changed, add a new plane
+            this.addPlane();
+          }
+        },
+
+        addPlane: function () {
+          // Get the camera's current position and rotation
+          const cameraPosition = this.cameraEl.getAttribute('position');
+          const cameraRotation = this.cameraEl.getAttribute('rotation');
+
+          // Create a new plane entity
+          const plane = document.createElement('a-plane');
+          plane.setAttribute('position', cameraPosition);
+          plane.setAttribute('rotation', cameraRotation);
+          plane.setAttribute('width', '1');
+          plane.setAttribute('height', '1');
+          plane.setAttribute('color', 'blue');
+
+          // Append the plane to the container
+          this.planeContainer.appendChild(plane);
+        },
       });
     </script>
-  </head>
-  <body>
-
-    <a-scene>
-      <a-camera camera-listener dynamic-planes></a-camera>
-    </a-scene>
-
   </body>
 </html>
