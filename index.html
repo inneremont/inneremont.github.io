@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Markerless AR Drawing with A-Frame and WebXR</title>
+    <title>AR Drawing with A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script>
       AFRAME.registerComponent('draw', {
@@ -50,11 +50,28 @@
   <body>
     <a-scene
       embedded
-      xr="optionalFeatures: hit-test, local-floor, anchors; requiredFeatures: viewer"
+      vr-mode-ui="enabled: false"
+      renderer="antialias: true"
     >
+      <a-entity
+        id="player"
+        position="0 1.6 0"
+        rotation="0 0 0"
+        wasd-controls
+        look-controls
+      ></a-entity>
+
+      <a-entity
+        id="ground"
+        geometry="primitive: plane; width: 100; height: 100"
+        rotation="-90 0 0"
+        material="color: #CCC"
+      ></a-entity>
+
       <a-camera>
         <a-cursor></a-cursor>
       </a-camera>
+
       <a-entity draw="color: #FF0000; lineWidth: 0.2"></a-entity>
     </a-scene>
   </body>
