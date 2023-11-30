@@ -69,10 +69,13 @@
       ></a-entity>
 
       <a-camera>
-        <a-cursor objects=".raycastable"></a-cursor>
+        <a-cursor></a-cursor>
       </a-camera>
 
       <a-entity draw="color: #FF0000; lineWidth: 0.2" class="raycastable"></a-entity>
+
+      <!-- Define raycaster and specify objects to intersect -->
+      <a-entity raycaster="objects: .raycastable"></a-entity>
     </a-scene>
   </body>
 </html>
