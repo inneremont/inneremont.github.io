@@ -29,40 +29,30 @@
       AFRAME.registerComponent('plane-generator', {
         init: function () {
           const sceneEl = this.el.sceneEl;
+          const cameraEl = this.el.sceneEl.camera.el;
 
-          // Function to create a new plane at the specified position and rotation
-          const createNewPlane = (position, rotation) => {
+          // Function to create a new plane in front of the camera
+          const createNewPlane = () => {
+            const position = cameraEl.object3D.position.clone();
+            const rotation = cameraEl.object3D.rotation.clone();
+
+            // Move the new plane in front of the camera
+            const distance = -5; // Adjust this distance as needed
+            position.add(cameraEl.object3D.getWorldDirection().multiplyScalar(distance));
+
+            // Create a new plane
             const newPlane = document.createElement('a-plane');
             newPlane.setAttribute('position', position);
             newPlane.setAttribute('rotation', rotation);
+            newPlane.setAttribute('width', '1');
+            newPlane.setAttribute('height', '1');
+            newPlane.setAttribute('color', 'red'); // Set color for visibility
             newPlane.setAttribute('shadow', 'cast: true; receive: false');
             this.el.appendChild(newPlane);
           };
 
-          // Listen for the camera move event to create a new plane
-          sceneEl.addEventListener('camera-move', (event) => {
-            createNewPlane(event.detail.position, event.detail.rotation);
-          });
-
-          // Check the camera's position every tick
-          this.el.sceneEl.addEventListener('tick', () => {
-            const cameraEl = this.el.sceneEl.camera.el;
-            const currentPosition = cameraEl.object3D.position.clone();
-            const currentRotation = cameraEl.object3D.rotation.clone();
-
-            if (
-              !this.previousPosition ||
-              !this.previousPosition.equals(currentPosition) ||
-              !this.previousRotation.equals(currentRotation)
-            ) {
-              // Emit camera move event if the position or rotation changed
-              sceneEl.emit('camera-move', { position: currentPosition, rotation: currentRotation });
-            }
-
-            // Save the current position and rotation for the next tick
-            this.previousPosition = currentPosition.clone();
-            this.previousRotation = currentRotation.clone();
-          });
+          // Create a new plane every second
+          setInterval(createNewPlane, 1000);
         }
       });
     </script>
@@ -71,6 +61,7 @@
 
     <a-scene>
       <a-entity plane-generator></a-entity>
+      <a-camera position="0 1.2 0"></a-camera>
     </a-scene>
 
     <div id="text">
