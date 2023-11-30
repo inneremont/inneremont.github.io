@@ -41,8 +41,9 @@
             sceneEl.appendChild(newSphere);
           };
 
-          // Listen for touch events to create spheres
-          sceneEl.addEventListener('touchstart', createNewSphere);
+          // Add gesture-detector component to detect touch events
+          this.el.setAttribute('gesture-detector', {});
+          this.el.addEventListener('touchstart', createNewSphere);
         }
       });
     </script>
