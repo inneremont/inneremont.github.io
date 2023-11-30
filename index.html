@@ -58,8 +58,13 @@
   </head>  
   <body>
 
+    <a-scene>
+      <a-entity plane-generator></a-entity>
+      <a-camera position="0 1.2 0"></a-camera>
+    </a-scene>
+
     <div id="text">
-      <h1>A-Frame planes for VR/AR</h1>
+      <h1>New Phone Who dis</h1>
     
       <p>
         Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.2.0</a>.
@@ -70,23 +75,5 @@
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
-
-    <script>
-      // Check for WebXR support
-      if ('xr' in navigator) {
-        // Enter AR mode
-        navigator.xr.requestDevice().then(device => {
-          device.requestSession({ mode: 'immersive-ar' }).then(session => {
-            document.querySelector('a-scene').setAttribute('xrweb', 'session', session);
-            document.querySelector('a-scene').enterVR();
-          });
-        });
-      }
-    </script>
-    <a-scene xrweb>
-      <a-entity plane-generator></a-entity>
-      <a-camera position="0 1.2 0"></a-camera>
-    </a-scene>
-    
   </body>
 </html>
