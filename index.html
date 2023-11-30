@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XR test</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <script>
+      // WebXR requires HTTPS, so the site doesn't work if someone manually enters
+      // the URL and ends up using HTTP. To work around this, force redirect from
+      // http to https for non-localhost addresses.
+      if (window.location.protocol == "http:" &&
+          window.location.hostname != "localhost" && 
+          window.location.hostname != "127.0.0.1" &&
+          window.location.hostname != "[::1]") {
+        window.location = window.location.href.replace('http:', 'https:');        
+      }
+    </script>    
+    
+    <!-- import the webpage's javascript files -->
 <!-- import the webpage's javascript files -->
 <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
 
@@ -38,3 +63,26 @@
     }
   });
 </script>
+
+  </head>  
+  <body>
+
+    <a-scene>
+      <a-entity plane-generator></a-entity>
+      <a-camera position="0 1.2 0"></a-camera>
+    </a-scene>
+
+    <div id="text">
+      <h1>A-Frame planes for VR/AR</h1>
+    
+      <p>
+        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
+      </p>
+    </div>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
