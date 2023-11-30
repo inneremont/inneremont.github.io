@@ -34,10 +34,16 @@
 
           // Append the new plane to the anchor entity
           this.planeAnchor.appendChild(newPlane);
+
+          // Update plane position based on device movement
+          this.el.sceneEl.addEventListener('arhitupdate', (event) => {
+            const newPosition = event.detail.intersectedPoint;
+            newPlane.setAttribute('position', newPosition);
+          });
         }
       });
     </script>
-        <!-- AR.js scene with a-camera -->
+     <!-- AR.js scene with a-camera -->
     <a-scene embedded arjs>
       <a-camera></a-camera>
 
@@ -54,5 +60,6 @@
         Powered by <a href="https://aframe.io/">A-Frame</a> and <a href="https://ar-js-org.github.io/AR.js-Docs/">AR.js</a>.
       </p>
     </div>
+
   </body>
 </html>
