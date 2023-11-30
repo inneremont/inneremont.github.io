@@ -2,98 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Marker-Based AR</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dynamic Plane Drawing in A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.1.7/aframe/build/aframe-ar.js"></script>
   </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;"
-    >
-      <a-assets timeout="30000">
-        <a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb" response-type="arraybuffer"></a-asset-item>
-      </a-assets>
+  <body>
+    <a-scene>
+      <!-- Camera and controls -->
+      <a-camera position="0 1.6 0" id="camera" wasd-controls></a-camera>
+      <a-entity id="rig" position="0 0 0">
+        <a-entity id="cameraRig" camera look-controls></a-entity>
+      </a-entity>
 
-      <a-marker type="pattern" url="hiro.patt">
-        <!-- A marker-specific entity for initialization -->
-        <a-entity
-          id="dino"
-          scale="0.5 0.5 0.5"
-          visible="false"
-        >
-          <a-entity
-            position="0 2.15 0"
-            rotation="0 55 0"
-            gltf-model="#spinosaurus"
-            animation-mixer
-            shadow="cast: true; receive: false"
-          ></a-entity>
-        </a-entity>
-
-        <!-- A helper entity to store the initial position of the marker -->
-        <a-entity
-          id="markerHelper"
-          visible="false"
-        ></a-entity>
-      </a-marker>
-
-      <!-- Lights configuration omitted for simplicity -->
+      <!-- Animation to update the plane -->
+      <a-entity id="animationLoop" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000;"></a-entity>
     </a-scene>
 
     <script>
-      // Variable to store the visibility status
-      let modelVisible = false;
+      // Handle animation loop
+      const animationLoop = document.getElementById('animationLoop');
+      animationLoop.addEventListener('animationloop', function () {
+        // Get the camera's current position
+        const cameraPosition = document.getElementById('camera').getAttribute('position');
 
-      // Function to update the model's position based on the stored marker position
-      function updateModelPosition() {
-        // Retrieve the stored marker position
-        const markerPosition = document.getElementById('markerHelper').object3D.position.clone();
+        // Create a new dynamic plane entity on each animation loop
+        const dynamicPlane = document.createElement('a-entity');
+        dynamicPlane.setAttribute('geometry', 'primitive: plane; width: 2; height: 2');
+        dynamicPlane.setAttribute('material', 'color: ' + getRandomColor());
+        dynamicPlane.setAttribute('position', `${cameraPosition.x} ${cameraPosition.y} ${cameraPosition.z - 5}`);
 
-        // Retrieve the model entity
-        const dino = document.getElementById('dino');
+        // Append the new plane entity to the scene
+        document.querySelector('a-scene').appendChild(dynamicPlane);
+      });
 
-        // Set the position of the model based on the stored marker position
-        dino.object3D.position.copy(markerPosition);
-
-        // Make the model visible
-        dino.setAttribute('visible', true);
-        modelVisible = true;
+      // Function to generate a random color
+      function getRandomColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
       }
-
-      // Update the model's position when the marker is found or updated
-      document.querySelector('a-marker').addEventListener('markerFound', (event) => {
-        // Store the initial position of the marker
-        document.getElementById('markerHelper').object3D.position.copy(event.target.object3D.position);
-
-        // Update the model's position based on the stored marker position
-        updateModelPosition();
-      });
-
-      document.querySelector('a-marker').addEventListener('markerUpdated', () => {
-        // Update the model's position based on the stored marker position
-        updateModelPosition();
-      });
-
-      // Function to hide the model when the marker is lost
-      function hideModel() {
-        // Hide the model
-        document.getElementById('dino').setAttribute('visible', false);
-        modelVisible = false;
-      }
-
-      // Hide the model when the marker is lost
-      document.querySelector('a-marker').addEventListener('markerLost', () => {
-        hideModel();
-      });
-
-      // Update the model's position on every frame (optional)
-      document.querySelector('a-scene').addEventListener('enterframe', () => {
-        if (modelVisible) {
-          // You can add additional logic here if needed
-        }
-      });
     </script>
   </body>
 </html>
