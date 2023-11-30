@@ -13,24 +13,7 @@
   </head>  
   <body>
 
-    <!-- AR.js scene with a-camera -->
-    <a-scene embedded arjs>
-      <a-camera></a-camera>
-      
-      <!-- AR hit testing component -->
-      <a-entity ar-hit-test>
-        <!-- Initial plane that's always visible -->
-        <a-plane position="0 1.5 -2" rotation="-90 0 0" color="blue" shadow="cast: true; receive: false"></a-plane>
-      </a-entity>  
-    </a-scene>
-
-    <div id="text">
-      <h1>A-Frame planes for AR.js</h1>
-      <p>
-        Powered by <a href="https://aframe.io/">A-Frame</a> and <a href="https://github.com/AR-js-org/AR.js">AR.js</a>.
-      </p>
-    </div>
-    
+    <!-- AR.js scene with a-camera -->    
     <script>
       AFRAME.registerComponent('ar-hit-test', {
         init: function () {
@@ -60,5 +43,22 @@
         }
       });
     </script>
+      <a-scene embedded arjs>
+      <a-camera></a-camera>
+      
+      <!-- AR hit testing component -->
+      <a-entity ar-hit-test>
+        <!-- Initial plane that's always visible -->
+        <a-plane position="0 1.5 -2" rotation="-90 0 0" color="blue" shadow="cast: true; receive: false"></a-plane>
+      </a-entity>  
+    </a-scene>
+
+    <div id="text">
+      <h1>A-Frame planes for AR.js</h1>
+      <p>
+        Powered by <a href="https://aframe.io/">A-Frame</a> and <a href="https://github.com/AR-js-org/AR.js">AR.js</a>.
+      </p>
+    </div>
+    
   </body>
 </html>
