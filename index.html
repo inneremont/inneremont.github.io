@@ -12,13 +12,16 @@
     <a-scene
       renderer="antialias: true"
       embedded
-      xr
+      xr="optionalFeatures: hit-test, local-floor"
       stats
       keyboard-shortcuts
       screenshot
       inspector
     >
-      <a-entity position="0 1.6 0">
+      <a-entity
+        position="0 1.6 0"
+        rotation="0 180 0" <!-- Added rotation attribute -->
+      >
         <a-camera>
           <a-cursor></a-cursor>
         </a-camera>
@@ -46,8 +49,8 @@
 
       <a-entity
         id="controller"
-        laser-controls
-        raycaster="objects: #your3DModel"
+        daydream-controls <!-- Changed to daydream-controls -->
+        raycaster="objects: #your3DModel" <!-- Added raycaster with object ID -->
         line="color: #ECECEC"
         events={{
           gripdown: () => {
@@ -81,3 +84,4 @@
     </a-scene>
   </body>
 </html>
+
