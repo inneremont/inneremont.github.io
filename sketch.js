@@ -7,6 +7,8 @@ let stringR = "";
 let mfont; 
 let slidingBox;
 
+let dw = 0, tscl = 0;
+
 var H = HY5.hydra('hydra', '');
 
 speed = 10
@@ -34,12 +36,22 @@ function preload() {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight)
-	
-	slidingBox = new SlidingBox(20, height - 65);
+	dw = displayWidth;	
+	if (dw < 500){
+		scrVal = width*0.75
+		tscl = 2 
+	} else {
+		scrVal = width*0.27
+		tscl = 1
+	}	
+
+	slidingBox = new SlidingBox(20, height - 65, width - scrVal, dw);
 }
 
 function draw() {
-  colorMode(HSB);
+	let sCalc = pixelDensity()
+	console.log(displayWidth*sCalc)  
+colorMode(HSB);
   let cx = map(mouseX, 0, width, 0, 100);
   background(0, 0, cx, 0.2);
   textFont(mfont);
@@ -55,7 +67,7 @@ function draw() {
     let vmap = map(lval, -1, 1, 70, 10);
     let lVal = lerp(0, vmap, 0.5);
     rotate(degrees((i * sin(frameCount * 0.0005) * 0.02) + (i * cos(frameCount * 0.0005) * 0.02)));
-    textSize(lVal);
+    textSize(lVal*tscl);
     text(stringR[i], 0, i * sin(frameCount * 0.00005) * 20 + i * cos(frameCount * 0.00005) * 20);
   }
 }
