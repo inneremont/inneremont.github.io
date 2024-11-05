@@ -52,7 +52,7 @@ class SlidingBox {
     // Initial styles for box, headline, and paragraph
     this.box.style('background-color', 'rgba(255,255,255,0)');
     this.box.style('padding', '10px 15px');
-    this.box.style('height', '75vh');
+    this.box.style('height', '60vh');
     this.box.style('color', 'rgb(255,255,255)');
     this.box.style('display', 'none');
     this.box.style('position', 'absolute');
