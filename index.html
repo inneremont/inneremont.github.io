@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <script src="https://unpkg.com/hydra-synth"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/ffd8/hy5@main/hy5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <script src="https://cdn.statically.io/gh/jdeboi/p5.anaglyph/main/dist/p5.anaglyph.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
- <!--  <div id="hydra"></div> -->
-	<script src="modules.js"></script>
-    <script src="sketch.js"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel with Full-Screen Overlay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Carousel -->
+  <div id="carousel-container">
+    <div id="carousel">
+      <!-- Last image clone -->
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
+      <!-- Actual slides -->
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>
+            <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat05xx_d3ngag.png');"></div>
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
+      <div class="slide" style="background-image: url('https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif');"></div> <!-- GIF Slide -->
+   
+ <!-- First image clone -->
+  <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>     
+  </div>
 
+  <!-- Full-Screen Overlay -->
+  <div id="overlay">
+    <div id="overlay-content">
+       <h1>Hello World</h1> 
+      <p>My name is Jan Sandberg, and I am a visual designer with a focus on interdisciplinary approaches to graphic design. 
+
+In 2022, I received my master's degree in visual communication from FHNW | HGK Basel, where I researched the effects of interaction design on place perception. Prior to that, I earned a degree in contemporary art curation from ZHdK in 2019, and a long time ago, I studied Fashion Design at Yrkeshögskolan Novia in Turku, Finland <3
+
+Above everything else, I have a deep passion for poster design, print, and typography. At the moment, I am based in Hanko, a small town in Finland.  If you have any questions or would like to connect, feel free to dm me via <a href="https://www.instagram.com/jbasandberg/">instagram</a></p>
+ </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
