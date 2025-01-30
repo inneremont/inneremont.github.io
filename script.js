@@ -1,5 +1,5 @@
 // Carousel Logic
-let numImages = 4; // Number of real images
+let numImages = 5; // Number of real images
 let currentIndex = 1; // Start at the first real slide
 let slideWidth; // Width of a single slide
 let interval = 3000; // Time (ms) between slides
