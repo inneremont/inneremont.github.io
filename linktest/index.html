@@ -31,36 +31,43 @@
  
 }
   
-  img {
-  padding: 25px 0px;
-  border-bottom: solid 2px;
-  max-width: 100%; 
-}
-  
-@media (max-width: 768px) {
-  .container {
-    grid-template-areas:
-      "header"
-      "menu"
-      "content";
-    grid-template-columns: 1fr; /* Stack everything into one column */
-  }
-  .menu {
-    width: 100%; /* Prevents the menu from keeping a fixed width */
-  }
-}
-  
-  
+img {
+      max-width: 70%;
+    }
 
-</style>
+    .content-inner {
+      padding: 15px 0px;
+      border-bottom: solid 1px;
+    }
+
+@media (max-width: 768px) {
+      .container {
+        grid-template-areas:
+          "header"
+          "menu"
+          "content";
+        grid-template-columns: 1fr;
+      }
+
+.title {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <div class="menu"><h3>Burana Card</h3></div>
-  <div class="content"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756486/research01_lvmuz4.jpg" ><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756606/research02_xmpigl.jpg" ></div>
- 
+    <div class="title">
+      <h3>Burana Card</h3>
+    </div>
+    <div class="content">
+      <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756486/research01_lvmuz4.jpg"> </div>
+
+      <div class="content-inner"> <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756606/research02_xmpigl.jpg">
+      </div> 
 </body>
 </html>
 
