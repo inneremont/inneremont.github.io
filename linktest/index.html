@@ -7,7 +7,8 @@
   grid-template-areas:
     "header header"
     "menu content";
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: minmax(320px, 1fr);
+
   gap: 5px;
   
   padding: 5px;
@@ -22,16 +23,32 @@
 }
 .container > div.menu {
   grid-area: menu;
+  width: 30vw;
 }
 .container > div.content {
   grid-area: content;
  
 }
+  
   img {
   padding: 25px 0px;
   border-bottom: solid 2px;
   max-width: 100%; 
 }
+  
+@media (max-width: 768px) {
+  .container {
+    grid-template-areas:
+      "header"
+      "menu"
+      "content";
+    grid-template-columns: 1fr; /* Stack everything into one column */
+  }
+  .menu {
+    width: 100%; /* Prevents the menu from keeping a fixed width */
+  }
+}
+  
   
 
 </style>
