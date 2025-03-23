@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -5,24 +6,38 @@
 
 body {
     margin: 0;
+    overflow: hidden; /* Prevent overflow on the body */
 }
- 
+
 iframe {
-        display: block;
-        background: #ffffff;
-        border: none !important;
-  	outline: none !important;
-  	box-shadow: none !important;
-        height: 100vh;
-        width: 100vw;
-    }
+    display: block;
+    background: #ffffff;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%; /* Set iframe width to 100% */
+    height: 100vh; /* Set iframe height to fill the viewport */
+}
+
+iframe-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling inside iframe container */
+    position: relative; /* Allow for relative positioning if needed */
+}
 
 </style>
 </head>
 <body>
 
-<iframe class="responsive-iframe" src="../linktest/index.html" loading="eager"></iframe>
-<iframe class="responsive-iframe" src="../linktest/index.html" loading="eager"></iframe> 
+<div class="iframe-container">
+  <iframe class="responsive-iframe" src="../linktest/index.html" loading="eager"></iframe>
+</div>
+
+<div class="iframe-container">
+  <iframe class="responsive-iframe" src="../linktest/index.html" loading="eager"></iframe>
+</div>
+
 </body>
 </html>
 
