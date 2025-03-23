@@ -27,10 +27,12 @@
   grid-area: content;
 }
   
-        iframe {
+iframe {
         display: block;
         background: #000;
-        border: none;
+        border: none !important;
+  	outline: none !important;
+  	box-shadow: none !important;
         height: 100vh;
         width: 70vw;
     }
@@ -42,7 +44,7 @@
 <div class="container">
 
   <div class="menu"><h3>Lorem Ipsum</h3></div>
-  <div class="content"><iframe class="responsive-iframe" src="../linktest/index.html"style="border:none;" ></iframe></div>
+  <div class="content"><iframe class="responsive-iframe" src="../linktest/index.html" ></iframe></div>
  
 </body>
 </html>
