@@ -7,7 +7,7 @@
   display: grid;
   grid-template-areas:
     "header header"
-    "menu content";
+    "title content";
   grid-template-columns: 30% 70%;
 
   gap: 5px;
@@ -22,8 +22,8 @@
   grid-area: header;
   text-align: center;
 }
-.container > div.menu {
-  grid-area: menu;
+.container > div.title {
+  grid-area: title;
   width: 30vw;
 }
 .container > div.content {
@@ -44,7 +44,7 @@ img {
       .container {
         grid-template-areas:
           "header"
-          "menu"
+          "title"
           "content";
         grid-template-columns: 1fr;
       }
