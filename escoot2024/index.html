@@ -9,13 +9,25 @@ body {
     /* overflow: hidden;  Prevent overflow on the body */
 }
 
-iframe {
+.h_iframe1 {
+    position: absolute;
     display: block;
     background: #ffffff;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
     width: 100%; /* Set iframe width to 100% */
+    height: 100vh; /* Set iframe height to fill the viewport */
+}
+
+h_iframe2 {
+    position: absolute;
+    display: block;
+    background: #ffffff;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%; /* Set iframe width to 100% */ 
     height: 100vh; /* Set iframe height to fill the viewport */
 }
 
@@ -31,8 +43,8 @@ iframe-container {
 <body>
 
 
-	<iframe class="responsive-iframe" src="../linktest/index.html" loading="eager"></iframe>
-  	<iframe class="responsive-iframe" src="../linkcopy/index.html" loading="eager"></iframe>
+	<iframe class="h_iframe1" src="../linktest/index.html" loading="eager"></iframe>
+  	<iframe class="h_iframe2" src="../linkcopy/index.html" loading="eager"></iframe>
 
 
 </body>
