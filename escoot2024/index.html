@@ -6,22 +6,23 @@
   html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      overflow: hidden; /* Prevent extra scrolling */
+      width: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center; /* Center iframes if needed */
+      overflow-x: hidden; /* Prevents horizontal scroll */
   }
 
   .iframe-container {
       width: 100%;
-      height: 50vh; /* Each iframe takes half the viewport height */
-      overflow: hidden; /* Prevent iframe from causing scrollbars */
+      position: relative;
   }
 
   iframe {
       display: block;
-      width: 100%;
-      height: 100%; /* Fill the .iframe-container */
+      width: 100vw; /* Full viewport width */
+      min-height: 100vh; /* Expand iframe to fit full viewport height */
       border: none;
   }
 </style>
