@@ -2,6 +2,10 @@
 @import url('https://fonts.cdnfonts.com/css/folio-std');
 
 
+* {
+  box-sizing: border-box;
+}
+
 body, html {
   font-family: 'Folio Std', sans-serif;
   
