@@ -78,7 +78,7 @@ nav {
 
   iframe {
       display: block;
-      width: 100vw; /* Full viewport width */
+      width: 100%; /* Full viewport width */
       min-height: 100vh; /* Expand iframe to fit full viewport height */
       border: none;
   }
@@ -86,7 +86,7 @@ nav {
 
 footer{
 
-  width: 100vw;
+  width: 100%;
   padding-left:18px;
   
   margin-top: auto;
