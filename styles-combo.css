@@ -13,14 +13,13 @@ body, html {
 
 h1, h2, h3, h4 {
   font-size: calc(1em + 6px);
-  letter-spacing: 0.1px;
+
   font-weight: 300;
   line-height: 1.4;
 }
 
 h5 {
   font-size: calc(1em + 2px);
-  letter-spacing: 0.2px;
   font-weight: 500;
 }
 
