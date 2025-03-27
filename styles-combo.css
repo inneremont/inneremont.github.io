@@ -227,8 +227,10 @@ img {
       "divider"
       "title2"
       "content2"
+      "divider2"
       "title3"
-      "content3";
+      "content3"
+      "divider3";
     grid-template-columns: 1fr;
   }
 
