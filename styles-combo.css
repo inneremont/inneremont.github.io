@@ -11,7 +11,15 @@ html {
 
 }
 
-h1,
+h1
+ {
+  font-size: calc(1em + 10px);
+
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+
 h2,
 h3,
 h4 {
