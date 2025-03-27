@@ -12,8 +12,8 @@ body, html {
 }
 
 h1, h2, h3, h4 {
-  font-size: calc(1em + 2px);
-  letter-spacing: 0.2px;
+  font-size: calc(1em + 6px);
+  letter-spacing: 0.1px;
   font-weight: 300;
   line-height: 1.4;
 }
@@ -91,8 +91,7 @@ nav {
 footer{
 
   width: 100%;
-  padding-left:18px;
-  
+  padding-left:18px; 
   margin-top: auto;
   
 }
@@ -119,12 +118,22 @@ footer{
   grid-template-columns: 30% 70%;
   gap: 5px;
   padding: 5px;
-  margin-top: 80px; 
+  margin-top: 80px;
+  flex-grow: 1; 
 }
 
 
 .container > div {
   background-color: #ffffff;
+}
+
+.container > div.title2 {
+  grid-area: title2;
+  text-align: left; /* Ensures it's aligned like title */
+}
+
+.container > div.content2 {
+  grid-area: content2;
 }
 
 .container > div.title, 
@@ -147,7 +156,8 @@ img {
      max-width: 70%;
     }
 .content-text {
-     max-width: 70%;
+    margin-top: -15px;
+    max-width: 70%;
     }    
 
 /* Responsive Fix */
