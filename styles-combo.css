@@ -93,6 +93,16 @@ nav {
   padding-right: 18px;
 }
 
+.full-width-image {
+    width: 100%; 
+    margin-top: 75px; 
+    height: 400px;  
+    background-size: cover;    
+    background-position: center; 
+    border-bottom: solid 1px;
+}
+
+
 .iframe-container {
   width: 100%;
   position: relative;
@@ -145,6 +155,9 @@ footer {
   flex-grow: 1;
 }
 
+.hero-page .container {
+  margin-top: 5px;
+}
 
 .container>div {
   background-color: #ffffff;
