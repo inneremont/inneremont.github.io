@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "EgyptiensSerres";
+  src:
+    url("assets/EgyptiensSerres-Regular.otf") format("opentype");
+    
+}
+
+@font-face {
+  font-family: "tighter_embru";
+  src:
+    url("assets/tighter_embru-Regular.otf") format("opentype");
+
+}
+
+@font-face {
+  font-family: "nitto-Regular";
+  src:
+    url("assets/nitto-Regular.otf") format("opentype");
+
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 40px;
+}
+
+.sample {
+  outline: none;
+  font-family: sans-serif;
+  margin-top: 60px;
+  font-size: 20px;
+  line-height: 120%;
+}

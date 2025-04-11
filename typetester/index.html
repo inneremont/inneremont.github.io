@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<div class="tt">
+  <select onchange="updateFont(this.value)">
+    <option value="sans-serif">Sans Serif</option>
+    <option value="serif">Serif</option>
+    <option value="monospace">Monospace</option>
+    <option value="cursive">Cursive</option>
+    <option value="EgyptiensSerres">EgyptiensSerres</option>
+    <option value="tighter_embru">tighter embru</option>
+    <option value="nitto-Regular">nitto</option>
+  </select>
+  Font size:
+  <input type="range" id="size" min="10" max="244" value="70" oninput="updateSize(this.value)">
+  Line Height:
+  <input type="range" id="size" min="50" max="374" value="120" oninput="updateLineHeight(this.value)">
+</div>
+
+<div class="sample" contenteditable="true">
+  If you have your fonts as webfonts, you could easy make a live type tester using the actual webfonts.
+
+  We have a super simple solution for this, but you could also make the OT-features available.
+</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
