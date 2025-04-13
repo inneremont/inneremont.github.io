@@ -22,11 +22,13 @@
 * {
   margin: 0;
   padding: 0;
+  /*width: 100%;*/
   -webkit-font-smoothing: antialiased;
 }
 
 body {
   margin: 0px;
+  width: 100%;
 }
 
 body.dark-mode {
@@ -57,7 +59,7 @@ body.dark-mode input[type="range"]::-moz-range-thumb {
 
 
 .tt {
-  width: 100%;
+ /*  width: 100%; */
   margin: 0;
   padding: 10px 40px;	
   position: relative;
