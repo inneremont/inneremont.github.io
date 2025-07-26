@@ -1,34 +1,177 @@
+
+@import url('https://fonts.cdnfonts.com/css/folio-std');
+
+
+
 @font-face {
   font-family: "EgyptiensSerres";
-  src:
-    url("assets/EgyptiensSerres-Regular.otf") format("opentype"); 
+  src: url("assets/EgyptiensSerresV2-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "tighter_embru";
-  src:
-    url("assets/tighter_embru-Regular.otf") format("opentype");
-
+  src: url("assets/tighter_embru-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "nitto-Regular";
-  src:
-    url("assets/nitto-Regular.otf") format("opentype");
-
+  src: url("assets/nitto-Regular.otf") format("opentype");
 }
-
 
 * {
   margin: 0;
   padding: 0;
-  /*width: 100%;*/
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  margin: 0px;
   width: 100%;
+  margin: 0px;
+}
+
+html {
+  font-family: 'Folio Std', sans-serif;
+  /*font-family: Arial, sans-serif;*/
+   -webkit-font-smoothing:antialiased;
+}
+
+img{
+ display: block;  
+ width:65%;
+ height: auto;
+ margin: auto;
+}
+
+
+.banner{
+  
+  width:100%;
+  margin: 0px;
+  
+}
+
+
+.ticker-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /*background: black; */
+  background: Green;
+  height: 4rem;
+}
+
+.ticker {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+  position: absolute; /* KEY: allow absolute positioning for clone */
+  top: 0;
+  left: 0;
+}
+
+.ticker__item {
+  padding: 0 2rem;
+  font-size: 1.5rem;
+   color: white; 
+  /*color: black; */
+  line-height: 4rem;
+}
+
+
+
+
+.type-container {
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+  border-bottom: 1px solid;
+}
+
+.type-container.dark {
+  background: black;
+  color: white;
+}
+
+.controls {
+  padding: 10px 40px;
+  position: relative;
+  z-index: 10;
+  border-bottom: solid 1px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: black;
+  height: 1px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: black;
+  height: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  background: black;
+  margin-top: -7px;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background: black;
+  margin-top: -7px;
+  border-radius: 50%;
+}
+
+.sample-egypt {
+  outline: none;
+  font-size: 150px;
+  line-height: 1.2;
+  mix-blend-mode: difference;
+  padding-top: 20px;
+  padding-bottom: 0.3em;
+}
+
+.sample-nitto {
+  outline: none;
+  font-size: 90px;
+  line-height: 1.2;
+  mix-blend-mode: difference;
+  padding-top: 20px;
+}
+
+.sample {
+  outline: none;
+  font-size: 40px;
+  line-height: 120%;
+  mix-blend-mode: difference;
+  padding-top: 20px;
+}
+
+
+.egyptiens {
+  font-family: "EgyptiensSerres";
+}
+
+.embru {
+  font-family: "tighter_embru";
+}
+
+.nitto {
+  font-family: "nitto-Regular";
 }
 
 body.dark-mode {
@@ -38,83 +181,20 @@ body.dark-mode {
 
 body.dark-mode .sample {
   color: white;
-  mix-blend-mode: normal; /* optional: override your difference setting */
+  mix-blend-mode: normal;
 }
 
-body.dark-mode input[type="range"]::-webkit-slider-runnable-track {
-  background: white;
-}
-
-body.dark-mode input[type="range"]::-moz-range-track {
-  background: white;
-}
-
-body.dark-mode input[type="range"]::-webkit-slider-thumb {
-  background: white;
-}
-
+body.dark-mode input[type="range"]::-webkit-slider-runnable-track,
+body.dark-mode input[type="range"]::-moz-range-track,
+body.dark-mode input[type="range"]::-webkit-slider-thumb,
 body.dark-mode input[type="range"]::-moz-range-thumb {
   background: white;
 }
 
-
-.tt {
- /*  width: 100%; */
-  margin: 0;
-  padding: 10px 40px;	
-  position: relative;
-  z-index: 10; /* Ensures UI is on top */
-  border-bottom: solid 1px;
-
- 
-input[type="range"] {
- -webkit-appearance: none;
+.controls {
+  margin-top: 10px;
 }
 
-input[type="range"]:focus {
- outline: none;
-}
 
-input[type="range"]::-webkit-slider-runnable-track {
- background: black;
- margin-top: -5px;
- height: 1px;
-}
 
-input[type="range"]::-moz-range-track {
- background: black;
-margin-top: -5px;
- height: 1px;
-}
 
-input[type="range"]::-webkit-slider-thumb {
- -webkit-appearance: none;
- height: 15px;
- width: 15px;
- background: black;
- margin-top: -7px;
- border-radius: 50%;
-}
-
-input[type="range"]::-moz-range-thumb {
- height: 15px;
- width: 15px;
- background: black;
- margin-top: -7px;
- border-radius: 50%;
-}
-
-}
-
-#caps-toggle:checked ~ .sample {
-  text-transform: uppercase;
-}
-
-.sample {
-  outline: none;
-  font-family: EgyptiensSerres;
-  padding: 40px;
-  font-size: 40px;
-  line-height: 120%;
-  mix-blend-mode: difference;
-}

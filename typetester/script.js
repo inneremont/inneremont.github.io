@@ -1,33 +1,78 @@
-document.getElementById('caps-toggle').addEventListener('change', function () {
-  const isChecked = this.checked;
-  document.querySelectorAll('.sample').forEach(el => {
-    el.style.textTransform = isChecked ? 'uppercase' : 'none';
-  });
+
+if (window.location.hash) {
+  window.scrollTo(0, 0);
+}
+
+// Smooth scroll to anchor on load
+window.addEventListener("load", () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const el = document.querySelector(hash);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth" });
+      }, 100); // May increase if you have heavy layout
+    }
+  }
+});
+
+window.addEventListener("load", () => {
+  const ticker = document.getElementById("ticker");
+  const clone = ticker.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+
+  clone.style.position = "absolute";
+  clone.style.top = "0";
+  ticker.parentElement.appendChild(clone);
+
+  const tickerWidth = ticker.offsetWidth;
+  clone.style.left = `${tickerWidth}px`;
+
+  let pos = 0;
+
+  function animate() {
+    pos -= 1;
+
+    // Seamless loop using modulo logic
+    const totalWidth = tickerWidth * 2;
+    const offset = pos % totalWidth;
+
+    ticker.style.transform = `translateX(${offset}px)`;
+    clone.style.transform = `translateX(${offset + tickerWidth}px)`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 });
 
 
-document.getElementById('dark-toggle').addEventListener('change', function () {
-  document.body.classList.toggle('dark-mode', this.checked);
-});
+function toggleTheme(id) {
+  document.getElementById(id).classList.toggle("dark");
+}
 
-
-
-function updateSize(newVal) {
-  var newFontSize = newVal + 'px';
-  document.querySelectorAll('.sample').forEach(el => {
-    el.style.fontSize = newFontSize;
+function updateFont(slider, className) {
+  const fontSize = slider.value + "px";
+  const samples = document.querySelectorAll("." + className);
+  samples.forEach(el => {
+    el.style.fontSize = fontSize;
   });
 }
 
-function updateLineHeight(newVal) {
-  var newFontSize = newVal + '%';
-  document.querySelectorAll('.sample').forEach(el => {
-    el.style.lineHeight = newFontSize;
+function updateLineHeight(slider, className) {
+  const lineHeight = parseFloat(slider.value);
+  const samples = document.querySelectorAll("." + className);
+  samples.forEach(el => {
+    el.style.lineHeight = lineHeight;
   });
+  console.log("Updated line height to", lineHeight); // debugging
 }
 
-function updateFont(newVal) {
-  document.querySelectorAll('.sample').forEach(el => {
-    el.style.fontFamily = newVal;
+
+function toggleCaps(checkbox, className) {
+  const transform = checkbox.checked ? "uppercase" : "none";
+  const samples = document.querySelectorAll("." + className);
+  samples.forEach(el => {
+    el.style.textTransform = transform;
   });
 }

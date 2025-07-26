@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Typetester v1</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-<div class="tt">
-  <select onchange="updateFont(this.value)">
-    <option value="EgyptiensSerres">EgyptiensSerres</option>
-    <option value="tighter_embru">tighter embru</option>
-    <option value="nitto-Regular">nitto</option>
-  </select>
-  Font size:
-  <input type="range" id="size" min="10" max="250" value="120" oninput="updateSize(this.value)">
-  Line Height:
-  <input type="range" id="size" min="50" max="200" value="120" oninput="updateLineHeight(this.value)">
-<label class="container">Caps
-  <input type="checkbox" id="caps-toggle">
-  <span class="checkmark"></span>
-</label>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typetester v1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-<label class="container">
-  Dark Mode
-  <input type="checkbox" id="dark-toggle">
-</label>
-
-</div>
-<div class="sample" contenteditable="true">
-  If you have your fonts as webfonts, you could easy make a live type tester using the actual webfonts.
-
-  We have a super simple solution for this, but you could also make the OT-features available.
+<div class="ticker-container">
+  <div class="ticker" id="ticker">
+    <div class="ticker__item">Test! Test! Test!</div>
+    <div class="ticker__item">Test! Test! Test!</div>
+    <div class="ticker__item">Test! Test! Test!.</div>
+  </div>
 </div>
 
-    <script src="script.js"></script>
-  </body>
+  <div class="type-container" id="Egyptiens">
+    <div class="banner"><img src="assets/egypt_bkg01.jpg" alt="egyptiens font"></div>
+    <div class="controls" z-index="999">
+    
+      <label>Font size:
+        <input type="range" min="70" max="350" value="150" oninput="updateFont(this, 'egyptiens')">
+      </label>
+      <label>Line height:
+<input type="range" min="0.9" max="1.5" value="1.3" step="0.01" oninput="updateLineHeight(this, 'egyptiens')">
+      </label>
+      <label>Caps:
+        <input type="checkbox" onchange="toggleCaps(this, 'egyptiens')">
+      </label>
+        <button onclick="toggleTheme('Egyptiens')">Toggle Theme</button>
+    </div>
+    <div class="sample-egypt egyptiens" contenteditable="true">
+      The quick brown fox jumps over the lazy dog.
+    </div>
+  </div>
+
+
+  <div class="type-container" id="Nitto">
+    <div class="banner"><img src="assets/ntto_bkg.png" alt="nitto font"></div>
+    <div class="controls">
+     
+      <label>Font size:
+        <input type="range" min="10" max="250" value="90" oninput="updateFont(this, 'nitto')">
+      </label>
+      <label>Line height:
+        <input type="range" min="0.5" max="2.0" value="1.2" step="0.01" oninput="updateLineHeight(this, 'nitto')">
+      </label>
+      <label>Caps:
+        <input type="checkbox" onchange="toggleCaps(this, 'nitto')">
+      </label>
+
+       <button onclick="toggleTheme('Nitto')">Toggle Theme</button>
+    </div>
+    <div class="sample-nitto nitto" contenteditable="true">
+      The quick brown fox jumps over the lazy dog.
+    </div>
+  </div>
+
+  <footer>
+<h2 class="footer-content"><a href="https://www.instagram.com/jbasandberg/" target="_blank">instagram</a></h2>
+<h2 class="footer-content"><a href="https://jsandberg_cv2025.ezihost.net" target="_blank">cv</a></h2>
+</footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
