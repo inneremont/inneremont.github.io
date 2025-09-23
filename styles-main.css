@@ -81,6 +81,7 @@ body, html {
 }
 
 #overlay-content p {
+  margin-top: 5%;
   font-weight: 500;
   line-height: 130%;
   
