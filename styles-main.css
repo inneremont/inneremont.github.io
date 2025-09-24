@@ -2,7 +2,7 @@
 /*@import url('https://fonts.cdnfonts.com/css/folio-std'); */
 /*@import url('https://fontlibrary.org//face/nimbus-sans-l'); */
 
-/*@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
 
 
 body, html {
@@ -14,6 +14,14 @@ body, html {
   /*font-family: 'Folio Std', sans-serif;*/
     font-family: 'NimbusSanLRegular', sans-serif; 
  /*font-family: 'Newsreader', serif;*/
+}
+a {
+
+font-family: 'Newsreader', serif;
+font-weight: 400;
+font-style: italic;
+font-size: 4.5vh;
+text-decoration: none;
 }
 
 /* Carousel Container */
@@ -89,12 +97,17 @@ body, html {
 }
 
 
-#overlay-content a {
+.overlay-link1 {
   color: black;
-  background-color: yellow;
+  background-color: #FF5F15;
   /*font-weight: bold;*/
 }
 
+.overlay-link2 {
+  color: black;
+  background-color: lime;
+  /*font-weight: bold;*/
+}
 
 @media (max-width:  767px) {
   #overlay-content {
