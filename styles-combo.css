@@ -7,7 +7,8 @@
 
 body,
 html {
-  font-family: 'Folio Std', sans-serif;
+  /*font-family: 'Folio Std', sans-serif;*/
+	font-family: sans-serif;
   /*font-family: Arial, sans-serif;*/
    -webkit-font-smoothing:antialiased;
 }
