@@ -4,9 +4,167 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jan Sandberg Portfolio</title>
-  <link rel="stylesheet" href="styles-main.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    /* Carousel */
+    #carousel-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #carousel {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Info Button */
+    .info-button {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .info-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 1);
+    }
+
+    .info-button svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    .info-button.active {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .info-button.active svg {
+      fill: #000;
+    }
+
+    /* Overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+
+    #overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #overlay-content {
+      max-width: 600px;
+      padding: 3rem;
+      color: white;
+    }
+
+    #overlay-content h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    #overlay-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    #overlay-content a {
+      color: white;
+      text-decoration: underline;
+      transition: opacity 0.2s;
+    }
+
+    #overlay-content a:hover {
+      opacity: 0.6;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .info-button {
+        top: 1rem;
+        left: 1rem;
+        width: 40px;
+        height: 40px;
+      }
+
+      .info-button svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      #overlay-content {
+        padding: 2rem 1.5rem;
+      }
+
+      #overlay-content h1 {
+        font-size: 1.5rem;
+      }
+
+      #overlay-content p {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Info Button -->
+  <button class="info-button" id="info-btn" aria-label="Info">
+    <svg viewBox="0 0 24 24">
+      <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+    </svg>
+  </button>
+
   <!-- Carousel -->
   <div id="carousel-container">
     <div id="carousel">
@@ -14,34 +172,78 @@
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
       <!-- Actual slides -->
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>
-            <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat05xx_d3ngag.png');"></div>
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat05xx_d3ngag.png');"></div>
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
-
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1738272372/portf_ext_kywnqh.gif');"></div>  
-
-     <div class="slide" style="background-image: url('https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif');"></div> <!-- GIF Slide -->
-   
- <!-- First image clone -->
-  <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>     
+      <div class="slide" style="background-image: url('https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif');"></div>
+      <!-- First image clone -->
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>     
+    </div>
   </div>
 
-  <!-- Full-Screen Overlay -->
+  <!-- Overlay -->
   <div id="overlay">
     <div id="overlay-content">
-       <h1>About</h1> 
-      <p>Jan Sandberg is a graphic designer and artist with an interdisciplinary approach to visual communication. Jan’s field of interest is poster design, typography, print and interactive media. 
-
-Jan holds a master’s degree in visual communication from FHNW | HGK Basel, as well as a degree in con&shy;temporary art curation acquired at ZHdK in 2019.
-
-At the moment Jan is based in Hanko, Finland.
-
-<br>
-<br>
-
-If you have questions or would like to connect, feel free to contact him via <a class="overlay-link1" href="https://www.instagram.com/jbasandberg/">instagram</a> or get his cv <a class="overlay-link2" href="assets/cv_sandb_jan_2025.pdf" target="_blank">here</a>.</p>
- </div>
+      <h1>About</h1> 
+      <p>Jan Sandberg is a graphic designer and artist with an interdisciplinary approach to visual communication. Jan's field of interest is poster design, typography, print and interactive media. Jan holds a master's degree in visual communication from FHNW | HGK Basel, as well as a degree in contemporary art curation acquired at ZHdK in 2019. At the moment Jan is based in Hanko, Finland.
+      <br><br>
+      If you have questions or would like to connect, feel free to contact him via <a href="https://www.instagram.com/jbasandberg/" target="_blank">instagram</a> or get his cv <a href="assets/cv_sandb_jan_2025.pdf" target="_blank">here</a>.</p>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Carousel functionality
+    const carousel = document.getElementById('carousel');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 1; // Start at first real slide (after clone)
+    const totalSlides = slides.length;
+    const realSlides = totalSlides - 2; // Exclude clones
+
+    // Set initial position
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    function nextSlide() {
+      currentIndex++;
+      carousel.style.transition = 'transform 0.5s ease-in-out';
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // If at the last clone, jump to first real slide
+      if (currentIndex === totalSlides - 1) {
+        setTimeout(() => {
+          carousel.style.transition = 'none';
+          currentIndex = 1;
+          carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }, 500);
+      }
+    }
+
+    // Auto-advance carousel
+    setInterval(nextSlide, 4000);
+
+    // Info button toggle
+    const infoBtn = document.getElementById('info-btn');
+    const overlay = document.getElementById('overlay');
+
+    infoBtn.addEventListener('click', () => {
+      overlay.classList.toggle('active');
+      infoBtn.classList.toggle('active');
+    });
+
+    // Close overlay when clicking outside content
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        infoBtn.classList.remove('active');
+      }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        infoBtn.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
