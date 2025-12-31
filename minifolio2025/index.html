@@ -1,105 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">     
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minifolio 2025 - Jan Sandberg</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link rel="stylesheet" href="../styles-combo.css">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: #fafafa;
+      color: #000;
+    }
 
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      color: #000;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.5;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 80px;
+    }
+
+    /* Project Section */
+    .project {
+      background: white;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .project-header {
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .project-header h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-header h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-meta {
+      font-size: 0.875rem;
+      color: #666;
+      text-transform: none;
+    }
+
+    /* Image Grid */
+    .project-images {
+      padding: 2rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .project-images img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    footer h2 {
+      display: inline-block;
+      margin: 0 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid #fff;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover {
+      opacity: 0.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+
+      nav h1 {
+        font-size: 0.875rem;
+      }
+
+      .project-header {
+        padding: 2rem 1rem 1.5rem;
+      }
+
+      .project-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .project-header h3 {
+        font-size: 0.875rem;
+      }
+
+      .project-images {
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+      }
+
+      footer h2 {
+        display: block;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav> <h1>Minifolio 2025</h1> 
-  <div class="nav-container"><h1>Jan Sandberg</h1></div>
-  <h1 class="nav-right"><a href="../index.html" target="_blank">ESC</a></h1>
- </nav>
+  <!-- Navigation -->
+  <nav>
+    <h1>Minifolio 2025</h1>
+    <h1>Jan Sandberg</h1>
+    <h1><a href="../index.html">ESC</a></h1>
+  </nav>
 
-<div class="container">
-  <!-- Content1 -->
-    <div class="title">
+  <!-- Main Content -->
+  <main>
+
+    <!-- Project 1: The Listening Eye -->
+    <article class="project">
+      <header class="project-header">
         <h2>Exhibition: The Listening Eye</h2>
-    </div>
-    <div class="content">
-        <div class="content-inner">
-            <div class="content-text">
-                <h3>In 2024, I worked on the production of <i>The Listening Eye</i> exhibition for Pro Artibus and Chappe. The exhibition was centered around eight themes, and featured over ninety works. I contributed by designing custom symbols, wall signage, and an exhibition booklet. The title is a reference to a work by constructivist Juhana Blomstedt, that served as the exhibition’s thematical point. The exhibition was the first collaboration between the two institutions.</h3>
-            </div>
+        <h3>In 2024, I worked on the production of <em>The Listening Eye</em> exhibition for Pro Artibus and Chappe. The exhibition was centered around eight themes, and featured over ninety works. I contributed by designing custom symbols, wall signage, and an exhibition booklet. The title is a reference to a work by constructivist Juhana Blomstedt, that served as the exhibition's thematical point. The exhibition was the first collaboration between the two institutions.</h3>
+        <p class="project-meta">→ Exhibition design, icons, symbols, booklet, print</p>
+      </header>
+      <div class="project-images">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107734/dlo1_guln6q.png" alt="The Listening Eye exhibition">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107731/dlo2_yqmrox.png" alt="Exhibition symbols">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107714/dlo4_kqaaiu.png" alt="Exhibition signage">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107723/dlo3_dyfxoc.png" alt="Exhibition booklet">
+      </div>
+    </article>
 
-            <div class="content-text-description">
-                <h5>&#8594 Exhibition design, icons, symbols, booklet, print</h5>
-            </div>  
-        </div>
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107734/dlo1_guln6q.png"></div>
-
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107731/dlo2_yqmrox.png"></div>
-
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107714/dlo4_kqaaiu.png"></div>
-
-        <div class="content-inner-last"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107723/dlo3_dyfxoc.png"></div>
- </div>
-
-<div class="divider"></div>
-    <div class="title2">
+    <!-- Project 2: Burana Card -->
+    <article class="project">
+      <header class="project-header">
         <h2>Research: Burana Card</h2>
-    </div>
-    <div class="content2">
-        <div class="content-inner">
-            <div class="content-text">
-                <h3>The Burana Card is the result of a three-month Design Research module at FHNW HGK in 2020, under the mentorship of Dr. Paloma López Grüninger and Dr. Karel van der Waarde. For the project, I focused on simplifying Burana’s instruction leaflets, as they are often too long and unclear. For the research, I decided to focus on young parents and caregivers who needed clearer dosage guidance for children. For the project I created concepts, conducted Zoom interviews and gathered design feedback from peers. The final design is a compact, color-coded, credit card-sized format with dosage visuals, a medical emergency number, and a QR code for access to the full leaflet.</h3>
-            </div>
+        <h3>The Burana Card is the result of a three-month Design Research module at FHNW HGK in 2020, under the mentorship of Dr. Paloma López Grüninger and Dr. Karel van der Waarde. For the project, I focused on simplifying Burana's instruction leaflets, as they are often too long and unclear. For the research, I decided to focus on young parents and caregivers who needed clearer dosage guidance for children. For the project I created concepts, conducted Zoom interviews and gathered design feedback from peers. The final design is a compact, color-coded, credit card-sized format with dosage visuals, a medical emergency number, and a QR code for access to the full leaflet.</h3>
+        <p class="project-meta">→ Design research, infographics, concept development</p>
+      </header>
+      <div class="project-images">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756486/research01_lvmuz4.jpg" alt="Burana Card research">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756606/research02_xmpigl.jpg" alt="Concept development">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742929789/research04_xubild.png" alt="Final card design">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742937766/research05_wprrsi.png" alt="Card in use">
+      </div>
+    </article>
 
-            <div class="content-text-description">
-                <h5>&#8594 Design research, infographics, concept development</h5>
-            </div>  
-        </div>
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756486/research01_lvmuz4.jpg"></div>
-
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742756606/research02_xmpigl.jpg"></div>
-
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742929789/research04_xubild.png"></div>
-
-        <div class="content-inner-last"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1742937766/research05_wprrsi.png"></div>
-
-</div>
-
-<div class="divider2"></div>
-
-    <div class="title3">
+    <!-- Project 3: Rück Tritt Käse -->
+    <article class="project">
+      <header class="project-header">
         <h2>Poster: Rück Tritt Käse</h2>
-    </div>
-    <div class="content3">
-        <div class="content-inner">
-            <div class="content-text">
-                <h3>The theme of the poster relates to my past experience working in a high-risk environment and my fascination with German language while studying in Switzerland. 
-One notable detail of the poster that is not easily demonstratable via screen, is the effect of the self-mixed white ink, that is exteremely hi-viz as it consists of a silver pigment mixed with phosphorescent powder. Poster screenprinted and produced at FHNW | HGK Basel, under the mentorship of Jiri Oplatek, in 2021</h3>
-            </div>
+        <h3>The theme of the poster relates to my past experience working in a high-risk environment and my fascination with German language while studying in Switzerland. One notable detail of the poster that is not easily demonstratable via screen, is the effect of the self-mixed white ink, that is extremely hi-viz as it consists of a silver pigment mixed with phosphorescent powder. Poster screenprinted and produced at FHNW | HGK Basel, under the mentorship of Jiri Oplatek, in 2021.</h3>
+        <p class="project-meta">→ Poster design, typography, print, art direction, concept</p>
+      </header>
+      <div class="project-images">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png" alt="Rück Tritt Käse poster">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107722/plakat01luma_gluxdg.png" alt="Poster detail">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107729/plakat5_iqnwvo.png" alt="Poster in context">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107713/plakatAU05_nijdx5.jpg" alt="Print detail">
+        <img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107719/plakat4_n7mll7.png" alt="Poster series">
+      </div>
+    </article>
 
-            <div class="content-text-description">
-                <h5>&#8594 Poster design, typography, print, art direction, concept</h5>
-            </div>  
-        </div>
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png"></div>
+  </main>
 
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107722/plakat01luma_gluxdg.png"></div>
+  <!-- Footer -->
+  <footer>
+    <h2><a href="https://www.instagram.com/jbasandberg/" target="_blank">Instagram</a></h2>
+    <h2><a href="../assets/cv_sandb_jan_2025.pdf" target="_blank">CV</a></h2>
+  </footer>
 
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107729/plakat5_iqnwvo.png"></div>
-
-        <div class="content-inner"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107713/plakatAU05_nijdx5.jpg"></div>
-
-        <div class="content-inner-last"><img src="https://res.cloudinary.com/dlhshzs37/image/upload/v1743107719/plakat4_n7mll7.png"></div>
-
-</div>
-
-<div class="divider3"></div>
-
-
-<footer>
-<h2 class="footer-content"><a href="https://www.instagram.com/jbasandberg/" target="_blank">instagram</a></h2>
-<h2 class="footer-content"><a href="../assets/cv_sandb_jan_2025.pdf" target="_blank">cv</a></h2>
-</footer>
 </body>
 </html>
-
-
-
