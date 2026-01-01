@@ -353,6 +353,34 @@ input[type="range"]::-moz-range-thumb {
         max-width: 90%;
       }
     }
+
+  @media (max-width: 768px) {
+
+
+    .pill svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .pill {
+      white-space: nowrap;
+    }
+
+    .pill[onclick*="toggleTheme"] span,
+    .pill[onclick*="toggleTheme"]::after {
+      display: none;
+    }
+
+     .range-group {
+    flex: 1 1 100%;
+  }
+
+  .range-group input[type="range"] {
+    width: 100%;
+  } 
+  }
+
+
   </style>
 </head>
 <body>
