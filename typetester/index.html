@@ -3,66 +3,533 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Typetester v1</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Type Tester</title>
+  <style>
+    @font-face {
+      font-family: "EgyptiensSerres";
+      src: url("assets/EgyptiensSerresV2-Regular.otf") format("opentype");
+    }
+    @font-face {
+      font-family: "nitto-Regular";
+      src: url("assets/nitto-Regular.otf") format("opentype");
+    }
+
+
+:root {
+  --slider-track: #000;
+  --slider-thumb: #000;
+}
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: #fafafa;
+    }
+
+body {
+  background: #fafafa;
+}
+
+
+
+    /* Ticker */
+    .ticker-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #00aa00;
+      height: 4rem;
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      will-change: transform;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .ticker__item {
+      padding: 0 2rem;
+      font-size: 1.5rem;
+      color: white;
+      line-height: 4rem;
+    }
+
+    /* Type Container */
+    .type-container {
+      background: white;
+      transition: all 0.3s ease;
+     
+    }
+
+    .type-container.dark {
+      background: #000;
+      color: #fff;
+    }
+
+    .type-container.dark .controls {
+      border-color: #333;
+    }
+
+    .type-container.dark input[type="range"]::-webkit-slider-runnable-track,
+    .type-container.dark input[type="range"]::-moz-range-track {
+      background: #fff;
+    }
+
+    .type-container.dark input[type="range"]::-webkit-slider-thumb,
+    .type-container.dark input[type="range"]::-moz-range-thumb {
+      background: #fff;
+    }
+
+    .type-container.dark .pill {
+      border-color: #444;
+      color: #fff;
+    }
+
+    .type-container.dark .pill:hover {
+      background: #222;
+    }
+
+    .type-container.dark input.invisible:checked + label {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    /* Banner */
+    .banner {
+      width: 100%;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner img {
+      display: block;
+      max-width: 65%;
+      height: auto;
+    }
+
+    /* Header */
+    .type-header {
+      padding: 1.5rem 2rem 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .type-container.dark .type-header {
+      border-color: #333;
+    }
+
+    .type-header h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .type-header p {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .type-container.dark .type-header p {
+      color: #999;
+    }
+
+    /* Controls */
+    .controls {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .type-container.dark .controls {
+      border-color: #333;
+    }
+
+    /* Pills */
+    .pill {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .pill:hover {
+      background: #f5f5f5;
+    }
+
+    input.invisible {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    input.invisible:checked + label {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    /* Range Slider */
+    .range-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      background: transparent;
+    }
+
+    .range-group label {
+      font-size: 0.875rem;
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      background: transparent;
+      width: 120px;
+    }
+
+    input[type="range"]:focus {
+      outline: none;
+    }
+
+   input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--slider-track);
+  height: 2px;
+  border-radius: 1px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: var(--slider-track);
+  height: 2px;
+  border-radius: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background: var(--slider-thumb);
+  margin-top: -6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  background: var(--slider-thumb);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+    .range-value {
+      font-size: 0.875rem;
+      min-width: 50px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      color: #666;
+    }
+
+    .type-container.dark .range-value {
+      color: #999;
+    }
+
+    .type-container.dark {
+      --slider-track: #fff;
+      --slider-thumb: #fff;
+    }
+
+    /* Demo Area */
+    .demo-area {
+      padding: 3rem 2rem;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-text {
+      outline: none;
+      width: 100%;
+      text-align: center;
+      word-break: break-word;
+      transition: font-size 0.1s ease;
+    }
+
+    .demo-text.uppercase {
+      text-transform: uppercase;
+    }
+
+    #egyptiens-demo {
+      font-family: "EgyptiensSerres", serif;
+      font-size: 150px;
+      line-height: 1.3;
+    }
+
+    #nitto-demo {
+      font-family: "nitto-Regular", sans-serif;
+      font-size: 90px;
+      line-height: 1.2;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #f5f5f5;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer h2 {
+      display: inline-block;
+      margin: 0 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover {
+      opacity: 0.6;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .type-header,
+      .controls,
+      .demo-area {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .controls {
+        gap: 0.5rem;
+      }
+
+      .range-group input[type="range"] {
+        width: 80px;
+      }
+
+      #egyptiens-demo {
+        font-size: 80px;
+      }
+
+      #nitto-demo {
+        font-size: 50px;
+      }
+
+      .banner img {
+        max-width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="ticker-container">
-  <div class="ticker" id="ticker">
-    <div class="ticker__item">Test! Test! Test!</div>
-    <div class="ticker__item">Test! Test! Test!</div>
-    <div class="ticker__item">Test! Test! Test!.</div>
+  <!-- Ticker -->
+  <div class="ticker-container">
+    <div class="ticker" id="ticker">
+      <div class="ticker__item">Test! Test! Test!</div>
+      <div class="ticker__item">Test! Test! Test!</div>
+      <div class="ticker__item">Test! Test! Test!</div>
+    </div>
   </div>
-</div>
 
+  <!-- Egyptiens Tester -->
   <div class="type-container" id="Egyptiens">
-    <div class="banner"><img src="assets/egypt_bkg01.jpg" alt="egyptiens font"></div>
-    <div class="controls" z-index="999">
-    
-      <label>Font size:
-        <input type="range" min="70" max="350" value="150" oninput="updateFont(this, 'egyptiens')">
-      </label>
-      <label>Line height:
-<input type="range" min="0.9" max="1.5" value="1.3" step="0.01" oninput="updateLineHeight(this, 'egyptiens')">
-      </label>
-      <label>Caps:
-        <input type="checkbox" onchange="toggleCaps(this, 'egyptiens')">
-      </label>
-        <button onclick="toggleTheme('Egyptiens')">Toggle Theme</button>
+    <div class="banner">
+      <img src="assets/egypt_bkg01.jpg" alt="Egyptiens font" onerror="this.style.display='none'">
     </div>
-    <div class="sample-egypt egyptiens" contenteditable="true">
-      The quick brown fox jumps over the lazy dog.
+
+    <div class="type-header">
+      <h2>Egyptiens Serres</h2>
+      <p>Display Serif</p>
     </div>
-  </div>
 
-
-  <div class="type-container" id="Nitto">
-    <div class="banner"><img src="assets/ntto_bkg.png" alt="nitto font"></div>
     <div class="controls">
-     
-      <label>Font size:
-        <input type="range" min="10" max="250" value="90" oninput="updateFont(this, 'nitto')">
-      </label>
-      <label>Line height:
-        <input type="range" min="0.5" max="2.0" value="1.2" step="0.01" oninput="updateLineHeight(this, 'nitto')">
-      </label>
-      <label>Caps:
-        <input type="checkbox" onchange="toggleCaps(this, 'nitto')">
-      </label>
+      <div class="range-group">
+        <label>Size</label>
+        <input type="range" min="70" max="350" value="150" id="egyptiens-size">
+        <span class="range-value" id="egyptiens-size-value">150px</span>
+      </div>
 
-       <button onclick="toggleTheme('Nitto')">Toggle Theme</button>
+      <div class="range-group">
+        <label>Leading</label>
+        <input type="range" min="0.9" max="1.5" value="1.3" step="0.01" id="egyptiens-leading">
+        <span class="range-value" id="egyptiens-leading-value">1.3</span>
+      </div>
+
+      <input type="checkbox" class="invisible" id="egyptiens-caps">
+      <label class="pill" for="egyptiens-caps">Uppercase</label>
+
+      <button class="pill" onclick="toggleTheme('Egyptiens')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+        </svg>
+        Theme
+      </button>
     </div>
-    <div class="sample-nitto nitto" contenteditable="true">
-      The quick brown fox jumps over the lazy dog.
+
+    <div class="demo-area">
+      <div class="demo-text" id="egyptiens-demo" contenteditable="true" spellcheck="false">
+        The quick brown fox jumps over the lazy dog
+      </div>
     </div>
   </div>
 
-  <footer>
-<h2 class="footer-content"><a href="https://www.instagram.com/jbasandberg/" target="_blank">instagram</a></h2>
-<h2 class="footer-content"><a href="https://jsandberg_cv2025.ezihost.net" target="_blank">cv</a></h2>
-</footer>
+  <!-- Nitto Tester -->
+  <div class="type-container" id="Nitto">
+    <div class="banner">
+      <img src="assets/ntto_bkg.png" alt="Nitto font" onerror="this.style.display='none'">
+    </div>
 
-  <script src="script.js"></script>
+    <div class="type-header">
+      <h2>Nitto</h2>
+      <p>Geometric Sans</p>
+    </div>
+
+    <div class="controls">
+      <div class="range-group">
+        <label>Size</label>
+        <input type="range" min="10" max="250" value="90" id="nitto-size">
+        <span class="range-value" id="nitto-size-value">90px</span>
+      </div>
+
+      <div class="range-group">
+        <label>Leading</label>
+        <input type="range" min="0.5" max="2.0" value="1.2" step="0.01" id="nitto-leading">
+        <span class="range-value" id="nitto-leading-value">1.2</span>
+      </div>
+
+      <input type="checkbox" class="invisible" id="nitto-caps">
+      <label class="pill" for="nitto-caps">Uppercase</label>
+
+      <button class="pill" onclick="toggleTheme('Nitto')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+        </svg>
+        Theme
+      </button>
+    </div>
+
+    <div class="demo-area">
+      <div class="demo-text" id="nitto-demo" contenteditable="true" spellcheck="false">
+        The quick brown fox jumps over the lazy dog
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h2><a href="https://www.instagram.com/jbasandberg/" target="_blank">Instagram</a></h2>
+    <h2><a href="https://jsandberg_cv2025.ezihost.net" target="_blank">CV</a></h2>
+  </footer>
+
+  <script>
+    // Ticker animation
+    window.addEventListener("load", () => {
+      const ticker = document.getElementById("ticker");
+      const clone = ticker.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      ticker.parentElement.appendChild(clone);
+      
+      const tickerWidth = ticker.offsetWidth;
+      let pos = 0;
+      
+      function animate() {
+        pos -= 1;
+        const totalWidth = tickerWidth * 2;
+        const offset = pos % totalWidth;
+        ticker.style.transform = `translateX(${offset}px)`;
+        clone.style.transform = `translateX(${offset + tickerWidth}px)`;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    });
+
+    // Theme toggle
+    function toggleTheme(id) {
+      document.getElementById(id).classList.toggle("dark");
+    }
+
+    // Initialize font controls
+    function initFontControls(prefix) {
+      const demo = document.getElementById(`${prefix}-demo`);
+      const sizeInput = document.getElementById(`${prefix}-size`);
+      const sizeValue = document.getElementById(`${prefix}-size-value`);
+      const leadingInput = document.getElementById(`${prefix}-leading`);
+      const leadingValue = document.getElementById(`${prefix}-leading-value`);
+      const capsCheckbox = document.getElementById(`${prefix}-caps`);
+
+      // Font size
+      sizeInput.addEventListener('input', (e) => {
+        const size = e.target.value;
+        demo.style.fontSize = size + 'px';
+        sizeValue.textContent = size + 'px';
+      });
+
+      // Line height
+      leadingInput.addEventListener('input', (e) => {
+        const leading = e.target.value;
+        demo.style.lineHeight = leading;
+        leadingValue.textContent = leading;
+      });
+
+      // Uppercase
+      capsCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          demo.classList.add('uppercase');
+        } else {
+          demo.classList.remove('uppercase');
+        }
+      });
+    }
+
+    // Initialize both testers
+    initFontControls('egyptiens');
+    initFontControls('nitto');
+
+    // Smooth scroll to hash on load
+    if (window.location.hash) {
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        const el = document.querySelector(window.location.hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  </script>
 </body>
 </html>
