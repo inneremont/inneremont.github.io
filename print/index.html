@@ -19,7 +19,7 @@
     }
 
     /* Control Bar */
-    .control-bar {
+     .control-bar {
       position: fixed;
       top: 0;
       left: 0;
@@ -28,7 +28,7 @@
       background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid #222;
-      padding: 1rem 2rem;
+      padding: 1rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -40,15 +40,18 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      flex-shrink: 0;
+      flex: 1;
+      justify-content: flex-start;
     }
+
+
 
     .info-toggle {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border: 1px solid #333;
       background: transparent;
       border-radius: 50%;
@@ -209,22 +212,24 @@
       background-size: 14px;
     }
 
-    /* Back Button */
-    .back-button {
-      width: 40px;
-      height: 40px;
-      border: 1px solid #333;
-      background: transparent;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s;
-      color: white;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
+
+
+.back-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 
     .back-button:hover {
       background: #222;
@@ -236,7 +241,9 @@
       height: 20px;
       fill: white;
     }
-
+    .mobile-back {
+      display: none;
+      }
     .zoom-control {
       display: flex;
       align-items: center;
@@ -253,10 +260,10 @@
       border: none;
       color: #fff;
       cursor: pointer;
-      padding: 0.25rem;
+     
       display: flex;
       align-items: center;
-      border-radius: 4px;
+      
       transition: background 0.15s;
     }
 
@@ -281,7 +288,7 @@
       top: 70px;
       left: 0;
       width: 320px;
-      max-height: calc(100vh - 70px);
+      height: calc(100vh - 70px);
       background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
       border-right: 1px solid #222;
@@ -414,6 +421,14 @@
         gap: 0.75rem;
       }
 
+        .desktop-back {
+        display: none;
+        }
+
+        .mobile-back {
+        display: flex;
+        }
+
       .document-selector {
         flex-direction: row;
         align-items: center;
@@ -443,10 +458,28 @@
       }
 
       .back-button {
-        width: 32px;
-        height: 32px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
         position: static;
       }
+
+/*
+.back-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+*/
 
       .back-button svg {
         width: 16px;
@@ -556,11 +589,9 @@
       </div>
 
       <!-- Back Button -->
-      <a href="../index.html" class="back-button" aria-label="Back">
-        <svg viewBox="0 0 24 24">
-          <path d="M7 14l5-5 5 5z"/>
-        </svg>
-      </a>
+      <a href="../index.html" class="back-button mobile-back">Back
+</a>
+
     </div>
 
     <div class="controls">
@@ -596,6 +627,10 @@
         </button>
       </div>
     </div>
+
+      <a href="../index.html" class="back-button desktop-back">Back
+      </a>
+
   </div>
 
   <!-- Info Panel -->
@@ -1031,7 +1066,7 @@ resizeBook: function(book) {
     FlipbookViewer.init([
       {
         id: 'book1',
-        title: 'Sampler Broadsheet V3',
+        title: 'Sampler Broadsheet',
         ratio: 1.38,
         info: {
           year: '2025',
@@ -1091,7 +1126,10 @@ resizeBook: function(book) {
           'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805330/triptych_web_vers_page-0022_dofd03.jpg',
           'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805331/triptych_web_vers_page-0023_umeyl8.jpg',
           'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805332/triptych_web_vers_page-0024_kanxr0.jpg',
-          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805333/triptych_web_vers_page-0025_vbgzml.jpg'
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805333/triptych_web_vers_page-0025_vbgzml.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805335/triptych_web_vers_page-0026_zxaq1y.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805336/triptych_web_vers_page-0027_kwdsqz.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805337/triptych_web_vers_page-0028_o8mohm.jpg'
 
           
         ]

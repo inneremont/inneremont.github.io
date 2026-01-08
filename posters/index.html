@@ -32,12 +32,12 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 73px;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #222;
-  padding: 0 1.25rem;
+  padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,13 +62,17 @@ body {
    PILL SYSTEM (shared)
 ============================= */
 
+
+
+
 .pill {
-  padding: 0.55rem 1.25rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #333;
   background: transparent;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.875rem;
+  text-decoration: none;
   color: #fff;
   transition: all 0.15s;
   white-space: nowrap;
@@ -96,9 +100,21 @@ body {
 
 /* Icon-only pills (info / back) */
 .pill.icon {
-  padding: 0 0.75rem;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
+
+.pill.icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+
 
 /* =============================
    INDEX DISPLAY
@@ -283,11 +299,9 @@ body {
   </div>
 
   <!-- Right: Back -->
+ 
   <div class="top-bar-right">
-    <a href="../index.html" class="pill icon back-button" aria-label="Back">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 14l5-5 5 5z"/>
-      </svg>
+    <a href="../index.html" class="pill back-button">Back
     </a>
   </div>
 
