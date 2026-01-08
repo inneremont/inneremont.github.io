@@ -752,53 +752,60 @@
       },
       
       switchToBook: function(index) {
-        var me = this;
-        var oldBook = this.books[this.currentBookIndex];
-        var newBook = this.books[index];
-        
-        document.querySelectorAll('.doc-pill').forEach((pill, i) => {
-          pill.classList.toggle('active', i === index);
-        });
-        document.getElementById('active-doc-title').textContent = newBook.title;
-        
-        this.updateInfoPanel(newBook);
-        
-        if (oldBook.element) {
-          oldBook.element.classList.remove('active');
-        }
-        
-        this.currentBookIndex = index;
-        
-        var size = this.resizeBook(newBook);
-        
-        if (!newBook.initialized) {
-          $(newBook.element).turn({
-            width: size.width,
-            height: size.height,
-            page: 1,
-            gradients: true,
-            acceleration: true
-          });
-          
-          $(newBook.element).on('turned', function(e, page) {
-            newBook.currentPage = page;
-            me.updatePageIndicator();
-          });
-          
-          newBook.initialized = true;
-        } else {
-          $(newBook.element).turn('size', size.width, size.height);
-          $(newBook.element).turn('page', newBook.currentPage);
-        }
-        
-        newBook.element.classList.add('active');
-        this.updatePageIndicator();
+  var me = this;
+  var oldBook = this.books[this.currentBookIndex];
+  var newBook = this.books[index];
 
-        var mobileSelect = document.getElementById('doc-select-mobile');
-        if (mobileSelect) {
-          mobileSelect.value = index;
-        }
-      },
+  document.querySelectorAll('.doc-pill').forEach((pill, i) => {
+    pill.classList.toggle('active', i === index);
+  });
+
+  document.getElementById('active-doc-title').textContent = newBook.title;
+  this.updateInfoPanel(newBook);
+
+  // 1. Hide old book FIRST
+  if (oldBook && oldBook.element) {
+    oldBook.element.classList.remove('active');
+  }
+
+  this.currentBookIndex = index;
+
+  // 2. Resize before init
+  var size = this.resizeBook(newBook);
+
+  // 3. Make new book visible BEFORE Turn.js measures
+  newBook.element.classList.add('active');
+
+  requestAnimationFrame(function () {
+    if (!newBook.initialized) {
+      $(newBook.element).turn({
+        width: size.width,
+        height: size.height,
+        page: 1,
+        gradients: true,
+        acceleration: true
+      });
+
+      $(newBook.element).on('turned', function(e, page) {
+        newBook.currentPage = page;
+        me.updatePageIndicator();
+      });
+
+      newBook.initialized = true;
+    } else {
+      $(newBook.element).turn('size', size.width, size.height);
+      $(newBook.element).turn('page', newBook.currentPage);
+    }
+  });
+
+  this.updatePageIndicator();
+
+  var mobileSelect = document.getElementById('doc-select-mobile');
+  if (mobileSelect) {
+    mobileSelect.value = index;
+  }
+}
+,
       
 resizeBook: function(book) {
         var ratio = book.ratio || 1.38;
