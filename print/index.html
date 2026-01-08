@@ -497,7 +497,7 @@
         padding-top: 140px;
         height: calc(100vh - 140px);
         overflow: hidden;
-        
+
       }
     }
   </style>
@@ -898,11 +898,25 @@ resizeBook: function(book) {
         }, { passive: false });
       },
       
-      zoom: function(level) {
-        this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
-        document.getElementById('book-container').style.transform = 'scale(' + this.zoomLevel + ')';
-        document.getElementById('zoom-level').textContent = Math.round(this.zoomLevel * 100) + '%';
-      },
+zoom: function(level) {
+  this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
+
+  const container = document.getElementById('book-container');
+  container.style.transform = 'scale(' + this.zoomLevel + ')';
+
+  const book = this.books[this.currentBookIndex];
+  if (book && book.initialized) {
+    // force Turn.js to recalc center
+    $(book.element).turn('size',
+      book.element.offsetWidth,
+      book.element.offsetHeight
+    );
+  }
+
+  document.getElementById('zoom-level').textContent =
+    Math.round(this.zoomLevel * 100) + '%';
+},
+
       
       setupResizeListener: function() {
         var me = this;
