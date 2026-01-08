@@ -499,15 +499,15 @@
 
 
 
- .book-wrapper {
-    padding-top: 140px; /* Adjusted for mobile control bar height */
-    height: 100vh; /* Use full viewport height */
+  .book-wrapper {
+    padding-top: 140px;
+    height: calc(100vh - 140px);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Prevent scrolling */
-    position: relative;
+    overflow: hidden;
   }
+}
 
   .book-wrapper.info-open {
     padding-left: 0;
@@ -827,7 +827,7 @@
             $(newBook.element).turn('page', newBook.currentPage);
           }
           
-          me.centerBook(); // Added: Center after initialization
+        //  me.centerBook(); // Added: Center after initialization
         });
 
         this.updatePageIndicator();
@@ -968,7 +968,7 @@ resizeBook: function(book) {
             var size = me.resizeBook(book);
             if (book.initialized) {
               $(book.element).turn('size', size.width, size.height);
-              me.centerBook(); // Added: Center after resize
+          //    me.centerBook(); // Added: Center after resize
             }
           }, 250); // Debounce resize events
         });
@@ -987,33 +987,33 @@ resizeBook: function(book) {
               
               // Force a reflow to fix centering
               setTimeout(function() {
-                me.centerBook();
+           //     me.centerBook();
               }, 100);
             }
           }, 300);
         });
       },
       
-centerBook: function() {
-  var book = this.books[this.currentBookIndex];
-  var container = document.getElementById('book-container');
-  var bookElement = book.element;
+// centerBook: function() {
+//   var book = this.books[this.currentBookIndex];
+//   var container = document.getElementById('book-container');
+//   var bookElement = book.element;
   
-  if (bookElement && container) {
-    // Reset margin first
-    bookElement.style.marginTop = '0';
-    bookElement.style.marginBottom = '0';
+//   if (bookElement && container) {
+//     // Reset margin first
+//     bookElement.style.marginTop = '0';
+//     bookElement.style.marginBottom = '0';
     
-    var containerRect = container.getBoundingClientRect();
-    var bookRect = bookElement.getBoundingClientRect();
+//     var containerRect = container.getBoundingClientRect();
+//     var bookRect = bookElement.getBoundingClientRect();
     
-    // Only adjust if book is visible and smaller than container
-    if (bookRect.height > 0 && bookRect.height < containerRect.height) {
-      var marginTop = (containerRect.height - bookRect.height) / 2;
-      bookElement.style.marginTop = marginTop + 'px';
-    }
-  }
-},
+//     // Only adjust if book is visible and smaller than container
+//     if (bookRect.height > 0 && bookRect.height < containerRect.height) {
+//       var marginTop = (containerRect.height - bookRect.height) / 2;
+//       bookElement.style.marginTop = marginTop + 'px';
+//     }
+//   }
+// },
       
       updatePageIndicator: function() {
         var book = this.books[this.currentBookIndex];
