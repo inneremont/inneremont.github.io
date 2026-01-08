@@ -347,8 +347,9 @@
     .book-wrapper {
       width: 100%;
       min-height: 100vh;
+      height: 100vh;
       padding-top: 70px;
-      overflow: auto;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -490,11 +491,15 @@
       .book-container {
         padding: 0.5rem;
       }
+  
 
       .book-wrapper {
         padding-top: 140px;
         height: calc(100vh - 140px);
         overflow: hidden;
+              display: flex;
+      align-items: center;
+      justify-content: center;
       }
     }
   </style>
