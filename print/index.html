@@ -345,56 +345,66 @@
 
     /* Book wrapper */
     .book-wrapper {
-      width: 100%;
-      min-height: 100vh;
-      height: 100vh;
-      padding-top: 70px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: padding-left 0.3s ease;
-    }
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 70px; /* For the control bar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: padding-left 0.3s ease;
+  box-sizing: border-box;
+  position: relative;
+}
 
-    .book-wrapper.info-open {
-      padding-left: 320px;
-    }
+.book-wrapper.info-open {
+  padding-left: 320px;
+}
 
-    .book-container {
-      text-align: center;
-      position: relative;
-      padding: 2rem;
-      transform-origin: center center;
-      transition: transform 0.1s ease-out;
-    }
+.book-container {
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+  max-width: 100%;
+  max-height: calc(100vh - 70px); /* Subtract control bar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+  box-sizing: border-box;
+  overflow: visible;
+}
 
-    /* Book */
-    .book {
-      display: none;
-      margin: 0 auto;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+/* Book */
+.book {
+  display: none;
+  margin: 0 auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+}
 
-    .book.active {
-      display: block;
-    }
+.book.active {
+  display: block;
+}
 
-    .book .page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
+.book .page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-    .book .page img {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    }
+.book .page img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  display: block;
+}
 
     @media (max-width: 768px) {
       .control-bar {
@@ -487,23 +497,37 @@
         border-right: none;
       }
 
-      
 
-      .book-wrapper.info-open {
-        padding-left: 0;
-      }
 
-      .book-container {
-        padding: 0.5rem;
-      }
-  
+ .book-wrapper {
+    padding-top: 140px; /* Adjusted for mobile control bar height */
+    height: 100vh; /* Use full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent scrolling */
+    position: relative;
+  }
 
-      .book-wrapper {
-        padding-top: 140px;
-        height: calc(100vh - 140px);
-        overflow: hidden;
+  .book-wrapper.info-open {
+    padding-left: 0;
+  }
 
-      }
+  .book-container {
+    padding: 1rem;
+    max-height: calc(100vh - 140px); /* Adjust for mobile control bar */
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* Improve touch experience on mobile */
+  .book .page {
+    touch-action: manipulation;
+  }
     }
   </style>
 </head>
@@ -598,7 +622,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js'></script>
 
   <script>
-    var FlipbookViewer = {
+       var FlipbookViewer = {
       books: [],
       currentBookIndex: 0,
       zoomLevel: 1,
@@ -615,6 +639,7 @@
         this.setupInfoPanel();
         this.switchToBook(0);
         this.setupResizeListener();
+        this.setupOrientationHandler(); // Added
       },
       
       createDocumentSelector: function() {
@@ -757,89 +782,100 @@
       },
       
       switchToBook: function(index) {
-  var me = this;
-  var oldBook = this.books[this.currentBookIndex];
-  var newBook = this.books[index];
+        var me = this;
+        var oldBook = this.books[this.currentBookIndex];
+        var newBook = this.books[index];
 
-  document.querySelectorAll('.doc-pill').forEach((pill, i) => {
-    pill.classList.toggle('active', i === index);
-  });
+        document.querySelectorAll('.doc-pill').forEach((pill, i) => {
+          pill.classList.toggle('active', i === index);
+        });
 
-  document.getElementById('active-doc-title').textContent = newBook.title;
-  this.updateInfoPanel(newBook);
+        document.getElementById('active-doc-title').textContent = newBook.title;
+        this.updateInfoPanel(newBook);
 
-  // 1. Hide old book FIRST
-  if (oldBook && oldBook.element) {
-    oldBook.element.classList.remove('active');
-  }
-
-  this.currentBookIndex = index;
-
-  // 2. Resize before init
-  var size = this.resizeBook(newBook);
-
-  // 3. Make new book visible BEFORE Turn.js measures
-  newBook.element.classList.add('active');
-
-  requestAnimationFrame(function () {
-    if (!newBook.initialized) {
-      $(newBook.element).turn({
-        width: size.width,
-        height: size.height,
-        page: 1,
-        gradients: true,
-        acceleration: true
-      });
-
-      $(newBook.element).on('turned', function(e, page) {
-        newBook.currentPage = page;
-        me.updatePageIndicator();
-      });
-
-      newBook.initialized = true;
-    } else {
-      $(newBook.element).turn('size', size.width, size.height);
-      $(newBook.element).turn('page', newBook.currentPage);
-    }
-  });
-
-  this.updatePageIndicator();
-
-  var mobileSelect = document.getElementById('doc-select-mobile');
-  if (mobileSelect) {
-    mobileSelect.value = index;
-  }
-}
-,
-      
-resizeBook: function(book) {
-        var ratio = book.ratio || 1.38;
-        book.element.style.width = '';
-        book.element.style.height = '';
-
-        // Calculate available space
-        var isMobile = window.innerWidth <= 768;
-        var controlBarHeight = isMobile ? 140 : 70;
-        var padding = isMobile ? 16 : 64;
-        
-        var availableWidth = window.innerWidth - padding;
-        var availableHeight = window.innerHeight - controlBarHeight - padding;
-
-        // Start with width-based calculation
-        var width = Math.min(availableWidth, 1400);
-        var height = Math.round(width / ratio);
-
-        // If height is too tall, recalculate based on height
-        if (height > availableHeight) {
-          height = availableHeight;
-          width = Math.round(height * ratio);
+        // 1. Hide old book FIRST
+        if (oldBook && oldBook.element) {
+          oldBook.element.classList.remove('active');
         }
 
-        book.element.style.width = width + 'px';
-        book.element.style.height = height + 'px';
+        this.currentBookIndex = index;
 
-        return { width: width, height: height };
+        // 2. Resize before init
+        var size = this.resizeBook(newBook);
+
+        // 3. Make new book visible BEFORE Turn.js measures
+        newBook.element.classList.add('active');
+
+        requestAnimationFrame(function () {
+          if (!newBook.initialized) {
+            $(newBook.element).turn({
+              width: size.width,
+              height: size.height,
+              page: 1,
+              gradients: true,
+              acceleration: true
+            });
+
+            $(newBook.element).on('turned', function(e, page) {
+              newBook.currentPage = page;
+              me.updatePageIndicator();
+            });
+
+            newBook.initialized = true;
+          } else {
+            $(newBook.element).turn('size', size.width, size.height);
+            $(newBook.element).turn('page', newBook.currentPage);
+          }
+          
+          me.centerBook(); // Added: Center after initialization
+        });
+
+        this.updatePageIndicator();
+
+        var mobileSelect = document.getElementById('doc-select-mobile');
+        if (mobileSelect) {
+          mobileSelect.value = index;
+        }
       },
+      
+resizeBook: function(book) {
+  var ratio = book.ratio || 1.38;
+  book.element.style.width = '';
+  book.element.style.height = '';
+
+  // Calculate available space - FIXED
+  var isMobile = window.innerWidth <= 768;
+  var controlBarHeight = isMobile ? 140 : 70;
+  var padding = isMobile ? 16 : 64;
+  
+  // Use window dimensions instead of container dimensions
+  var availableWidth = window.innerWidth - (padding * 2);
+  var availableHeight = window.innerHeight - controlBarHeight - (padding * 2);
+  
+  // Start with width-based calculation
+  var width = Math.min(availableWidth, 1400);
+  var height = Math.round(width / ratio);
+
+  // If height is too tall, recalculate based on height
+  if (height > availableHeight) {
+    height = availableHeight;
+    width = Math.round(height * ratio);
+  }
+
+  // Don't apply extra safety margin - it's making the book too small
+  // Just ensure minimum size
+  width = Math.max(width, 300);
+  height = Math.max(height, 300);
+
+  // Apply dimensions
+  book.element.style.width = width + 'px';
+  book.element.style.height = height + 'px';
+  book.element.style.margin = '0 auto';
+
+  console.log('Resized book to:', width, 'x', height, 'Available:', availableWidth, 'x', availableHeight); // Debug
+
+  return { width: width, height: height };
+},
       
       setupGlobalControls: function() {
         var me = this;
@@ -914,18 +950,70 @@ resizeBook: function(book) {
         this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
         document.getElementById('book-container').style.transform = 'scale(' + this.zoomLevel + ')';
         document.getElementById('zoom-level').textContent = Math.round(this.zoomLevel * 100) + '%';
+        
+        // Re-center after zooming
+        setTimeout(() => {
+          this.centerBook();
+        }, 50);
       },
       
       setupResizeListener: function() {
         var me = this;
+        var resizeTimer;
+        
         window.addEventListener('resize', function() {
-          var book = me.books[me.currentBookIndex];
-          var size = me.resizeBook(book);
-          if (book.initialized) {
-            $(book.element).turn('size', size.width, size.height);
-          }
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            var book = me.books[me.currentBookIndex];
+            var size = me.resizeBook(book);
+            if (book.initialized) {
+              $(book.element).turn('size', size.width, size.height);
+              me.centerBook(); // Added: Center after resize
+            }
+          }, 250); // Debounce resize events
         });
       },
+      
+      setupOrientationHandler: function() {
+        var me = this;
+        
+        window.addEventListener('orientationchange', function() {
+          // Add a small delay to allow browser to finish orientation change
+          setTimeout(function() {
+            var book = me.books[me.currentBookIndex];
+            if (book.initialized) {
+              var size = me.resizeBook(book);
+              $(book.element).turn('size', size.width, size.height);
+              
+              // Force a reflow to fix centering
+              setTimeout(function() {
+                me.centerBook();
+              }, 100);
+            }
+          }, 300);
+        });
+      },
+      
+centerBook: function() {
+  var book = this.books[this.currentBookIndex];
+  var container = document.getElementById('book-container');
+  var bookElement = book.element;
+  
+  if (bookElement && container) {
+    // Reset margin first
+    bookElement.style.marginTop = '0';
+    bookElement.style.marginBottom = '0';
+    
+    var containerRect = container.getBoundingClientRect();
+    var bookRect = bookElement.getBoundingClientRect();
+    
+    // Only adjust if book is visible and smaller than container
+    if (bookRect.height > 0 && bookRect.height < containerRect.height) {
+      var marginTop = (containerRect.height - bookRect.height) / 2;
+      bookElement.style.marginTop = marginTop + 'px';
+    }
+  }
+},
       
       updatePageIndicator: function() {
         var book = this.books[this.currentBookIndex];
