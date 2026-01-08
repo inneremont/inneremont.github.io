@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posters - Jan Sandberg</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #000;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* =============================
+   TOP CONTROL BAR (NEW)
+============================= */
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #222;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Left / Center / Right groups */
+.top-bar-left,
+.top-bar-center,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-bar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* =============================
+   PILL SYSTEM (shared)
+============================= */
+
+.pill {
+  padding: 0.55rem 1.25rem;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #fff;
+  transition: all 0.15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pill:hover {
+  background: #222;
+  border-color: #444;
+}
+
+.pill.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.pill svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Icon-only pills (info / back) */
+.pill.icon {
+  padding: 0 0.75rem;
+  height: 36px;
+}
+
+/* =============================
+   INDEX DISPLAY
+============================= */
+
+.index-display {
+  padding: 0.55rem 1rem;
+  border: 1px solid #333;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =============================
+   INFO PANEL (DOCKED)
+============================= */
+
+.info-panel {
+  position: fixed;
+  top: 70px; /* touches bar */
+  left: 0;
+  width: 320px;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid #222;
+  padding: 2rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.info-panel.open {
+  transform: translateX(0);
+}
+
+.info-panel h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  margin-bottom: 1.5rem;
+}
+
+.meta-label {
+  color: #666;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.meta-value {
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* =============================
+   CAROUSEL
+============================= */
+
+.carousel-container {
+  width: 100%;
+  height: 100vh;
+  padding-top: 70px; /* clears bar */
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+/* =============================
+   MOBILE ADJUSTMENTS
+============================= */
+
+@media (max-width: 768px) {
+  .top-bar {
+    height: 60px;
+    padding: 0 1rem;
+  }
+
+  .top-bar-center {
+    position: static;
+    transform: none;
+  }
+
+  .index-display,
+  #auto-toggle {
+    display: none;
+  }
+
+  .pill {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .pill.icon {
+    height: 34px;
+  }
+
+  .carousel-container {
+    padding-top: 60px;
+  }
+
+  .info-panel {
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    border-right: none;
+  }
+
+  .slide img {
+    max-width: 95%;
+    max-height: 85%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Info Button -->
+<!-- Top Control Bar -->
+<div class="top-bar">
+
+  <!-- Left: Info -->
+  <div class="top-bar-left">
+    <button class="pill icon info-button" id="info-btn" aria-label="Poster Info">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Center: Navigation Controls -->
+  <div class="top-bar-center">
+    <button class="pill" id="prev-btn" aria-label="Previous poster">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+      </svg>
+    </button>
+
+    <div class="index-display" aria-live="polite">
+      <span id="current-index">1</span> /
+      <span id="total-posters">5</span>
+    </div>
+
+    <button class="pill" id="next-btn" aria-label="Next poster">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+      </svg>
+    </button>
+
+    <button class="pill" id="auto-toggle" aria-label="Toggle autoplay">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+      </svg>
+      Auto
+    </button>
+  </div>
+
+  <!-- Right: Back -->
+  <div class="top-bar-right">
+    <a href="../index.html" class="pill icon back-button" aria-label="Back">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 14l5-5 5 5z"/>
+      </svg>
+    </a>
+  </div>
+
+</div>
+
+  <div class="info-panel" id="info-panel">
+    <div id="info-content"></div>
+  </div>
+
+  <!-- Carousel -->
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+      <!-- Posters will be loaded here -->
+    </div>
+  </div>
+
+  <script>
+    // Poster data
+    const posters = [
+      {
+        title: 'Rück Tritt Käse',
+        year: '2021',
+        dimensions: 'A1, 594 × 841mm',
+        technique: 'Screenprint, phosphorescent ink',
+        edition: 'Edition of 50',
+        description: 'Exploring high-risk environments and German language. Features self-mixed white ink with silver pigment and phosphorescent powder for hi-viz effect.',
+        image: 'https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png'
+      },
+      {
+        title: 'Rück Tritt Käse (Variant)',
+        year: '2021',
+        dimensions: 'A1, 594 × 841mm',
+        technique: 'Screenprint',
+        edition: 'Edition of 50',
+        description: 'Alternative color variant of the Rück Tritt Käse series.',
+        image: 'https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat05xx_d3ngag.png'
+      },
+      {
+        title: 'Rück Tritt Käse (Detail)',
+        year: '2021',
+        dimensions: 'A1, 594 × 841mm',
+        technique: 'Screenprint',
+        edition: 'Edition of 50',
+        description: 'Third variation in the series.',
+        image: 'https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png'
+      },
+      {
+        title: 'Exhibition Documentation',
+        year: '2024',
+        dimensions: 'Digital',
+        technique: 'Photography',
+        description: 'Documentation from portfolio exhibition.',
+        image: 'https://res.cloudinary.com/dlhshzs37/image/upload/v1738272372/portf_ext_kywnqh.gif'
+      },
+      {
+        title: 'Experimental Poster',
+        year: '2020',
+        dimensions: 'Various',
+        technique: 'Digital',
+        description: 'Experimental typographic poster series.',
+        image: 'https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif'
+      }
+    ];
+
+    let currentIndex = 0;
+    let autoPlay = false;
+    let autoPlayInterval;
+    let userInteractionTimeout;
+
+    const carousel = document.getElementById('carousel');
+    const infoBtn = document.getElementById('info-btn');
+    const infoPanel = document.getElementById('info-panel');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const autoToggle = document.getElementById('auto-toggle');
+    const currentIndexEl = document.getElementById('current-index');
+    const totalPostersEl = document.getElementById('total-posters');
+
+    // Auto-play management
+    function startAutoPlay() {
+      if (autoPlay || window.innerWidth <= 768) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+          // Don't auto-advance if info panel is open
+          if (!infoPanel.classList.contains('open')) {
+            goToSlide(currentIndex + 1);
+          }
+        }, 4000);
+      }
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    function resetAutoPlayTimer() {
+      stopAutoPlay();
+      clearTimeout(userInteractionTimeout);
+      
+      // Wait 30 seconds after user interaction before resuming
+      userInteractionTimeout = setTimeout(() => {
+        if (window.innerWidth <= 768 && !infoPanel.classList.contains('open')) {
+          autoPlay = true;
+          startAutoPlay();
+        }
+      }, 30000);
+    }
+
+    // On mobile, start auto-play by default
+    if (window.innerWidth <= 768) {
+      autoPlay = true;
+      startAutoPlay();
+    }
+
+    // Load posters
+    function loadPosters() {
+      posters.forEach((poster, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.innerHTML = `<img src="${poster.image}" alt="${poster.title}">`;
+        carousel.appendChild(slide);
+      });
+      totalPostersEl.textContent = posters.length;
+      updateInfo();
+    }
+
+    // Update info panel
+    function updateInfo() {
+      const poster = posters[currentIndex];
+      document.getElementById('info-content').innerHTML = `
+        <h3>${poster.title}</h3>
+        <div class="meta-item">
+          <div class="meta-label">Year</div>
+          <div class="meta-value">${poster.year}</div>
+        </div>
+        ${poster.dimensions ? `
+        <div class="meta-item">
+          <div class="meta-label">Dimensions</div>
+          <div class="meta-value">${poster.dimensions}</div>
+        </div>` : ''}
+        ${poster.technique ? `
+        <div class="meta-item">
+          <div class="meta-label">Technique</div>
+          <div class="meta-value">${poster.technique}</div>
+        </div>` : ''}
+        ${poster.edition ? `
+        <div class="meta-item">
+          <div class="meta-label">Edition</div>
+          <div class="meta-value">${poster.edition}</div>
+        </div>` : ''}
+        <div class="meta-item">
+          <div class="meta-label">About</div>
+          <div class="meta-value">${poster.description}</div>
+        </div>
+      `;
+      currentIndexEl.textContent = currentIndex + 1;
+    }
+
+    // Navigate
+    function goToSlide(index) {
+      currentIndex = (index + posters.length) % posters.length;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateInfo();
+    }
+
+    // Info panel toggle
+    infoBtn.addEventListener('click', () => {
+      const wasOpen = infoPanel.classList.contains('open');
+      infoPanel.classList.toggle('open');
+      infoBtn.classList.toggle('active');
+      
+      // Pause auto-play when info is open
+      if (!wasOpen) {
+        stopAutoPlay();
+      } else {
+        // Resume if on mobile
+        if (window.innerWidth <= 768) {
+          autoPlay = true;
+          startAutoPlay();
+        }
+      }
+    });
+
+    // Navigation
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetAutoPlayTimer();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetAutoPlayTimer();
+    });
+
+    // Auto-play toggle (desktop only)
+    autoToggle.addEventListener('click', () => {
+      autoPlay = !autoPlay;
+      autoToggle.classList.toggle('active');
+      
+      if (autoPlay) {
+        startAutoPlay();
+      } else {
+        stopAutoPlay();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        goToSlide(currentIndex - 1);
+        resetAutoPlayTimer();
+      }
+      if (e.key === 'ArrowRight') {
+        goToSlide(currentIndex + 1);
+        resetAutoPlayTimer();
+      }
+      if (e.key === 'Escape') {
+        infoPanel.classList.remove('open');
+        infoBtn.classList.remove('active');
+        // Resume auto-play on mobile
+        if (window.innerWidth <= 768) {
+          autoPlay = true;
+          startAutoPlay();
+        }
+      }
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+        resetAutoPlayTimer();
+      }
+    });
+
+    // Initialize
+    loadPosters();
+  </script>
+</body>
+</html>
