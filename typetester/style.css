@@ -35,6 +35,20 @@ html {
    -webkit-font-smoothing:antialiased;
 }
 
+/* from styles-combo.csss */
+
+h2  {
+  font-size: calc(1em + 2px);
+
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
 img{
  display: block;  
  width:65%;
@@ -76,8 +90,6 @@ img{
   /*color: black; */
   line-height: 4rem;
 }
-
-
 
 
 .type-container {
@@ -195,6 +207,23 @@ body.dark-mode input[type="range"]::-moz-range-thumb {
   margin-top: 10px;
 }
 
+footer {
+
+  width: 100%;
+  padding-left: 20px;
+  margin-top: auto;
+
+
+}
+
+
+.footer-content {
+  padding-top:9px;
+  padding-bottom:9px;
+  /*width: 10%; */
+  /* padding-left:18px; */
+  /*border-top: solid 1px; */
+}
 
 
 

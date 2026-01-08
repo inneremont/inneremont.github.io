@@ -14,13 +14,6 @@
       src: url("assets/nitto-Regular.otf") format("opentype");
     }
 
-
-:root {
-  --slider-track: #000;
-  --slider-thumb: #000;
-}
-
-
     * {
       margin: 0;
       padding: 0;
@@ -30,22 +23,66 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       -webkit-font-smoothing: antialiased;
-      background: #fafafa;
+      background: #000;
+      color: #fff;
     }
 
-body {
-  background: #fafafa;
-}
+    /* Fixed Navigation Bar */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #fff;
+    }
 
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav-pill {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      background: #222;
+      border-color: #444;
+    }
 
     /* Ticker */
     .ticker-container {
       position: relative;
       width: 100%;
       overflow: hidden;
-      background: #00aa00;
-      height: 4rem;
+      background: #111;
+      border-bottom: 1px solid #222;
+      height: 3rem;
+      margin-top: 57px;
     }
 
     .ticker {
@@ -58,45 +95,77 @@ body {
     }
 
     .ticker__item {
-      padding: 0 2rem;
-      font-size: 1.5rem;
-      color: white;
-      line-height: 4rem;
+      padding: 0 3rem;
+      font-size: 0.875rem;
+      color: #666;
+      line-height: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     /* Type Container */
     .type-container {
-      background: white;
+      background: #fff;
+      color: #000;
+      border-bottom: 1px solid #e0e0e0;
       transition: all 0.3s ease;
-     
+    }
+
+    .type-container .controls {
+      border-color: #e0e0e0;
+    }
+
+    .type-container .pill {
+      border-color: #ddd;
+      color: #000;
+    }
+
+    .type-container .pill:hover {
+      background: #f5f5f5;
+    }
+
+    .type-container input.invisible:checked + label {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    .type-container .range-group {
+      border-color: #ddd;
+    }
+
+    .type-container .range-value {
+      color: #666;
+    }
+
+    .type-container input[type="range"]::-webkit-slider-runnable-track,
+    .type-container input[type="range"]::-moz-range-track {
+      background: #000;
+    }
+
+    .type-container input[type="range"]::-webkit-slider-thumb,
+    .type-container input[type="range"]::-moz-range-thumb {
+      background: #000;
     }
 
     .type-container.dark {
       background: #000;
       color: #fff;
+      border-bottom: 1px solid #222;
     }
 
     .type-container.dark .controls {
-      border-color: #333;
-    }
-
-    .type-container.dark input[type="range"]::-webkit-slider-runnable-track,
-    .type-container.dark input[type="range"]::-moz-range-track {
-      background: #fff;
-    }
-
-    .type-container.dark input[type="range"]::-webkit-slider-thumb,
-    .type-container.dark input[type="range"]::-moz-range-thumb {
-      background: #fff;
+      border-color: #222;
     }
 
     .type-container.dark .pill {
-      border-color: #444;
+      border-color: #333;
       color: #fff;
     }
 
     .type-container.dark .pill:hover {
       background: #222;
+      border-color: #444;
     }
 
     .type-container.dark input.invisible:checked + label {
@@ -105,58 +174,120 @@ body {
       border-color: #fff;
     }
 
-    /* Banner */
-    .banner {
-      width: 100%;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .banner img {
-      display: block;
-      max-width: 65%;
-      height: auto;
-    }
-
-    /* Header */
-    .type-header {
-      padding: 1.5rem 2rem 1rem;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .type-container.dark .type-header {
+    .type-container.dark .range-group {
       border-color: #333;
     }
 
+    .type-container.dark .range-value {
+      color: #999;
+    }
+
+    .type-container.dark input[type="range"]::-webkit-slider-runnable-track {
+      background: #fff !important;
+    }
+
+    .type-container.dark input[type="range"]::-moz-range-track {
+      background: #fff !important;
+    }
+
+    .type-container.dark input[type="range"]::-webkit-slider-thumb {
+      background: #fff !important;
+    }
+
+    .type-container.dark input[type="range"]::-moz-range-thumb {
+      background: #fff !important;
+    }
+
+    /* Type Header */
+    .type-header {
+      padding: 2rem 2rem 1rem;
+    }
+
     .type-header h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 500;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      cursor: help;
+      position: relative;
+      transition: all 0.15s;
+    }
+
+    .info-icon:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    .type-container.dark .info-icon {
+      border-color: #333;
+    }
+
+    .type-container.dark .info-icon:hover {
+      background: #222;
+      border-color: #666;
+    }
+
+    .info-tooltip {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      background: #fff;
+      color: #000;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 280px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      font-weight: 400;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .info-icon:hover .info-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .type-container.dark .info-tooltip {
+      background: #111;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+      border: 1px solid #333;
     }
 
     .type-header p {
       font-size: 0.875rem;
-      color: #666;
+      color: #999;
     }
 
     .type-container.dark .type-header p {
-      color: #999;
+      color: #666;
     }
 
     /* Controls */
     .controls {
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 2rem 1.5rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       align-items: center;
-    }
-
-    .type-container.dark .controls {
-      border-color: #333;
     }
 
     /* Pills */
@@ -172,6 +303,7 @@ body {
       gap: 0.5rem;
       transition: all 0.15s;
       white-space: nowrap;
+      color: #000;
     }
 
     .pill:hover {
@@ -216,37 +348,36 @@ body {
       outline: none;
     }
 
-   input[type="range"]::-webkit-slider-runnable-track {
-  background: var(--slider-track);
-  height: 2px;
-  border-radius: 1px;
-}
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: #000;
+      height: 2px;
+      border-radius: 1px;
+    }
 
-input[type="range"]::-moz-range-track {
-  background: var(--slider-track);
-  height: 2px;
-  border-radius: 1px;
-}
+    input[type="range"]::-moz-range-track {
+      background: #000;
+      height: 2px;
+      border-radius: 1px;
+    }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 14px;
-  width: 14px;
-  background: var(--slider-thumb);
-  margin-top: -6px;
-  border-radius: 50%;
-  cursor: pointer;
-}
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 14px;
+      background: #000;
+      margin-top: -6px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
-input[type="range"]::-moz-range-thumb {
-  height: 14px;
-  width: 14px;
-  background: var(--slider-thumb);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
+    input[type="range"]::-moz-range-thumb {
+      height: 14px;
+      width: 14px;
+      background: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
     .range-value {
       font-size: 0.875rem;
@@ -256,19 +387,10 @@ input[type="range"]::-moz-range-thumb {
       color: #666;
     }
 
-    .type-container.dark .range-value {
-      color: #999;
-    }
-
-    .type-container.dark {
-      --slider-track: #fff;
-      --slider-thumb: #fff;
-    }
-
     /* Demo Area */
     .demo-area {
-      padding: 3rem 2rem;
-      min-height: 200px;
+      padding: 4rem 2rem;
+      min-height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -302,30 +424,59 @@ input[type="range"]::-moz-range-thumb {
     footer {
       padding: 3rem 2rem;
       text-align: center;
-      background: #f5f5f5;
-      border-top: 1px solid #e0e0e0;
+      background: #000;
+      border-top: 1px solid #222;
     }
 
-    footer h2 {
-      display: inline-block;
-      margin: 0 1rem;
-      font-size: 1rem;
-      font-weight: 400;
+    footer .footer-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     footer a {
-      color: inherit;
+      color: #fff;
       text-decoration: none;
-      border-bottom: 1px solid currentColor;
-      transition: opacity 0.2s;
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      border-radius: 20px;
+      transition: all 0.15s;
     }
 
     footer a:hover {
-      opacity: 0.6;
+      background: #222;
+      border-color: #444;
     }
 
     /* Mobile */
     @media (max-width: 768px) {
+      .nav-bar {
+        padding: 0.75rem 1rem;
+      }
+
+      .nav-title {
+        font-size: 0.875rem;
+      }
+
+      .nav-pill {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .ticker-container {
+        margin-top: 49px;
+        height: 2.5rem;
+      }
+
+      .ticker__item {
+        font-size: 0.75rem;
+        line-height: 2.5rem;
+        padding: 0 2rem;
+      }
+
       .type-header,
       .controls,
       .demo-area {
@@ -333,12 +484,20 @@ input[type="range"]::-moz-range-thumb {
         padding-right: 1rem;
       }
 
+      .type-header {
+        padding-top: 1.5rem;
+      }
+
       .controls {
         gap: 0.5rem;
       }
 
+      .range-group {
+        flex: 1 1 100%;
+      }
+
       .range-group input[type="range"] {
-        width: 80px;
+        width: 100%;
       }
 
       #egyptiens-demo {
@@ -349,60 +508,57 @@ input[type="range"]::-moz-range-thumb {
         font-size: 50px;
       }
 
-      .banner img {
-        max-width: 90%;
+      .pill {
+        white-space: nowrap;
+      }
+
+      .theme-btn-text {
+        display: none;
+      }
+
+      .pill svg {
+        width: 14px;
+        height: 14px;
       }
     }
-
-  @media (max-width: 768px) {
-
-
-    .pill svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .pill {
-      white-space: nowrap;
-    }
-
-    .pill[onclick*="toggleTheme"] span,
-    .pill[onclick*="toggleTheme"]::after {
-      display: none;
-    }
-
-     .range-group {
-    flex: 1 1 100%;
-  }
-
-  .range-group input[type="range"] {
-    width: 100%;
-  } 
-  }
-
-
   </style>
 </head>
 <body>
 
+  <!-- Fixed Navigation -->
+  <div class="nav-bar">
+    <div class="nav-title">Type Tester</div>
+    <div class="nav-links">
+      <a href="#Egyptiens" class="nav-pill">Egyptiens</a>
+      <a href="#Nitto" class="nav-pill">Nitto</a>
+      <a href="../index.html" class="nav-pill">Back</a>
+    </div>
+  </div>
+
   <!-- Ticker -->
   <div class="ticker-container">
     <div class="ticker" id="ticker">
-      <div class="ticker__item">Test! Test! Test!</div>
-      <div class="ticker__item">Test! Test! Test!</div>
-      <div class="ticker__item">Test! Test! Test!</div>
+      <div class="ticker__item">Egyptiens Serres </div>
+      <div class="ticker__item">Nitto Grotesk </div>
+      <div class="ticker__item">Type Testing</div>
     </div>
   </div>
 
   <!-- Egyptiens Tester -->
   <div class="type-container" id="Egyptiens">
-    <div class="banner">
-      <img src="assets/egypt_bkg01.jpg" alt="Egyptiens font" onerror="this.style.display='none'">
-    </div>
-
     <div class="type-header">
-      <h2>Egyptiens Serres</h2>
-      <!--<p>Display Serif</p>-->
+      <h2>
+        Egyptiens Serres
+        <span class="info-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          </svg>
+          <span class="info-tooltip">
+            A display serif typeface inspired by 19th century Egyptian slab serifs. Features bold, geometric forms with strong bracketed serifs designed for headlines and display use.
+          </span>
+        </span>
+      </h2>
+      <p>Display Serif Typeface</p>
     </div>
 
     <div class="controls">
@@ -418,34 +574,46 @@ input[type="range"]::-moz-range-thumb {
         <span class="range-value" id="egyptiens-leading-value">1.3</span>
       </div>
 
+      <div class="range-group">
+        <label>Tracking</label>
+        <input type="range" min="-50" max="200" value="0" step="1" id="egyptiens-tracking">
+        <span class="range-value" id="egyptiens-tracking-value">0</span>
+      </div>
+
       <input type="checkbox" class="invisible" id="egyptiens-caps">
       <label class="pill" for="egyptiens-caps">Uppercase</label>
 
-      <button class="pill" onclick="toggleTheme('Egyptiens')">
+      <button class="pill" onclick="toggleTheme('Egyptiens')" id="egyptiens-theme-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="5"/>
           <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
         </svg>
-        Theme
+        <span class="theme-btn-text">Go Dark</span>
       </button>
     </div>
 
     <div class="demo-area">
       <div class="demo-text" id="egyptiens-demo" contenteditable="true" spellcheck="false">
-        The quick brown fox jumps over the lazy dog
+        Live, Laugh, Egyptiens Serres
       </div>
     </div>
   </div>
 
   <!-- Nitto Tester -->
   <div class="type-container" id="Nitto">
-    <div class="banner">
-      <img src="assets/ntto_bkg.png" alt="Nitto font" onerror="this.style.display='none'">
-    </div>
-
     <div class="type-header">
-      <h2>Nitto</h2>
-     <!-- <p>Geometric Sans</p> -->
+      <h2>
+        Nitto Grotesk
+        <span class="info-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          </svg>
+          <span class="info-tooltip">
+            A sans-serif typeface with clean, modernist proportions. Designed for versatility across both display and text applications with excellent readability.
+          </span>
+        </span>
+      </h2>
+      <p>A Botched Sans</p>
     </div>
 
     <div class="controls">
@@ -461,29 +629,38 @@ input[type="range"]::-moz-range-thumb {
         <span class="range-value" id="nitto-leading-value">1.2</span>
       </div>
 
+      <div class="range-group">
+        <label>Tracking</label>
+        <input type="range" min="-50" max="200" value="0" step="1" id="nitto-tracking">
+        <span class="range-value" id="nitto-tracking-value">0</span>
+      </div>
+
       <input type="checkbox" class="invisible" id="nitto-caps">
       <label class="pill" for="nitto-caps">Uppercase</label>
 
-      <button class="pill" onclick="toggleTheme('Nitto')">
+      <button class="pill" onclick="toggleTheme('Nitto')" id="nitto-theme-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="5"/>
           <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
         </svg>
-        Theme
+        <span class="theme-btn-text">Go Dark</span>
       </button>
     </div>
 
     <div class="demo-area">
       <div class="demo-text" id="nitto-demo" contenteditable="true" spellcheck="false">
-        The quick brown fox jumps over the lazy dog
+       It’s Nitto Grotesk!
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <h2><a href="https://www.instagram.com/jbasandberg/" target="_blank">Instagram</a></h2>
-    <h2><a href="https://jsandberg_cv2025.ezihost.net" target="_blank">CV</a></h2>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/jbasandberg/" target="_blank">Instagram</a>
+      <a href="https://jsandberg_cv2025.ezihost.net" target="_blank">CV</a>
+      <a href="../index.html">Portfolio</a>
+    </div>
   </footer>
 
   <script>
@@ -498,7 +675,7 @@ input[type="range"]::-moz-range-thumb {
       let pos = 0;
       
       function animate() {
-        pos -= 1;
+        pos -= 0.5;
         const totalWidth = tickerWidth * 2;
         const offset = pos % totalWidth;
         ticker.style.transform = `translateX(${offset}px)`;
@@ -508,9 +685,19 @@ input[type="range"]::-moz-range-thumb {
       animate();
     });
 
-    // Theme toggle
+    // Theme toggle with dynamic button text
     function toggleTheme(id) {
-      document.getElementById(id).classList.toggle("dark");
+      const container = document.getElementById(id);
+      const btn = document.getElementById(`${id.toLowerCase()}-theme-btn`);
+      const btnText = btn.querySelector('.theme-btn-text');
+      
+      container.classList.toggle("dark");
+      
+      if (container.classList.contains("dark")) {
+        btnText.textContent = "Go Light";
+      } else {
+        btnText.textContent = "Go Dark";
+      }
     }
 
     // Initialize font controls
@@ -520,6 +707,8 @@ input[type="range"]::-moz-range-thumb {
       const sizeValue = document.getElementById(`${prefix}-size-value`);
       const leadingInput = document.getElementById(`${prefix}-leading`);
       const leadingValue = document.getElementById(`${prefix}-leading-value`);
+      const trackingInput = document.getElementById(`${prefix}-tracking`);
+      const trackingValue = document.getElementById(`${prefix}-tracking-value`);
       const capsCheckbox = document.getElementById(`${prefix}-caps`);
 
       // Font size
@@ -534,6 +723,13 @@ input[type="range"]::-moz-range-thumb {
         const leading = e.target.value;
         demo.style.lineHeight = leading;
         leadingValue.textContent = leading;
+      });
+
+      // Letter spacing (tracking)
+      trackingInput.addEventListener('input', (e) => {
+        const tracking = e.target.value;
+        demo.style.letterSpacing = tracking / 1000 + 'em';
+        trackingValue.textContent = tracking;
       });
 
       // Uppercase
@@ -555,7 +751,12 @@ input[type="range"]::-moz-range-thumb {
       window.scrollTo(0, 0);
       setTimeout(() => {
         const el = document.querySelector(window.location.hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        if (el) {
+          const navHeight = document.querySelector('.nav-bar').offsetHeight;
+          const tickerHeight = document.querySelector('.ticker-container').offsetHeight;
+          const targetPos = el.offsetTop - navHeight - tickerHeight;
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
       }, 100);
     }
   </script>
