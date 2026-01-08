@@ -483,8 +483,16 @@
         border-right: none;
       }
 
-      .book-wrapper.info-open {
+       .book-wrapper.info-open {
         padding-left: 0;
+      }
+
+      .book-container {
+        padding: 1rem 0.5rem;
+      }
+
+      .book-wrapper {
+        padding-top: 140px;
       }
     }
   </style>
@@ -787,18 +795,23 @@
         }
       },
       
-      resizeBook: function(book) {
+resizeBook: function(book) {
         var ratio = book.ratio || 1.38;
         book.element.style.width = '';
         book.element.style.height = '';
 
-        var maxWidth = Math.min(window.innerWidth * 0.9, 1400);
+        // Calculate available space
+        var isMobile = window.innerWidth <= 768;
+        var controlBarHeight = isMobile ? 140 : 70; // Mobile control bar is taller (2 rows)
+        var availableWidth = window.innerWidth - (isMobile ? 32 : 64); // Account for padding
+        var availableHeight = window.innerHeight - controlBarHeight - (isMobile ? 32 : 64);
+
+        var maxWidth = Math.min(availableWidth, 1400);
         var width = maxWidth;
         var height = Math.round(width / ratio);
-        var padded = Math.round((window.innerHeight - 150) * 0.8);
 
-        if (height > padded) {
-          height = padded;
+        if (height > availableHeight) {
+          height = availableHeight;
           width = Math.round(height * ratio);
         }
 
