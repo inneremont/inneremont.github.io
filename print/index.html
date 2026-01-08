@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flipbook Portfolio</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    body {
+      background-color: #000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: auto;
+    }
+
+    /* Control Bar */
+    .control-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* Document Selector */
+    .document-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .info-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .info-toggle:hover {
+      background: #222;
+      border-color: #444;
+    }
+
+    .info-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .info-toggle.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    .doc-selector-toggle {
+      display: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: #fff;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .doc-selector-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .doc-selector-toggle.expanded svg {
+      transform: rotate(180deg);
+    }
+
+    .doc-pills-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .doc-pill {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: #fff;
+      transition: all 0.15s;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .doc-pill:hover {
+      background: #222;
+      border-color: #444;
+    }
+
+    .doc-pill.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    .doc-count {
+      font-size: 0.75rem;
+      color: #666;
+      margin-left: 0.5rem;
+    }
+
+    .doc-pill.active .doc-count {
+      color: #999;
+    }
+
+    /* Navigation Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: #fff;
+      transition: all 0.15s;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pill:hover:not(:disabled) {
+      background: #222;
+      border-color: #444;
+    }
+
+    .pill:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .page-indicator {
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .pill svg {
+      width: 14px;
+      height: 14px;
+    }
+
+.doc-select-mobile {
+  color-scheme: dark;
+  background-color: #000;
+  box-shadow: 0 0 0 1000px #000 inset;
+  display: none;
+  width: 100%;
+  padding: 0.55rem 2.25rem 0.55rem 1rem;
+  border: 1px solid #333;
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  cursor: pointer;
+
+  /* kill native styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* custom chevron */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 14px;
+}
+
+  
+
+    /* Back Button (top right) */
+.back-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  color: white;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+
+    .back-button:hover {
+      background: #222;
+      border-color: #444;
+    }
+
+    .back-button svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .zoom-control {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #333;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.875rem;
+    }
+
+    .zoom-control button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .zoom-control button:hover {
+      background: #333;
+    }
+
+    .zoom-control svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .zoom-level {
+      min-width: 45px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Info Panel */
+    .info-panel {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 320px;
+      max-height: calc(100vh - 70px);
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid #222;
+      padding: 2rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .info-panel.open {
+      transform: translateX(0);
+    }
+
+    .info-panel h3 {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .info-panel .meta-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .info-panel .meta-label {
+      color: #666;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-panel .meta-value {
+      color: #fff;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .info-panel .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: 1px solid #333;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.15s;
+    }
+
+    .info-panel .close-btn:hover {
+      background: #222;
+      border-color: #444;
+    }
+
+    /* Book wrapper */
+    .book-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      padding-top: 70px;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: padding-left 0.3s ease;
+    }
+
+    .book-wrapper.info-open {
+      padding-left: 320px;
+    }
+
+    .book-container {
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+      transform-origin: center center;
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Book */
+    .book {
+      display: none;
+      margin: 0 auto;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .book.active {
+      display: block;
+    }
+
+    .book .page {
+      height: 100%;
+    }
+
+    .book .page img {
+      max-width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .control-bar {
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+
+  .document-selector {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+       .doc-pills-container,
+  .doc-selector-toggle {
+    display: none;
+  }
+
+  .doc-select-mobile {
+    display: block;
+    width: 100%;
+  }
+
+      .doc-pill {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: center;
+        gap: 0.25rem;
+      }
+
+      .back-button {
+        width: 40px;
+        height: 40px;
+        top: 1rem;
+        right: 1rem;
+      }
+
+      .back-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .pill {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .page-indicator {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        min-width: 70px;
+      }
+
+      .zoom-control {
+        padding: 0.4rem 0.6rem;
+      }
+
+      .zoom-level {
+        min-width: 40px;
+        font-size: 0.8rem;
+      }
+
+      .pill svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* Hide info toggle on mobile */
+      .info-toggle {
+        display: none;
+      }
+
+      .info-panel {
+        display: none;
+      }
+
+      .book-wrapper.info-open {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Control Bar -->
+  <div class="control-bar">
+    <div class="document-selector" id="document-selector">
+      <button class="info-toggle" id="info-toggle">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        </svg>
+      </button>
+
+      <button class="doc-selector-toggle" id="doc-toggle">
+        <span id="active-doc-title">Loading...</span>
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+
+      <select class="doc-select-mobile" id="doc-select-mobile"></select>
+
+
+      <div class="doc-pills-container" id="doc-pills">
+        <!-- Document pills will be inserted here -->
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="pill" id="prev-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+        <span class="btn-text">Prev</span>
+      </button>
+      
+      <div class="page-indicator">
+        <span id="current-page">1</span> / <span id="total-pages">0</span>
+      </div>
+      
+      <button class="pill" id="next-btn">
+        <span class="btn-text">Next</span>
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+        </svg>
+      </button>
+
+      <div class="zoom-control">
+        <button id="zoom-out">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 13H5v-2h14v2z"/>
+          </svg>
+        </button>
+        <span class="zoom-level" id="zoom-level">100%</span>
+        <button id="zoom-in">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+      <!-- Back Button -->
+  <a href="../index.html" class="back-button" aria-label="Back">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 14l5-5 5 5z"/>
+    </svg>
+  </a>
+
+  </div>
+
+  <!-- Info Panel -->
+  <div class="info-panel" id="info-panel">
+    <button class="close-btn" id="info-close">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+    <div id="info-content">
+      <!-- Info content will be inserted here -->
+    </div>
+  </div>
+
+  <!-- Single Book Container -->
+  <div class="book-wrapper" id="book-wrapper">
+    <div class="book-container" id="book-container">
+      <!-- Books will be inserted here -->
+    </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js'></script>
+
+  <script>
+    var FlipbookViewer = {
+      books: [],
+      currentBookIndex: 0,
+      zoomLevel: 1,
+      minZoom: 0.5,
+      maxZoom: 3,
+      infoPanelOpen: false,
+      
+      init: function(booksConfig) {
+        this.books = booksConfig;
+        this.createDocumentSelector();
+        this.createAllBooks();
+        this.setupGlobalControls();
+        this.setupZoom();
+        this.setupInfoPanel();
+        this.switchToBook(0);
+        this.setupResizeListener();
+      },
+      
+      createDocumentSelector: function() {
+        var selector = document.getElementById('doc-pills');
+        var toggle = document.getElementById('doc-toggle');
+        var mobileSelect = document.getElementById('doc-select-mobile');
+
+        this.books.forEach((book, index) => {
+          var pill = document.createElement('button');
+          pill.className = 'doc-pill';
+          pill.innerHTML = book.title + (this.books.length > 1 ? '<span class="doc-count">' + book.images.length + ' pages</span>' : '');
+          // Create mobile select option
+          var option = document.createElement('option');
+          option.value = index;
+          option.textContent = book.title;
+          mobileSelect.appendChild(option);
+
+          pill.onclick = () => {
+            this.switchToBook(index);
+            if (window.innerWidth <= 768) {
+              this.toggleDocSelector();
+            }
+          };
+          selector.appendChild(pill);
+        });
+        
+        mobileSelect.addEventListener('change', function () {
+        FlipbookViewer.switchToBook(parseInt(this.value, 10));
+        });
+
+        toggle.onclick = () => this.toggleDocSelector();
+        document.getElementById('active-doc-title').textContent = this.books[0].title;
+        mobileSelect.value = 0;
+
+
+
+        if (this.books.length === 1) {
+          toggle.style.display = 'none';
+          selector.style.display = 'flex';
+        }
+      },
+      
+      toggleDocSelector: function() {
+        var pills = document.getElementById('doc-pills');
+        var toggle = document.getElementById('doc-toggle');
+        pills.classList.toggle('expanded');
+        toggle.classList.toggle('expanded');
+      },
+      
+      setupInfoPanel: function() {
+        var me = this;
+        var infoToggle = document.getElementById('info-toggle');
+        var infoClose = document.getElementById('info-close');
+        var infoPanel = document.getElementById('info-panel');
+        var bookWrapper = document.getElementById('book-wrapper');
+        
+        infoToggle.onclick = function() {
+          me.infoPanelOpen = !me.infoPanelOpen;
+          infoPanel.classList.toggle('open');
+          bookWrapper.classList.toggle('info-open');
+          infoToggle.classList.toggle('active');
+        };
+        
+        infoClose.onclick = function() {
+          me.infoPanelOpen = false;
+          infoPanel.classList.remove('open');
+          bookWrapper.classList.remove('info-open');
+          infoToggle.classList.remove('active');
+        };
+      },
+      
+      updateInfoPanel: function(book) {
+        var content = document.getElementById('info-content');
+        var html = '<h3>' + book.title + '</h3>';
+        
+        if (book.info) {
+          if (book.info.year) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">Year</div>';
+            html += '<div class="meta-value">' + book.info.year + '</div>';
+            html += '</div>';
+          }
+          
+          if (book.info.client) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">Client</div>';
+            html += '<div class="meta-value">' + book.info.client + '</div>';
+            html += '</div>';
+          }
+          
+          if (book.info.role) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">Role</div>';
+            html += '<div class="meta-value">' + book.info.role + '</div>';
+            html += '</div>';
+          }
+          
+          if (book.info.description) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">About</div>';
+            html += '<div class="meta-value">' + book.info.description + '</div>';
+            html += '</div>';
+          }
+          
+          if (book.info.tools) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">Tools</div>';
+            html += '<div class="meta-value">' + book.info.tools + '</div>';
+            html += '</div>';
+          }
+        }
+        
+        html += '<div class="meta-item">';
+        html += '<div class="meta-label">Pages</div>';
+        html += '<div class="meta-value">' + book.totalPages + ' pages</div>';
+        html += '</div>';
+        
+        content.innerHTML = html;
+      },
+      
+      createAllBooks: function() {
+        var container = document.getElementById('book-container');
+        
+        this.books.forEach((book, index) => {
+          var bookDiv = document.createElement('div');
+          bookDiv.className = 'book';
+          bookDiv.id = book.id;
+          
+          book.images.forEach((img, i) => {
+            var page = document.createElement('div');
+            page.className = 'page';
+            page.innerHTML = '<img src="' + img + '" alt="Page ' + (i + 1) + '"/>';
+            bookDiv.appendChild(page);
+          });
+          
+          container.appendChild(bookDiv);
+          
+          book.element = bookDiv;
+          book.currentPage = 1;
+          book.totalPages = book.images.length;
+        });
+      },
+      
+      switchToBook: function(index) {
+        var me = this;
+        var oldBook = this.books[this.currentBookIndex];
+        var newBook = this.books[index];
+        
+        // Update UI
+        document.querySelectorAll('.doc-pill').forEach((pill, i) => {
+          pill.classList.toggle('active', i === index);
+        });
+        document.getElementById('active-doc-title').textContent = newBook.title;
+        
+        // Update info panel
+        this.updateInfoPanel(newBook);
+        
+        // Hide old book
+        if (oldBook.element) {
+          oldBook.element.classList.remove('active');
+        }
+        
+        this.currentBookIndex = index;
+        
+        // Resize new book
+        var size = this.resizeBook(newBook);
+        
+        // Initialize or update Turn.js
+        if (!newBook.initialized) {
+          $(newBook.element).turn({
+            width: size.width,
+            height: size.height,
+            page: 1,
+            gradients: true,
+            acceleration: true
+          });
+          
+          $(newBook.element).on('turned', function(e, page) {
+            newBook.currentPage = page;
+            me.updatePageIndicator();
+          });
+          
+          newBook.initialized = true;
+        } else {
+          $(newBook.element).turn('size', size.width, size.height);
+          // Return to saved page
+          $(newBook.element).turn('page', newBook.currentPage);
+        }
+        
+        // Show new book
+        newBook.element.classList.add('active');
+        this.updatePageIndicator();
+
+        // Sync mobile select
+        var mobileSelect = document.getElementById('doc-select-mobile');
+        if (mobileSelect) {
+        mobileSelect.value = index;
+        }
+
+      },
+      
+      resizeBook: function(book) {
+        var ratio = book.ratio || 1.38;
+        book.element.style.width = '';
+        book.element.style.height = '';
+
+        var maxWidth = Math.min(window.innerWidth * 0.9, 1400);
+        var width = maxWidth;
+        var height = Math.round(width / ratio);
+        var padded = Math.round((window.innerHeight - 150) * 0.8);
+
+        if (height > padded) {
+          height = padded;
+          width = Math.round(height * ratio);
+        }
+
+        book.element.style.width = width + 'px';
+        book.element.style.height = height + 'px';
+
+        return { width: width, height: height };
+      },
+      
+      setupGlobalControls: function() {
+        var me = this;
+        
+        document.getElementById('prev-btn').addEventListener('click', function() {
+          var book = me.books[me.currentBookIndex];
+          $(book.element).turn('previous');
+        });
+        
+        document.getElementById('next-btn').addEventListener('click', function() {
+          var book = me.books[me.currentBookIndex];
+          $(book.element).turn('next');
+        });
+        
+        document.addEventListener('keydown', function(e) {
+          var book = me.books[me.currentBookIndex];
+          if (e.key === 'ArrowLeft') {
+            $(book.element).turn('previous');
+          } else if (e.key === 'ArrowRight') {
+            $(book.element).turn('next');
+          }
+        });
+      },
+      
+      setupZoom: function() {
+        var me = this;
+        var container = document.getElementById('book-container');
+        
+        document.getElementById('zoom-in').addEventListener('click', function() {
+          me.zoom(me.zoomLevel + 0.25);
+        });
+        
+        document.getElementById('zoom-out').addEventListener('click', function() {
+          me.zoom(me.zoomLevel - 0.25);
+        });
+        
+        container.addEventListener('wheel', function(e) {
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            var delta = e.deltaY > 0 ? -0.1 : 0.1;
+            me.zoom(me.zoomLevel + delta);
+          }
+        }, { passive: false });
+        
+        var touchDistance = 0;
+        var initialZoom = 1;
+        
+        container.addEventListener('touchstart', function(e) {
+          if (e.touches.length === 2) {
+            touchDistance = Math.hypot(
+              e.touches[0].pageX - e.touches[1].pageX,
+              e.touches[0].pageY - e.touches[1].pageY
+            );
+            initialZoom = me.zoomLevel;
+          }
+        });
+        
+        container.addEventListener('touchmove', function(e) {
+          if (e.touches.length === 2) {
+            e.preventDefault();
+            var newDistance = Math.hypot(
+              e.touches[0].pageX - e.touches[1].pageX,
+              e.touches[0].pageY - e.touches[1].pageY
+            );
+            var scale = newDistance / touchDistance;
+            me.zoom(initialZoom * scale);
+          }
+        }, { passive: false });
+      },
+      
+      zoom: function(level) {
+        this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
+        document.getElementById('book-container').style.transform = 'scale(' + this.zoomLevel + ')';
+        document.getElementById('zoom-level').textContent = Math.round(this.zoomLevel * 100) + '%';
+      },
+      
+      setupResizeListener: function() {
+        var me = this;
+        window.addEventListener('resize', function() {
+          var book = me.books[me.currentBookIndex];
+          var size = me.resizeBook(book);
+          if (book.initialized) {
+            $(book.element).turn('size', size.width, size.height);
+          }
+        });
+      },
+      
+      updatePageIndicator: function() {
+        var book = this.books[this.currentBookIndex];
+        document.getElementById('current-page').textContent = book.currentPage;
+        document.getElementById('total-pages').textContent = book.totalPages;
+        
+        var prevBtn = document.getElementById('prev-btn');
+        var nextBtn = document.getElementById('next-btn');
+        prevBtn.disabled = book.currentPage === 1;
+        nextBtn.disabled = book.currentPage === book.totalPages;
+      }
+    };
+
+    // Initialize with your flipbooks
+    FlipbookViewer.init([
+      {
+        id: 'book1',
+        title: 'Sampler Broadsheet V3',
+        ratio: 1.38,
+        info: {
+          year: '2025',
+          client: 'Personal Project',
+          role: 'Type Design, Layout',
+          description: 'A typographic exploration showcasing custom typefaces and experimental layouts.',
+          tools: 'InDesign, Illustrator, Glyphs'
+        },
+        images: [
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116783/sampler_broadsheet_v3_25_page-0001_pipx1q.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116783/sampler_broadsheet_v3_25_page-0002_d5kjtb.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116781/sampler_broadsheet_v3_25_page-0003_p0ahlk.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116787/sampler_broadsheet_v3_25_page-0004_aqcz9u.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116779/sampler_broadsheet_v3_25_page-0005_kcmzwm.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116779/sampler_broadsheet_v3_25_page-0006_hae7pb.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116770/sampler_broadsheet_v3_25_page-0007_zmh4rp.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116785/sampler_broadsheet_v3_25_page-0008_euz1fj.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116945/sampler_broadsheet_v3_25_page-0009_Large_wccxgw.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116770/sampler_broadsheet_v3_25_page-0010_ln7egy.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116773/sampler_broadsheet_v3_25_page-0011_d1qalc.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116767/sampler_broadsheet_v3_25_page-0012_pyilz0.jpg'
+        ]
+      },
+      {
+        id: 'book2',
+        title: 'Essay: Triptych Effect',
+        ratio: 1.3,
+        info: {
+          year: '2024',
+          client: 'Example Corp',
+          role: 'Art Direction, Design',
+          description: 'Complete brand identity system including logo, typography, and visual guidelines.',
+          tools: 'Figma, Illustrator'
+        },
+        images: [
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805338/triptych_web_vers_page-0001_w6f1hp.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805340/triptych_web_vers_page-0002_xtty7j.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805340/triptych_web_vers_page-0003_jchwwh.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805341/triptych_web_vers_page-0004_ucynml.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805343/triptych_web_vers_page-0005_yqanfx.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805344/triptych_web_vers_page-0006_v4pqum.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805346/triptych_web_vers_page-0007_dtrh6k.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805347/triptych_web_vers_page-0008_huktd4.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805348/triptych_web_vers_page-0009_tvftkb.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805349/triptych_web_vers_page-0010_rmcjrw.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805352/triptych_web_vers_page-0011_hkfnsg.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805352/triptych_web_vers_page-0012_ye4tfb.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805323/triptych_web_vers_page-0013_uaibrg.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805326/triptych_web_vers_page-0014_qadmc8.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805324/triptych_web_vers_page-0015_x4jrrl.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805325/triptych_web_vers_page-0016_c2leb5.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805326/triptych_web_vers_page-0017_ssrhua.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805326/triptych_web_vers_page-0018_woi95l.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805329/triptych_web_vers_page-0019_sddib0.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805328/triptych_web_vers_page-0020_kvpspg.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805329/triptych_web_vers_page-0021_a2nrwi.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805330/triptych_web_vers_page-0022_dofd03.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805331/triptych_web_vers_page-0023_umeyl8.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805332/triptych_web_vers_page-0024_kanxr0.jpg',
+          'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805333/triptych_web_vers_page-0025_vbgzml.jpg'
+
+          
+        ]
+      }
+      // Add more books here:
+      /*
+      {
+        id: 'book2',
+        title: 'Second Portfolio',
+        ratio: 1.5,
+        images: [
+          'path/to/image1.jpg',
+          'path/to/image2.jpg'
+        ]
+      }
+      */
+    ]);
+  </script>
+</body>
+</html>
