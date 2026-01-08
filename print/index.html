@@ -186,52 +186,45 @@
       height: 14px;
     }
 
-.doc-select-mobile {
-  color-scheme: dark;
-  background-color: #000;
-  box-shadow: 0 0 0 1000px #000 inset;
-  display: none;
-  width: 100%;
-  padding: 0.55rem 2.25rem 0.55rem 1rem;
-  border: 1px solid #333;
-  background-color: #000;
-  color: #fff;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  line-height: 1.2;
-  cursor: pointer;
+    .doc-select-mobile {
+      color-scheme: dark;
+      background-color: #000;
+      box-shadow: 0 0 0 1000px #000 inset;
+      display: none;
+      width: 100%;
+      padding: 0.55rem 2.25rem 0.55rem 1rem;
+      border: 1px solid #333;
+      background-color: #000;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      line-height: 1.2;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 14px;
+    }
 
-  /* kill native styling */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  /* custom chevron */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 14px;
-}
-
-  
-
-    /* Back Button (top right) */
-.back-button {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #333;
-  background: transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  color: white;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
+    /* Back Button */
+    .back-button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #333;
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      color: white;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
 
     .back-button:hover {
       background: #222;
@@ -407,21 +400,22 @@
         gap: 0.75rem;
       }
 
-  .document-selector {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-  }
+      .document-selector {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
 
-       .doc-pills-container,
-  .doc-selector-toggle {
-    display: none;
-  }
+      .doc-pills-container,
+      .doc-selector-toggle {
+        display: none;
+      }
 
-  .doc-select-mobile {
-    display: block;
-    width: 100%;
-  }
+      .doc-select-mobile {
+        display: block;
+        flex: 1;
+      }
 
       .doc-pill {
         width: 100%;
@@ -435,10 +429,9 @@
       }
 
       .back-button {
-        width: 40px;
-        height: 40px;
-        top: 1rem;
-        right: 1rem;
+        width: 32px;
+        height: 32px;
+        position: static;
       }
 
       .back-button svg {
@@ -471,13 +464,23 @@
         height: 12px;
       }
 
-      /* Hide info toggle on mobile */
       .info-toggle {
-        display: none;
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+
+      .info-toggle svg {
+        width: 14px;
+        height: 14px;
       }
 
       .info-panel {
-        display: none;
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        max-height: 100vh;
+        border-right: none;
       }
 
       .book-wrapper.info-open {
@@ -487,7 +490,6 @@
   </style>
 </head>
 <body>
-
 
   <!-- Control Bar -->
   <div class="control-bar">
@@ -507,10 +509,16 @@
 
       <select class="doc-select-mobile" id="doc-select-mobile"></select>
 
-
       <div class="doc-pills-container" id="doc-pills">
         <!-- Document pills will be inserted here -->
       </div>
+
+      <!-- Back Button -->
+      <a href="../index.html" class="back-button" aria-label="Back">
+        <svg viewBox="0 0 24 24">
+          <path d="M7 14l5-5 5 5z"/>
+        </svg>
+      </a>
     </div>
 
     <div class="controls">
@@ -546,14 +554,6 @@
         </button>
       </div>
     </div>
-
-      <!-- Back Button -->
-  <a href="../index.html" class="back-button" aria-label="Back">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 14l5-5 5 5z"/>
-    </svg>
-  </a>
-
   </div>
 
   <!-- Info Panel -->
@@ -608,7 +608,7 @@
           var pill = document.createElement('button');
           pill.className = 'doc-pill';
           pill.innerHTML = book.title + (this.books.length > 1 ? '<span class="doc-count">' + book.images.length + ' pages</span>' : '');
-          // Create mobile select option
+          
           var option = document.createElement('option');
           option.value = index;
           option.textContent = book.title;
@@ -624,14 +624,12 @@
         });
         
         mobileSelect.addEventListener('change', function () {
-        FlipbookViewer.switchToBook(parseInt(this.value, 10));
+          FlipbookViewer.switchToBook(parseInt(this.value, 10));
         });
 
         toggle.onclick = () => this.toggleDocSelector();
         document.getElementById('active-doc-title').textContent = this.books[0].title;
         mobileSelect.value = 0;
-
-
 
         if (this.books.length === 1) {
           toggle.style.display = 'none';
@@ -745,26 +743,21 @@
         var oldBook = this.books[this.currentBookIndex];
         var newBook = this.books[index];
         
-        // Update UI
         document.querySelectorAll('.doc-pill').forEach((pill, i) => {
           pill.classList.toggle('active', i === index);
         });
         document.getElementById('active-doc-title').textContent = newBook.title;
         
-        // Update info panel
         this.updateInfoPanel(newBook);
         
-        // Hide old book
         if (oldBook.element) {
           oldBook.element.classList.remove('active');
         }
         
         this.currentBookIndex = index;
         
-        // Resize new book
         var size = this.resizeBook(newBook);
         
-        // Initialize or update Turn.js
         if (!newBook.initialized) {
           $(newBook.element).turn({
             width: size.width,
@@ -782,20 +775,16 @@
           newBook.initialized = true;
         } else {
           $(newBook.element).turn('size', size.width, size.height);
-          // Return to saved page
           $(newBook.element).turn('page', newBook.currentPage);
         }
         
-        // Show new book
         newBook.element.classList.add('active');
         this.updatePageIndicator();
 
-        // Sync mobile select
         var mobileSelect = document.getElementById('doc-select-mobile');
         if (mobileSelect) {
-        mobileSelect.value = index;
+          mobileSelect.value = index;
         }
-
       },
       
       resizeBook: function(book) {
