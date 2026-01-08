@@ -483,16 +483,18 @@
         border-right: none;
       }
 
-       .book-wrapper.info-open {
+      .book-wrapper.info-open {
         padding-left: 0;
       }
 
       .book-container {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem;
       }
 
       .book-wrapper {
         padding-top: 140px;
+        height: calc(100vh - 140px);
+        overflow: hidden;
       }
     }
   </style>
@@ -802,14 +804,17 @@ resizeBook: function(book) {
 
         // Calculate available space
         var isMobile = window.innerWidth <= 768;
-        var controlBarHeight = isMobile ? 140 : 70; // Mobile control bar is taller (2 rows)
-        var availableWidth = window.innerWidth - (isMobile ? 32 : 64); // Account for padding
-        var availableHeight = window.innerHeight - controlBarHeight - (isMobile ? 32 : 64);
+        var controlBarHeight = isMobile ? 140 : 70;
+        var padding = isMobile ? 16 : 64;
+        
+        var availableWidth = window.innerWidth - padding;
+        var availableHeight = window.innerHeight - controlBarHeight - padding;
 
-        var maxWidth = Math.min(availableWidth, 1400);
-        var width = maxWidth;
+        // Start with width-based calculation
+        var width = Math.min(availableWidth, 1400);
         var height = Math.round(width / ratio);
 
+        // If height is too tall, recalculate based on height
         if (height > availableHeight) {
           height = availableHeight;
           width = Math.round(height * ratio);
