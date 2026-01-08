@@ -497,7 +497,7 @@
         padding-top: 140px;
         height: calc(100vh - 140px);
         overflow: hidden;
-
+        
       }
     }
   </style>
@@ -751,54 +751,29 @@
         });
       },
       
-      switchToBook: function(index) {
-        var me = this;
-        var oldBook = this.books[this.currentBookIndex];
-        var newBook = this.books[index];
-        
-        document.querySelectorAll('.doc-pill').forEach((pill, i) => {
-          pill.classList.toggle('active', i === index);
-        });
-        document.getElementById('active-doc-title').textContent = newBook.title;
-        
-        this.updateInfoPanel(newBook);
-        
-        if (oldBook.element) {
-          oldBook.element.classList.remove('active');
-        }
-        
-        this.currentBookIndex = index;
-        
-        var size = this.resizeBook(newBook);
-        
-        if (!newBook.initialized) {
-          $(newBook.element).turn({
-            width: size.width,
-            height: size.height,
-            page: 1,
-            gradients: true,
-            acceleration: true
-          });
-          
-          $(newBook.element).on('turned', function(e, page) {
-            newBook.currentPage = page;
-            me.updatePageIndicator();
-          });
-          
-          newBook.initialized = true;
-        } else {
-          $(newBook.element).turn('size', size.width, size.height);
-          $(newBook.element).turn('page', newBook.currentPage);
-        }
-        
-        newBook.element.classList.add('active');
-        this.updatePageIndicator();
+switchToBook: function(index) {
+  const me = this;
+  const newBook = this.books[index];
 
-        var mobileSelect = document.getElementById('doc-select-mobile');
-        if (mobileSelect) {
-          mobileSelect.value = index;
-        }
-      },
+  this.currentBookIndex = index;
+  const size = this.resizeBook(newBook);
+
+  requestAnimationFrame(() => {
+    if (!newBook.initialized) {
+      $(newBook.element).turn({
+        width: size.width,
+        height: size.height,
+        page: 1
+      });
+      newBook.initialized = true;
+    } else {
+      $(newBook.element).turn('size', size.width, size.height);
+    }
+  });
+
+  newBook.element.classList.add('active');
+}
+,
       
 resizeBook: function(book) {
         var ratio = book.ratio || 1.38;
@@ -898,25 +873,11 @@ resizeBook: function(book) {
         }, { passive: false });
       },
       
-zoom: function(level) {
-  this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
-
-  const container = document.getElementById('book-container');
-  container.style.transform = 'scale(' + this.zoomLevel + ')';
-
-  const book = this.books[this.currentBookIndex];
-  if (book && book.initialized) {
-    // force Turn.js to recalc center
-    $(book.element).turn('size',
-      book.element.offsetWidth,
-      book.element.offsetHeight
-    );
-  }
-
-  document.getElementById('zoom-level').textContent =
-    Math.round(this.zoomLevel * 100) + '%';
-},
-
+      zoom: function(level) {
+        this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, level));
+        document.getElementById('book-container').style.transform = 'scale(' + this.zoomLevel + ')';
+        document.getElementById('zoom-level').textContent = Math.round(this.zoomLevel * 100) + '%';
+      },
       
       setupResizeListener: function() {
         var me = this;
