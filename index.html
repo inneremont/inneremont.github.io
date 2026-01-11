@@ -73,12 +73,15 @@ body {
 
 .nav-container {
   position: fixed;
-  top: 1.25rem;
-  left: 1.25rem;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  padding: 1rem 1.25rem;
   display: flex;
-  gap: 0.5rem;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 /* -----------------------------
@@ -86,20 +89,22 @@ body {
 ----------------------------- */
 
 .info-button {
-  height: 36px;
-  padding: 0 0.75rem;
-  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
 }
 
 .info-button svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: white;
 }
 
@@ -140,6 +145,18 @@ body {
 .nav-link:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Inactive/disabled nav link */
+.nav-link.inactive {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+.nav-link.inactive:hover {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Show nav on desktop */
@@ -198,7 +215,7 @@ body {
     width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.95);
-    padding: 6rem 2rem 2rem;
+    padding: 0rem 2rem 2rem;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 998;
@@ -219,6 +236,11 @@ body {
     max-width: 300px;
     text-align: center;
     padding: 0.75rem 1.5rem;
+  }
+
+  /* Hide inactive links on mobile */
+  .nav-link.inactive {
+    display: none;
   }
 }
 
@@ -293,6 +315,7 @@ body {
   }
 }
 
+
   </style>
 </head>
 <body>
@@ -308,9 +331,10 @@ body {
 
     <!-- Navigation Links (Desktop) -->
     <nav class="nav-links" id="nav-links">
-      <a href="minifolio2025/index.html" class="nav-link">Projects</a>
-      <a href="typetester/index.html" class="nav-link">Type</a>
+      <a href="posters/index.html" class="nav-link">posters</a>
+      <a href="typetester/index.html" class="nav-link">type</a>
       <a href="print/index.html" class="nav-link">print</a>
+      <a href="#" class="nav-link inactive">back</a>
     </nav>
   </div>
 
@@ -321,15 +345,16 @@ body {
   <div id="carousel-container">
     <div id="carousel">
       <!-- Last image clone -->
-      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
-      <!-- Actual slides -->
+      <!--<div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
+       Actual slides -->
+      <!--
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat05xx_d3ngag.png');"></div>
       <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat04xx_olijaz.png');"></div>
-      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1738272372/portf_ext_kywnqh.gif');"></div>  
+      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1738272372/portf_ext_kywnqh.gif');"></div>  -->
       <div class="slide" style="background-image: url('https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif');"></div>
       <!-- First image clone -->
-      <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div>     
+     <!-- <div class="slide" style="background-image: url('https://res.cloudinary.com/dlhshzs37/image/upload/v1737463631/plakat01xx_xdrem5.png');"></div> -->    
     </div>
   </div>
 
@@ -344,33 +369,33 @@ body {
   </div>
 
   <script>
-    // Carousel functionality
-    const carousel = document.getElementById('carousel');
-    const slides = document.querySelectorAll('.slide');
-    let currentIndex = 1; // Start at first real slide (after clone)
-    const totalSlides = slides.length;
-    const realSlides = totalSlides - 2; // Exclude clones
+    // // Carousel functionality
+    // const carousel = document.getElementById('carousel');
+    // const slides = document.querySelectorAll('.slide');
+    // let currentIndex = 1; // Start at first real slide (after clone)
+    // const totalSlides = slides.length;
+    // const realSlides = totalSlides - 2; // Exclude clones
 
-    // Set initial position
-    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // // Set initial position
+    // carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-    function nextSlide() {
-      currentIndex++;
-      carousel.style.transition = 'transform 0.5s ease-in-out';
-      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // function nextSlide() {
+    //   currentIndex++;
+    //   carousel.style.transition = 'transform 0.5s ease-in-out';
+    //   carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-      // If at the last clone, jump to first real slide
-      if (currentIndex === totalSlides - 1) {
-        setTimeout(() => {
-          carousel.style.transition = 'none';
-          currentIndex = 1;
-          carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }, 500);
-      }
-    }
+    //   // If at the last clone, jump to first real slide
+    //   if (currentIndex === totalSlides - 1) {
+    //     setTimeout(() => {
+    //       carousel.style.transition = 'none';
+    //       currentIndex = 1;
+    //       carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    //     }, 500);
+    //   }
+    // }
 
-    // Auto-advance carousel
-    setInterval(nextSlide, 4000);
+    // // Auto-advance carousel
+    // setInterval(nextSlide, 4000);
 
     // Info button toggle
     const infoBtn = document.getElementById('info-btn');
