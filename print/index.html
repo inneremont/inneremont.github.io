@@ -776,6 +776,13 @@
             html += '<div class="meta-value">' + book.info.description + '</div>';
             html += '</div>';
           }
+
+          if (book.info.size) {
+            html += '<div class="meta-item">';
+            html += '<div class="meta-label">Size</div>';
+            html += '<div class="meta-value">' + book.info.size + '</div>';
+            html += '</div>';
+          }
           
           if (book.info.tools) {
             html += '<div class="meta-item">';
@@ -1066,14 +1073,12 @@ resizeBook: function(book) {
     FlipbookViewer.init([
       {
         id: 'book1',
-        title: 'Sampler Broadsheet',
+        title: 'Portfolio Magazine',
         ratio: 1.38,
         info: {
           year: '2025',
-          client: 'Personal Project',
-          role: 'Type Design, Layout',
-          description: 'A typographic exploration showcasing custom typefaces and experimental layouts.',
-          tools: 'InDesign, Illustrator, Glyphs'
+          description: 'Work portfolio in broadsheet size',
+          size: '350mm x 500mm'
         },
         images: [
           'https://res.cloudinary.com/dlhshzs37/image/upload/v1767116783/sampler_broadsheet_v3_25_page-0001_pipx1q.jpg',
@@ -1092,14 +1097,12 @@ resizeBook: function(book) {
       },
       {
         id: 'book2',
-        title: 'Essay: Triptych Effect',
+        title: 'The Triptych Effect',
         ratio: 1.3,
         info: {
           year: '2024',
-          client: 'Example Corp',
-          role: 'Art Direction, Design',
-          description: 'Complete brand identity system including logo, typography, and visual guidelines.',
-          tools: 'Figma, Illustrator'
+          description: 'School essay, editorial and typographic assignment',
+          size: '120mm x 178mm'
         },
         images: [
           'https://res.cloudinary.com/dlhshzs37/image/upload/v1767805338/triptych_web_vers_page-0001_w6f1hp.jpg',
