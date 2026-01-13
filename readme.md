@@ -2,11 +2,9 @@ Hi!
 
 Another update of my small portfolio page.
 
-Added minifolio2025 and folders for more projects
+New year new look, sadly I need to send Claude huge thanks 
 
-Still no hydra.js and at the moment p5.js free
-
-Do check out [p5*js](https://p5js.org/) and  hydrajs  [Hy5js by Ted Davis](https://hy5live.teddavis.org/)
+for piecing together much of the structure and js.  
 
 
-more to come (again) soon
+more to come (hopefully) soon?
