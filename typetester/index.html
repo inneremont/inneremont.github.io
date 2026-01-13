@@ -458,6 +458,27 @@
 
     /* Mobile */
     @media (max-width: 768px) {
+
+      .info-tooltip {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: -10rem;
+      background: #fff;
+      color: #000;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 280px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      font-weight: 400;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      z-index: 100;
+      pointer-events: none;
+    }
+
       .nav-bar {
         padding: 0.75rem 1rem;
       }
@@ -559,7 +580,7 @@
             <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
           </svg>
           <span class="info-tooltip">
-            A display serif typeface inspired by 19th century Egyptian slab serifs. Features bold, geometric forms with strong bracketed serifs designed for headlines and display use.
+            Display serif typeface inspired by S. Berthier & Durey 19th century Égyptiens Serrès. A narrow slab with bracketed serifs suitable for compact headlines and display use.
           </span>
         </span>
       </h2>
@@ -599,7 +620,7 @@
 
     <div class="demo-area">
       <div class="demo-text" id="egyptiens-demo" contenteditable="true" spellcheck="false">
-        Live, Laugh, Egyptiens Serres
+        Live, Laugh, Égyptiens Serrès
       </div>
     </div>
   </div>
@@ -614,11 +635,11 @@
             <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
           </svg>
           <span class="info-tooltip">
-            A sans-serif typeface with clean, modernist proportions. Designed for versatility across both display and text applications with excellent readability.
+            An experimental sans-serif typeface made by tracing electrical tape, Suitable for display and text applications where having jagged edges doesn’t matter.
           </span>
         </span>
       </h2>
-      <p>A Botched Sans</p>
+      <p>A jagged Sans</p>
     </div>
 
     <div class="controls">
