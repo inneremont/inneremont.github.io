@@ -11,11 +11,25 @@
 </head>
 <body>
   <div id="viewer">
-    <div id="left-arrow" class="arrow">←</div>
-    <img id="portfolio-image" src="" alt="Portfolio Image" />
-    <div id="right-arrow" class="arrow">→</div>
+  <div id="left-arrow" class="arrow">←</div>
+
+  <img id="portfolio-image" src="" alt="Portfolio Image" />
+  <video id="portfolio-video" playsinline muted loop controls></video>
+
+  <div id="caption">
+    <div id="lang-tabs">
+      <button data-lang="fi" class="lang-btn active">FI</button>
+      <button data-lang="sv" class="lang-btn">SV</button>
+      <button data-lang="en" class="lang-btn">EN</button>
+    </div>
+    <p id="caption-text"></p>
   </div>
+
+  <div id="right-arrow" class="arrow">→</div>
+</div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
+
