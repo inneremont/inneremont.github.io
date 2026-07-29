@@ -15,7 +15,7 @@ const items = [
     image: "https://res.cloudinary.com/dlhshzs37/image/upload/v1785358232/operahus01_Large_vqj9t6.png",
     video: "https://res.cloudinary.com/dlhshzs37/video/upload/v1785357447/opera_video_j8yejz.mp4",
     description: {
-      fi: "Tässä on pieni kasa luonnoksia Hangethe Operahausin identiteetistä. Koko projekti sai inspiraationsa Inka-Maria Nymanin artikkelista ”Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding”. Siinä käsitellään sitä, miten oopperan kaltainen instituutio liittyy kulttuuriseen identiteettiin ja miksi se on edelleen olemassa. Linkki artikkeliin: https://www.doria.fi/handle/10024/192379 Joka tapauksessa, jaan tätä luonnosten kasaa, koska se voi antaa taustatietoa joistakin profiilissani julkaisemistani julisteista.
+      fi: `Tässä on pieni kasa luonnoksia Hangethe Operahausin identiteetistä. Koko projekti sai inspiraationsa Inka-Maria Nymanin artikkelista ”Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding”. Siinä käsitellään sitä, miten oopperan kaltainen instituutio liittyy kulttuuriseen identiteettiin ja miksi se on edelleen olemassa. Linkki artikkeliin: https://www.doria.fi/handle/10024/192379 Joka tapauksessa, jaan tätä luonnosten kasaa, koska se voi antaa taustatietoa joistakin profiilissani julkaisemistani julisteista.
 
 Alun perin ideana ei ollut tehdä oopperatalosta julisteita, vaan luoda Hangethe Operahaus -julistekokoelma, joka perustuisi Nymanin artikkeliin. Julisteet olivat tarkoitettu paikalliseen taidenäyttelyyn ja avoimien ovien päivään kesäkuussa 2025. Lopulta tein vain yhden julisteen, muut eivät valmistuneet ajoissa. Julisteissa yritin yhdistää kaupungin ympäristössä näkyviä, vähemmän tutkittuja kieliä ja visuaalisia elementtejä omiin valintoihini.
 
@@ -23,8 +23,8 @@ Tarkennuksena: kuvitteellisen Hangethe Operahausin taustalla on kuvitteellinen h
 
 Käytetyt työkalut: Affinity, Inkscape, meshy.ai, vähän Photoshopia ja Claude-ohjelmaa.
 
-#julistesuunnittelu #visuaalinenidentiteetti #taideprojekti #affinity #inkscape",
-      sv: "Här är en några utkast som jag gjorde för en fiktiv Hangethe Operahus identitet. Hela projektet är inspirerat av Inka-Maria Nymans artikel Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding. I artikeln diskuterar hon hur operan som institution hänger ihop med kulturell identitet och varför vi fortsätter att upprätthålla den. Här är en länk till artikeln: https://www.doria.fi/handle/10024/192379
+#julistesuunnittelu #visuaalinenidentiteetti #taideprojekti #affinity #inkscape`,
+      sv: `Här är en några utkast som jag gjorde för en fiktiv Hangethe Operahus identitet. Hela projektet är inspirerat av Inka-Maria Nymans artikel Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding. I artikeln diskuterar hon hur operan som institution hänger ihop med kulturell identitet och varför vi fortsätter att upprätthålla den. Här är en länk till artikeln: https://www.doria.fi/handle/10024/192379
 
 Jag delar med mig av dessa skisser eftersom de kan ge lite bakgrund till några av de affischer som jag har lagt upp på mitt instgram konto.
 
@@ -34,8 +34,8 @@ För att vara tydlig, så har det fiktiva Hangethe Operahus en fiktiv historia m
 
 Verktyg som använts: Affinity, Inkscape, meshy.ai, lite Photoshop och lite Claude-prompter.
 
-#posterdesign #visuellidentitet #konstprojekt #affinity #inkscape",
-      en: "A tiny slop-content post of some sketches of Hangethe Operahaus identity. The entire thing was inspired by Inka-Maria Nyman’s Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding. Her paper goes into how opera as an institution correlates with cultural identity and why do we keep it around.  Link here:  https://www.doria.fi/handle/10024/192379
+#posterdesign #visuellidentitet #konstprojekt #affinity #inkscape`,
+      en: `A tiny slop-content post of some sketches of Hangethe Operahaus identity. The entire thing was inspired by Inka-Maria Nyman’s Negotiating Opera: Discursive Representations, Democratic Accessibility and Social Media Branding. Her paper goes into how opera as an institution correlates with cultural identity and why do we keep it around.  Link here:  https://www.doria.fi/handle/10024/192379
 
 Anywho, I’m sharing this slop-galore as it can provide some backstory to some posters i share on my profile. 
 
@@ -45,7 +45,7 @@ For the record, the fictional Hangethe Operahaus has fictional history w. timeli
 
 Tools used: Affinity, Inkscape, meshy.ai, a little photoshop and some Claude prompting. 
 
-#posterdesign #visualidentity #artproject #affinity #inkscape"
+#posterdesign #visualidentity #artproject #affinity #inkscape`
     }
   }
   // Add more as needed
