@@ -68,7 +68,7 @@ img#portfolio-image,
   background: rgba(0, 0, 0, 0.5);
   color: white;
   display: none; /* JS toggles this to block/none */
-  text-align: center;
+  text-align: left;
   padding: 1rem 2rem;
 }
 
