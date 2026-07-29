@@ -54,6 +54,44 @@ img#portfolio-image {
 }
 
 
+#portfolio-video {
+  display: none;
+  max-width: 100%;
+  max-height: 70vh;
+}
 
+#caption {
+  display: none;
+  text-align: center;
+  padding: 1rem 2rem;
+  max-width: 600px;
+}
+
+#lang-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lang-btn {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.lang-btn.active {
+  opacity: 1;
+  border-bottom: 1px solid currentColor;
+}
+
+#caption-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
 
 
